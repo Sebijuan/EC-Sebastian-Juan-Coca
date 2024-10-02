@@ -1,9 +1,10 @@
+// Función para generar el XPath de un elemento
 function getXPath(element) {
     if (element.id) {
-        return `//*[@id="${element.id}"]`; 
+        return `//*[@id="${element.id}"]`;
     }
     if (element === document.body) {
-        return '/html/body'; 
+        return '/html/body';
     }
 
     let ix = 0;
@@ -20,37 +21,55 @@ function getXPath(element) {
     }
 }
 
-document.addEventListener('click', function(event) {
-    const target = event.target; 
-    const xpath = getXPath(target); 
-    
-    alert(`XPath del elemento clickeado: ${xpath}`);
+// Escuchar clics en el botón principal
+document.getElementById('mainButton').addEventListener('click', function() {
+    const xpath = getXPath(this);
+    alert(`XPath del Botón Principal: ${xpath}`);
     document.getElementById('xpathOutput').textContent = `XPath: ${xpath}`;
 });
 
-
+// Obtener el iframe
 const iframe = document.getElementById('myIframe');
 
+// Esperar a que el iframe cargue completamente
 iframe.onload = function() {
-    const iframeDocument = iframe.contentDocument || iframe.contentWindow.document;
+    console.log("Iframe cargado correctamente.");
 
-   
-    iframeDocument.addEventListener('click', function(event) {
-        const target = event.target; 
-        const xpath = getXPath(target); 
+    // Usar un setTimeout para dar tiempo al iframe a cargarse completamente
+    setTimeout(function() {
+        // Intentar acceder al documento del iframe
+        const iframeDocument = iframe.contentDocument || iframe.contentWindow.document;
 
-        
-        const iframeXPath = getXPath(iframe);
-        
-        alert(`XPath del iframe: ${iframeXPath}\nXPath del elemento dentro del iframe: ${xpath}`);
+        if (iframeDocument) {
+            console.log("Accediendo al iframe:", iframe);
+            // Obtener el botón dentro del iframe
+            const iframeButton = iframeDocument.getElementById('iframeButton');
 
-       
-        document.getElementById('xpathOutput').textContent = `XPath del iframe: ${iframeXPath}\nXPath dentro del iframe: ${xpath}`;
-    });
+            if (iframeButton) {
+                console.log("Botón dentro del iframe encontrado.");
+                // Agregar el evento de clic al botón dentro del iframe
+                iframeButton.addEventListener('click', function(event) {
+                    event.stopPropagation(); // Detener la propagación del evento
+
+                    // Generar XPath para el botón dentro del iframe
+                    const xpath = getXPath(event.target);
+                    alert('XPath del botón dentro del iframe: ' + xpath);
+
+                    // Actualizar el texto del párrafo en el HTML principal
+                    document.getElementById('xpathOutput').textContent = 'XPath dentro del iframe: ' + xpath;
+                });
+            } else {
+                console.error("Botón dentro del iframe no encontrado.");
+            }
+        } else {
+            console.error("No se pudo acceder al contenido del iframe.");
+        }
+    }, 500); // Esperar medio segundo para asegurarse de que el iframe se haya cargado completamente
 };
 
-
-document.getElementById('iframeWrapper').addEventListener('click', function() {
-    const iframe = document.getElementById('myIframe');
-    iframe.style.display = (iframe.style.display === "none") ? "block" : "none"; // Alternar la visibilidad del iframe
+// Detectar cuando el documento principal pierde el foco
+document.addEventListener('visibilitychange', function() {
+    if (document.hidden) {
+        console.log('El documento principal ha perdido el foco.');
+    }
 });
