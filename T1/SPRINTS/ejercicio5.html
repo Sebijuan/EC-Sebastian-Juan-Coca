@@ -5,21 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Botón e Iframe</title>
     <script src="ejercicio5.js" defer></script>
+</head>
 <body>
     <button id="mainButton">Botón Principal</button>
     
-    <iframe id="myIframe" width="200" height="200" frameborder="0" src="data:text/html;charset=utf-8,<!DOCTYPE html>
-        <html lang='en'>
-        <head>
-            <meta charset='UTF-8'>
-            <meta name='viewport' content='width=device-width, initial-scale=1.0'>
-            <title>Contenido Iframe</title>
-        </head>
-        <body>
-            <button id='iframeButton'>Botón Iframe</button>
-        </body>
-        </html>">
-    </iframe>
+   
+    <button id="iframeWrapper" style="display: inline-block;">
+        Abrir Iframe
+        <iframe id="myIframe" width="200" height="200" frameborder="0" src="iframeContent.html" style="display: none;"></iframe>
+    </button>
     
     <p id="xpathOutput" style="margin-top: 20px;">XPath del elemento clickeado aparecerá aquí.</p>
 </body>

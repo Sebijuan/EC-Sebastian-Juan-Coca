@@ -28,20 +28,29 @@ document.addEventListener('click', function(event) {
     document.getElementById('xpathOutput').textContent = `XPath: ${xpath}`;
 });
 
+
 const iframe = document.getElementById('myIframe');
 
 iframe.onload = function() {
     const iframeDocument = iframe.contentDocument || iframe.contentWindow.document;
 
-    // Escuchar eventos de click en el iframe
+   
     iframeDocument.addEventListener('click', function(event) {
         const target = event.target; 
         const xpath = getXPath(target); 
 
-        alert(`XPath del elemento clickeado en el iframe: ${xpath}`);
+        
+        const iframeXPath = getXPath(iframe);
+        
+        alert(`XPath del iframe: ${iframeXPath}\nXPath del elemento dentro del iframe: ${xpath}`);
 
-        // Actualizar el contenido con el XPath del iframe
-        document.getElementById('xpathOutput').textContent = `XPath (iframe): ${xpath}`;
+       
+        document.getElementById('xpathOutput').textContent = `XPath del iframe: ${iframeXPath}\nXPath dentro del iframe: ${xpath}`;
     });
 };
 
+
+document.getElementById('iframeWrapper').addEventListener('click', function() {
+    const iframe = document.getElementById('myIframe');
+    iframe.style.display = (iframe.style.display === "none") ? "block" : "none"; // Alternar la visibilidad del iframe
+});
