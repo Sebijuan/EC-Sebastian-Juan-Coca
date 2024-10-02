@@ -11,13 +11,13 @@ Este ejercicio consiste en una página web simple que contiene un botón etiquet
 
 1. **ejercicio1.html**: Archivo HTML que contiene la estructura básica de la página.
 2. **ejercicio1.js**: Archivo JavaScript que maneja la lógica para generar colores aleatorios y cambiar el color de fondo de la página.
-3. **styles.css**: (Opcional) Archivo CSS que centra el botón en la página.
+
 
 ### Prueba del Ejercicio
 
 Aquí puedes ver un vídeo en formato GIF que muestra el funcionamiento correcto del botón al cambiar el color de fondo:
 
-![Prueba de cambio de color]("C:\Users\sebip\OneDrive\Documentos\ShareX\Screenshots\2024-10\gif1.gif")
+![Prueba de cambio de color](gif1.gif)
 
 ---
 
