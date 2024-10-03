@@ -1,87 +1,99 @@
-# Ejercicio 1: Cambio de Color con Botón
+# Ejercicios de Desarrollo Web
 
-Este ejercicio consiste en una página web simple que contiene un botón etiquetado como "Cambiar color". Al hacer clic en el botón, el color de fondo de la página cambia a un color aleatorio.
+## Ejercicio 1: Cambio de Color con Botón
 
-## Descripción del Funcionamiento
+### Análisis del problema:
+Se requiere una página web que contenga un botón etiquetado "Cambiar color". Al hacer clic en dicho botón, el color de fondo de la página debe cambiar a un color aleatorio. El objetivo es proporcionar una experiencia interactiva y visualmente dinámica.
 
-- Al cargar la página, el usuario verá un botón en el centro de la pantalla que dice "Cambiar color".
-- Al presionar el botón, el color de fondo del `body` cambia aleatoriamente utilizando valores RGB generados con `Math.random()`.
+### Diseño de la propuesta de solución:
+1. **Estructura HTML**: Página con un botón central.
+2. **Lógica JavaScript**: Utilizar `Math.random()` para generar colores aleatorios en formato RGB.
+3. **Diagrama de flujo**:
+   - Inicia -> Clic en el botón -> Generar color aleatorio -> Cambiar el color de fondo -> Fin.
 
-### Archivos incluidos
+### Implementación del diseño propuesto:
+Se desarrollará un archivo HTML con un botón y una pequeña función de JavaScript que cambiará el color de fondo utilizando `Math.random()` para generar los valores RGB aleatorios.
 
-1. **ejercicio1.html**: Archivo HTML que contiene la estructura básica de la página.
-2. **ejercicio1.js**: Archivo JavaScript que maneja la lógica para generar colores aleatorios y cambiar el color de fondo de la página.
+### Pruebas de la resolución del problema:
+Pruebas realizadas manualmente clickeando el botón para verificar que el color de fondo cambia cada vez a un color diferente. Se adjuntará un GIF mostrando la interacción.
+ ![ejercico1](gif1.gif)
+---
 
+## Ejercicio 2: Calculadora de Área
 
-### Prueba del Ejercicio
+### Análisis del problema:
+Se debe diseñar una página web con dos campos de entrada, uno para el ancho y otro para la altura de un rectángulo. Al hacer clic en el botón "Calcular Área", se debe mostrar el área calculada del rectángulo en un párrafo dentro de la página.
 
-Aquí puedes ver un vídeo en formato GIF que muestra el funcionamiento correcto del botón al cambiar el color de fondo:
+### Diseño de la propuesta de solución:
+1. **Estructura HTML**: Dos campos de entrada y un botón para calcular el área.
+2. **Lógica JavaScript**: Multiplicar el ancho y la altura para obtener el área y mostrarlo en el párrafo correspondiente.
+3. **Diagrama de flujo**:
+   - Inicia -> Usuario introduce ancho y alto -> Clic en el botón -> Calcular área -> Mostrar resultado -> Fin.
 
-![Prueba de cambio de color](gif1.gif)
+### Implementación del diseño propuesto:
+Se implementará un archivo HTML con dos campos de entrada para el ancho y el alto. En JavaScript, se capturarán los valores de los inputs, se calculará el área y se mostrará en un párrafo.
+
+### Pruebas de la resolución del problema:
+Pruebas manuales introduciendo diferentes valores de ancho y alto, verificando que el resultado sea correcto. Se incluirá un GIF mostrando el funcionamiento.
 
 ---
 
-### Ejemplo de Código JavaScript para Cambiar el Color
+## Ejercicio 3: Listado Dinámico
 
-```javascript
-function generarColorAleatorio() {
-    const r = Math.floor(Math.random() * 256);
-    const g = Math.floor(Math.random() * 256);
-    const b = Math.floor(Math.random() * 256);
-    return `rgb(${r}, ${g}, ${b})`;
-}
+### Análisis del problema:
+Se debe crear una página con un campo de entrada y un botón "Añadir a la lista". Cada vez que el usuario escriba algo y haga clic en el botón, el contenido debe agregarse como un nuevo elemento en una lista vacía.
 
-document.getElementById("colorButton").addEventListener("click", () => {
-    document.body.style.backgroundColor = generarColorAleatorio();
-});
+### Diseño de la propuesta de solución:
+1. **Estructura HTML**: Un campo de entrada, un botón y una lista vacía.
+2. **Lógica JavaScript**: Capturar el texto del input y añadirlo a la lista mediante `.createElement()` y `.appendChild()`.
+3. **Diagrama de flujo**:
+   - Inicia -> Usuario introduce texto -> Clic en el botón -> Crear nuevo item -> Añadir a la lista -> Fin.
 
+### Implementación del diseño propuesto:
+Se creará una página HTML con un input y un botón. En JavaScript, se gestionará la lógica para tomar el valor del campo de entrada y añadirlo a una lista dinámica.
 
+### Pruebas de la resolución del problema:
+Pruebas realizadas añadiendo varios ítems a la lista, verificando que se agreguen correctamente. Se proporcionará un GIF que muestre el proceso.
 
+---
 
-# Ejercicio 2: Calculadora de Área
+## Ejercicio 4: Hover y Estilo Dinámico
 
-Este ejercicio consiste en una página web que permite al usuario calcular el área de un rectángulo. El usuario ingresará el ancho y el alto del rectángulo, y al hacer clic en el botón "Calcular Área", se mostrará el resultado en la página.
+### Análisis del problema:
+Se debe diseñar una página con varios elementos `div`, cada uno con un texto diferente. Cuando el usuario pase el ratón sobre un `div`, su color de fondo debe cambiar a azul y el texto a blanco. Al mover el ratón fuera del `div`, los estilos deben restaurarse.
 
-## Descripción del Funcionamiento
+### Diseño de la propuesta de solución:
+1. **Estructura HTML**: Múltiples `div` con textos diferentes.
+2. **Lógica CSS/JavaScript**: Utilizar los eventos `mouseover` y `mouseout` para cambiar los estilos dinámicamente.
+3. **Diagrama de flujo**:
+   - Inicia -> Mouse sobre un `div` -> Cambiar estilos -> Mouse fuera -> Restaurar estilos -> Fin.
 
-- Al cargar la página, el usuario verá dos campos de entrada (input) para ingresar el ancho y el alto del rectángulo.
-- Al presionar el botón "Calcular Área", se calcula el área utilizando la fórmula: 
-  \[
-  \text{Área} = \text{ancho} \times \text{alto}
-  \]
-- El resultado se mostrará en un elemento `<p>` debajo del botón.
+### Implementación del diseño propuesto:
+La página contendrá varios `div` con texto. Se utilizará JavaScript o CSS para manejar los eventos `mouseover` y `mouseout` que alterarán los estilos del `div`.
 
-### Archivos incluidos
+### Pruebas de la resolución del problema:
+Pruebas realizadas pasando el ratón sobre los `divs` para verificar que los estilos cambian correctamente. Se proporcionará un GIF demostrativo.
 
-1. **ejercicio2.html**: Archivo HTML que contiene la estructura básica de la página.
-2. **ejercicio2.js**: Archivo JavaScript que maneja la lógica para calcular el área y mostrar el resultado en la página.
+---
 
-### Prueba del Ejercicio
+## Ejercicio 5: Detección de Clics y Generación de XPath
 
-Aquí puedes ver un vídeo en formato GIF que muestra el funcionamiento correcto de la calculadora al calcular el área:
+### Análisis del problema:
+Se debe desarrollar una página web que detecte clics en cualquier elemento y muestre el XPath único del elemento clickeado en un cuadro de alerta o en una sección específica de la página.
 
-![Prueba de calculadora de área](gif2.gif)
+### Diseño de la propuesta de solución:
+1. **Estructura HTML**: Página con varios elementos sobre los que se pueda hacer clic.
+2. **Lógica JavaScript**:
+   - Capturar el clic en cualquier elemento de la página.
+   - Determinar el elemento clickeado utilizando `event.target`.
+   - Generar el XPath correspondiente y mostrarlo.
+3. **Diagrama de flujo**:
+   - Inicia -> Clic en elemento -> Capturar `event.target` -> Generar XPath -> Mostrar XPath -> Fin.
 
-### Ejemplo de Código HTML y JavaScript para Calcular el Área
+### Implementación del diseño propuesto:
+Se añadirá un evento de escucha al documento completo para capturar los clics en cualquier parte de la página. Se desarrollará una función para calcular el XPath del elemento clickeado y mostrarlo en una alerta o una sección específica de la página.
 
-**ejercicio2.html**
-```html
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calculadora de Área</title>
-    <link rel="stylesheet" href="estilos.css">
-</head>
-<body>
-    <h1>Calculadora de Área</h1>
-    <input type="number" id="width" placeholder="Ancho" required>
-    <input type="number" id="height" placeholder="Alto" required>
-    <button id="calcularButton">Calcular Área</button>
-    <p id="resultado"></p>
-    
-    <script src="ejercicio2.js"></script>
-</body>
-</html>
+### Pruebas de la resolución del problema:
+Pruebas realizadas clickeando diferentes elementos en la página y verificando que el XPath se genere correctamente. Se incluirá un GIF mostrando este comportamiento.
 
+---
