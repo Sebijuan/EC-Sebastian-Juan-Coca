@@ -35,7 +35,7 @@ Se implementará un archivo HTML con dos campos de entrada para el ancho y el al
 
 ### Pruebas de la resolución del problema:
 Pruebas manuales introduciendo diferentes valores de ancho y alto, verificando que el resultado sea correcto. Se incluirá un GIF mostrando el funcionamiento.
-
+![ejercico2](gif2.gif)
 ---
 
 ## Ejercicio 3: Listado Dinámico
@@ -54,7 +54,7 @@ Se creará una página HTML con un input y un botón. En JavaScript, se gestiona
 
 ### Pruebas de la resolución del problema:
 Pruebas realizadas añadiendo varios ítems a la lista, verificando que se agreguen correctamente. Se proporcionará un GIF que muestre el proceso.
-
+![ejercico3](gif3.gif)
 ---
 
 ## Ejercicio 4: Hover y Estilo Dinámico
@@ -73,7 +73,7 @@ La página contendrá varios `div` con texto. Se utilizará JavaScript o CSS par
 
 ### Pruebas de la resolución del problema:
 Pruebas realizadas pasando el ratón sobre los `divs` para verificar que los estilos cambian correctamente. Se proporcionará un GIF demostrativo.
-
+![ejercico4](gif4.gif)
 ---
 
 ## Ejercicio 5: Detección de Clics y Generación de XPath
@@ -95,5 +95,5 @@ Se añadirá un evento de escucha al documento completo para capturar los clics 
 
 ### Pruebas de la resolución del problema:
 Pruebas realizadas clickeando diferentes elementos en la página y verificando que el XPath se genere correctamente. Se incluirá un GIF mostrando este comportamiento.
-
+![ejercico5](gif5.gif)
 ---
