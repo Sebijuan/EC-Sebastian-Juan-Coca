@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Encuesta: ¿Cuál es tu Color favorito?</title>
+</head>
+<body>
+    <h1>Encuesta: ¿Cuál es tu Color favorito?</h1>
+
+    <div>
+        <input type="radio" id="Rojo" name="Color" value="Rojo">
+        <label for="Rojo">Rojo</label><br>
+
+        <input type="radio" id="Azul" name="Color" value="Azul">
+        <label for="Azul">Azul</label><br>
+
+        <input type="radio" id="Verde" name="Color" value="Verde">
+        <label for="Verde">Verde</label><br>
+
+        <input type="radio" id="Amarillo" name="Color" value="Amarillo">
+        <label for="Amarillo">Amarillo</label><br>
+        
+        <button onclick="submitVote()">Enviar</button>
+    </div>
+
+    <h2>Resultados:</h2>
+
+    <div>
+        <label>Rojo:</label>
+        <div id="bar-Rojo" style="background-color: red; width: 0%; height: 20px;"></div>
+        <span id="Rojo-votes">0 votos</span>
+    </div>
+
+    <div>
+        <label>Azul:</label>
+        <div id="bar-Azul" style="background-color: blue; width: 0%; height: 20px;"></div>
+        <span id="Azul-votes">0 votos</span>
+    </div>
+
+    <div>
+        <label>Verde:</label>
+        <div id="bar-Verde" style="background-color: green; width: 0%; height: 20px;"></div>
+        <span id="Verde-votes">0 votos</span>
+    </div>
+
+    <div>
+        <label>Amarillo:</label>
+        <div id="bar-Amarillo" style="background-color: yellow; width: 0%; height: 20px;"></div>
+        <span id="Amarillo-votes">0 votos</span>
+    </div>
+
+    <script src="ejercicio3.js"></script>
+</body>
+</html>
