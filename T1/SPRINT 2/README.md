@@ -147,6 +147,6 @@ Crear un juego de memoria donde el usuario debe hacer clic en dos cartas para ve
   - Probar que el juego detecta cuando se han encontrado todas las parejas y muestra un mensaje de finalización.
   - Verificar que el juego puede reiniciarse correctamente barajando las cartas de nuevo.
     ![ejercico5](gif5.gif)
-    ![ejercico5.1](gif5.1.gif)
+    ![ejercico51](gif51.gif)
     ![ejercico5.2](gif5.2.gif)
     ![ejercico5](gif5.3.gif)
