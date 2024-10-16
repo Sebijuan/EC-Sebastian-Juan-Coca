@@ -1,12 +1,12 @@
-// Configuración del tablero de juego
-const cardValues = ["A", "B", "C", "D", "E", "F", "G", "H"];  // Cartas únicas
-let cards = [...cardValues, ...cardValues];  // Duplicamos las cartas para hacer parejas
+
+const cardValues = ["A", "B", "C", "D", "E", "F", "G", "H"];  
+let cards = [...cardValues, ...cardValues]; 
 let firstCard = null;
 let secondCard = null;
-let flippedCards = 0;  // Cartas que ya han sido volteadas correctamente
-let lockBoard = false;  // Para evitar que se hagan clics durante la comparación
+let flippedCards = 0;  
+let lockBoard = false;  
 
-// Referencia al tablero y al botón de reinicio
+
 const gameBoard = document.getElementById('gameBoard');
 const winMessage = document.getElementById('winMessage');
 const resetButton = document.getElementById('resetButton');
@@ -37,8 +37,8 @@ function initializeGame() {
 
 // Función para voltear una carta
 function flipCard() {
-    if (lockBoard || this === firstCard) return;  // Prevenir doble clic o clics mientras comparamos
-    this.textContent = this.getAttribute('data-value');  // Mostrar valor de la carta
+    if (lockBoard || this === firstCard) return;  
+    this.textContent = this.getAttribute('data-value');  
     this.classList.add('flipped');
 
     if (!firstCard) {
@@ -64,21 +64,21 @@ function disableCards() {
     secondCard.removeEventListener('click', flipCard);
     resetBoard();
 
-    flippedCards += 2;  // Actualizar el conteo de cartas volteadas
+    flippedCards += 2;  
     if (flippedCards === cards.length) {
-        winMessage.classList.remove('hidden');  // Mostrar mensaje de victoria
+        winMessage.classList.remove('hidden');  
     }
 }
 
 // Función para voltear las cartas que no coinciden
 function unflipCards() {
     setTimeout(() => {
-        firstCard.textContent = '';  // Ocultar valor de la carta
+        firstCard.textContent = '';  
         secondCard.textContent = '';
         firstCard.classList.remove('flipped');
         secondCard.classList.remove('flipped');
         resetBoard();
-    }, 1000);  // Esperar 1 segundo antes de voltear las cartas
+    }, 1000);  
 }
 
 // Función para reiniciar el estado del tablero
