@@ -1,5 +1,3 @@
-// ejercicio1.js
-
 // Ejemplo de entrada:
 const estudiantes = [
     { nombre: "Juan", ciudad: "Madrid", beca: false, edad: 21, calificaciones: { matematicas: 5, fisica: 7, historia: 6 } },
