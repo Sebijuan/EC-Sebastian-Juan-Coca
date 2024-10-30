@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Party Finder - Gestión de Parties</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Estilos básicos para el contenedor de parties */
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        /* Contenedor de lista de parties */
+        #partyList {
+            width: 90%;
+            max-width: 800px;
+            margin-top: 20px;
+        }
+
+        .party-item {
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 15px;
+            margin-bottom: 10px;
+            background-color: #fff;
+        }
+
+        .party-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .party-header h4 {
+            margin: 0;
+            color: #333;
+        }
+
+        .member-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 5px 0;
+        }
+
+        .member-item button {
+            color: #c0392b;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        /* Botones */
+        button {
+            padding: 8px 12px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        /* Modal para añadir miembros */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            width: 90%;
+            max-width: 400px;
+            position: relative;
+        }
+
+        .close {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 20px;
+            color: #aaa;
+            cursor: pointer;
+        }
+
+        .close:hover {
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <h1>Party Finder</h1>
+
+    <!-- Listado de parties creadas -->
+    <div id="partyList">
+        <h3>Parties Creadas:</h3>
+        <ul id="partyListContainer"></ul> <!-- Aquí se generará la lista de parties con JavaScript -->
+    </div>
+
+    <!-- Modal para añadir un miembro a una party -->
+    <div id="addMemberModal" class="modal">
+        <div class="modal-content">
+            <span class="close" id="closeAddMemberModal">&times;</span>
+            <h2>Añadir Miembro a la Party</h2>
+            <form id="addMemberForm" onsubmit="return false;">
+                <label for="memberUserId">User ID:</label>
+                <input type="text" id="memberUserId" required>
+
+                <label for="memberPartyRole">Party Role:</label>
+                <select id="memberPartyRole" required>
+                    <option value="TANK">TANK</option>
+                    <option value="HEALER">HEALER</option>
+                    <option value="DAMAGE">DAMAGE</option>
+                    <option value="SUPPORT">SUPPORT</option>
+                </select>
+                <button type="button" id="addMemberBtn">Add Member</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="confirmationMessage" style="display: none; color: green;"></div>
+
+    <script src="ejercicio5.js"></script> <!-- Enlace a tu archivo de JavaScript -->
+</body>
+</html>
