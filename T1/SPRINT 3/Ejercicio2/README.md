@@ -14,6 +14,6 @@ Se requiere interactuar con la PokeAPI para obtener información sobre Pokémon.
 Se desarrollarán funciones en JavaScript para realizar las peticiones a la PokeAPI, manejar las respuestas y mostrar los resultados de manera clara.
 
 ### Pruebas de la resolución del problema:
-[Ver GIF de pruebas](URL_DEL_GIF)
 
+ ![ejercico1](gif1.gif)
 ---

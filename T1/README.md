@@ -15,7 +15,7 @@ Se requiere implementar una funcionalidad CRUD (Create, Read, Update, Delete) pa
 Desarrollar funciones en JavaScript para manejar las operaciones CRUD utilizando una API para guardar y obtener la información de los miembros.
 
 ### Pruebas de la resolución del problema:
-[Ver GIF de pruebas](URL_DEL_GIF)
+ ![ejercico1](gif1.gif)
 
 ---
 
@@ -33,8 +33,8 @@ Se necesita un formulario para crear una Party en el sistema "Party Finder", que
 Desarrollar un formulario en HTML y utilizar JavaScript para manejar las validaciones y el envío de datos a la API.
 
 ### Pruebas de la resolución del problema:
-[Ver GIF de pruebas](URL_DEL_GIF)
 
+ ![ejercico1](gif1.gif)
 ---
 
 ## Ejercicio 5: Gestión Avanzada de Parties con Añadir/Remover Miembros
@@ -51,6 +51,6 @@ Extender la funcionalidad del sistema "Party Finder" para gestionar parties, per
 Crear una interfaz que permita la gestión de parties y manejar las interacciones con la API para añadir y eliminar miembros.
 
 ### Pruebas de la resolución del problema:
-[Ver GIF de pruebas](URL_DEL_GIF)
 
+ ![ejercico1](gif1.gif)
 ---
