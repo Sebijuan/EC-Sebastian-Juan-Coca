@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Party Finder - Crear Party</title>
+    <style>
+        /* Estilos para el modal */
+        #modal {
+            display: none; /* Oculto por defecto */
+            position: fixed; /* Posicionamiento fijo */
+            z-index: 1; /* Encima de otros elementos */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Scroll si es necesario */
+            background-color: rgba(0,0,0,0.4); /* Fondo oscuro con transparencia */
+        }
+        /* Estilos para el contenido del modal */
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto; /* 15% desde arriba y centrado */
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%; /* Ancho del modal */
+            max-width: 500px; /* Ancho máximo del modal */
+        }
+        /* Estilos para el botón cerrar */
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        /* Estilos para la lista de parties */
+        #partyList {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Party Finder</h1>
+
+    <button id="openModalBtn">Crear Party</button>
+
+    <!-- Modal -->
+    <div id="modal">
+        <div class="modal-content">
+            <span class="close" id="closeModalBtn">&times;</span>
+            <h2>Crear Party</h2>
+            <div id="errorMessage" style="color: red; display: none;"></div>
+            <form id="partyForm" onsubmit="return false;">
+                <label for="partySize">Party Size:</label>
+                <select id="partySize" name="partySize" required>
+                    <option value="3">3</option>
+                    <option value="5">5</option>
+                    <option value="8">8</option>
+                </select><br><br>
+
+                <label for="creatorId">Creator ID:</label>
+                <input type="text" id="creatorId" name="creatorId" required><br><br>
+
+                <label for="levelCap">Level Cap:</label>
+                <input type="number" id="levelCap" name="levelCap" min="1" required><br><br>
+
+                <label for="ilvlCap">ILevel Cap:</label>
+                <input type="number" id="ilvlCap" name="ilvlCap" min="1" required><br><br>
+
+                <label for="partyRole">Party Role:</label>
+                <select id="partyRole" name="partyRole" required>
+                    <option value="TANK">TANK</option>
+                    <option value="HEALER">HEALER</option>
+                    <option value="DAMAGE">DAMAGE</option>
+                    <option value="SUPPORT">SUPPORT</option>
+                </select><br><br>
+
+                <label for="plannedStartDate">Planned Start Date:</label>
+                <input type="date" id="plannedStartDate" name="plannedStartDate" required><br><br>
+
+                <label for="plannedStartTime">Planned Start Time:</label>
+                <input type="time" id="plannedStartTime" name="plannedStartTime" required><br><br>
+
+                <button type="button" id="submitPartyBtn">Create Party</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="confirmationMessage" style="display: none; color: green;"></div>
+    <div id="partyList">
+        <h3>Parties Creadas:</h3>
+        <ul id="partyListContainer"></ul> <!-- Contenedor para listar las parties -->
+    </div>
+
+    <script src="ejercicio4.js"></script>
+</body>
+</html>
