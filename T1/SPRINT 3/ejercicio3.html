@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guild Member Management</title>
+</head>
+<body>
+    <h1>Guild Member Management</h1>
+
+    <!-- Botón para añadir un nuevo miembro -->
+    <button id="addMemberBtn">Add New Member</button>
+
+    <!-- Contenedor para el mensaje de confirmación -->
+    <div id="confirmationMessage" style="display: none; color: green;"></div>
+
+    <!-- Tabla de visualización de miembros -->
+    <table id="membersTable" border="1" cellpadding="5" cellspacing="0">
+        <thead>
+            <tr>
+                <th>User ID</th>
+                <th>Username</th>
+                <th>Level</th>
+                <th>Item Level</th>
+                <th>Character Role</th>
+                <th>Guild Role</th>
+                <th>Email</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody id="membersList">
+            <!-- Los miembros se mostrarán aquí -->
+        </tbody>
+    </table>
+
+    <!-- Modal para añadir/editar un miembro -->
+    <div id="memberModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.5);">
+        <div style="background-color: #fff; margin: 10% auto; padding: 20px; width: 300px; position: relative;">
+            <span id="closeModalBtn" style="position: absolute; top: 10px; right: 10px; cursor: pointer;">&times;</span>
+            <h2 id="modalTitle">Add New Member</h2>
+            <form id="memberForm" onsubmit="return false;">
+                <label for="userId">User ID:</label>
+                <input type="text" id="userId" name="userId" required><br><br>
+
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" required><br><br>
+
+                <label for="level">Level:</label>
+                <input type="number" id="level" name="level" required><br><br>
+
+                <label for="ilvl">Item Level:</label>
+                <input type="number" id="ilvl" name="ilvl" required><br><br>
+
+                <label for="characterRole">Character Role:</label>
+                <select id="characterRole" name="characterRole" required>
+                    <option value="TANK">TANK</option>
+                    <option value="HEALER">HEALER</option>
+                    <option value="DAMAGE">DAMAGE</option>
+                    <option value="SUPPORT">SUPPORT</option>
+                </select><br><br>
+
+                <label for="guildRole">Guild Role:</label>
+                <select id="guildRole" name="guildRole" required>
+                    <option value="LIDER">LIDER</option>
+                    <option value="GERENTE SENIOR">GERENTE SENIOR</option>
+                    <option value="GERENTE">GERENTE</option>
+                    <option value="GERENTE A2">GERENTE A2</option>
+                    <option value="ALPHA 2">ALPHA 2</option>
+                    <option value="MEMBER">MEMBER</option>
+                </select><br><br>
+
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required><br><br>
+
+                <label for="notifyEmail">Notify by Email:</label>
+                <input type="checkbox" id="notifyEmail" name="notifyEmail"><br><br>
+
+                <label for="mainArchetype">Main Archetype:</label>
+                <select id="mainArchetype" name="mainArchetype" required>
+                    <option value="BARD">BARD</option>
+                    <option value="CLERIC">CLERIC</option>
+                    <option value="FIGHTER">FIGHTER</option>
+                    <option value="MAGE">MAGE</option>
+                    <option value="RANGER">RANGER</option>
+                    <option value="ROGUE">ROGUE</option>
+                    <option value="SUMMONER">SUMMONER</option>
+                    <option value="TANK">TANK</option>
+                </select><br><br>
+
+                <label for="secondaryArchetype">Secondary Archetype:</label>
+                <select id="secondaryArchetype" name="secondaryArchetype" required>
+                    <option value="BARD">BARD</option>
+                    <option value="CLERIC">CLERIC</option>
+                    <option value="FIGHTER">FIGHTER</option>
+                    <option value="MAGE">MAGE</option>
+                    <option value="RANGER">RANGER</option>
+                    <option value="ROGUE">ROGUE</option>
+                    <option value="SUMMONER">SUMMONER</option>
+                    <option value="TANK">TANK</option>
+                </select><br><br>
+
+                <label for="grandmasterProfessionOne">Grandmaster Profession One:</label>
+                <select id="grandmasterProfessionOne" name="grandmasterProfessionOne" required>
+                    <option value="FISHING">FISHING</option>
+                    <option value="HERBALISM">HERBALISM</option>
+                    <option value="HUNTING">HUNTING</option>
+                    <option value="LUMBERJACKING">LUMBERJACKING</option>
+                    <option value="MINING">MINING</option>
+                    <option value="ALCHEMY">ALCHEMY</option>
+                    <option value="ANIMALHUSBANDRY">ANIMAL HUSBANDRY</option>
+                    <option value="COOKING">COOKING</option>
+                    <option value="FARMING">FARMING</option>
+                    <option value="LUMBERMILLING">LUMBERMILLING</option>
+                    <option value="METALWORKING">METALWORKING</option>
+                    <option value="STONECUTTING">STONECUTTING</option>
+                    <option value="TANNING">TANNING</option>
+                    <option value="WEAVING">WEAVING</option>
+                    <option value="ARCANEENGINEERING">ARCANE ENGINEERING</option>
+                    <option value="ARMORSMITHING">ARMOR SMITHING</option>
+                    <option value="CARPENTRY">CARPENTRY</option>
+                    <option value="JEWELCUTTING">JEWEL CUTTING</option>
+                    <option value="LEATHERWORKING">LEATHERWORKING</option>
+                    <option value="SCRIBE">SCRIBE</option>
+                    <option value="TAILORING">TAILORING</option>
+                    <option value="WEAPONSMITHING">WEAPON SMITHING</option>
+                </select><br><br>
+
+                <label for="grandmasterProfessionTwo">Grandmaster Profession Two:</label>
+                <select id="grandmasterProfessionTwo" name="grandmasterProfessionTwo" required>
+                    <option value="FISHING">FISHING</option>
+                    <option value="HERBALISM">HERBALISM</option>
+                    <option value="HUNTING">HUNTING</option>
+                    <option value="LUMBERJACKING">LUMBERJACKING</option>
+                    <option value="MINING">MINING</option>
+                    <option value="ALCHEMY">ALCHEMY</option>
+                    <option value="ANIMALHUSBANDRY">ANIMAL HUSBANDRY</option>
+                    <option value="COOKING">COOKING</option>
+                    <option value="FARMING">FARMING</option>
+                    <option value="LUMBERMILLING">LUMBERMILLING</option>
+                    <option value="METALWORKING">METALWORKING</option>
+                    <option value="STONECUTTING">STONECUTTING</option>
+                    <option value="TANNING">TANNING</option>
+                    <option value="WEAVING">WEAVING</option>
+                    <option value="ARCANEENGINEERING">ARCANE ENGINEERING</option>
+                    <option value="ARMORSMITHING">ARMOR SMITHING</option>
+                    <option value="CARPENTRY">CARPENTRY</option>
+                    <option value="JEWELCUTTING">JEWEL CUTTING</option>
+                    <option value="LEATHERWORKING">LEATHERWORKING</option>
+                    <option value="SCRIBE">SCRIBE</option>
+                    <option value="TAILORING">TAILORING</option>
+                    <option value="WEAPONSMITHING">WEAPON SMITHING</option>
+                </select><br><br>
+
+                <button type="button" id="submitMemberBtn">Add Member</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="ejercicio3.js"></script>
+</body>
+</html>
