@@ -5,43 +5,138 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Party Finder - Crear Party</title>
     <style>
-        /* Estilos para el modal */
-        #modal {
-            display: none; /* Oculto por defecto */
-            position: fixed; /* Posicionamiento fijo */
-            z-index: 1; /* Encima de otros elementos */
-            left: 0;
-            top: 0;
-            width: 100%; /* Full width */
-            height: 100%; /* Full height */
-            overflow: auto; /* Scroll si es necesario */
-            background-color: rgba(0,0,0,0.4); /* Fondo oscuro con transparencia */
-        }
-        /* Estilos para el contenido del modal */
-        .modal-content {
-            background-color: #fefefe;
-            margin: 15% auto; /* 15% desde arriba y centrado */
+        /* Estilos generales */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
             padding: 20px;
-            border: 1px solid #888;
-            width: 80%; /* Ancho del modal */
-            max-width: 500px; /* Ancho máximo del modal */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
-        /* Estilos para el botón cerrar */
-        .close {
-            color: #aaa;
-            float: right;
-            font-size: 28px;
-            font-weight: bold;
+
+        h1 {
+            color: #333;
         }
-        .close:hover,
-        .close:focus {
-            color: black;
-            text-decoration: none;
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
             cursor: pointer;
         }
-        /* Estilos para la lista de parties */
-        #partyList {
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        /* Modal */
+        #modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.6);
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 90%;
+            max-width: 500px;
+            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+            position: relative;
+        }
+
+        .close {
+            color: #aaa;
+            font-size: 24px;
+            font-weight: bold;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            cursor: pointer;
+        }
+
+        .close:hover {
+            color: #333;
+        }
+
+        /* Formulario */
+        label {
+            display: block;
+            margin-top: 10px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        input[type="date"],
+        input[type="time"],
+        select {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        button[type="button"] {
+            width: 100%;
             margin-top: 20px;
+        }
+
+        /* Mensajes */
+        #errorMessage {
+            color: #e74c3c;
+            margin-bottom: 10px;
+            display: none;
+        }
+
+        #confirmationMessage {
+            color: #2ecc71;
+            margin-top: 10px;
+            display: none;
+        }
+
+        /* Lista de parties */
+        #partyList {
+            margin-top: 30px;
+            width: 100%;
+            max-width: 600px;
+        }
+
+        #partyList h3 {
+            color: #333;
+            text-align: center;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            background-color: #f9f9f9;
+            margin: 10px 0;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            color: #333;
         }
     </style>
 </head>
@@ -55,23 +150,23 @@
         <div class="modal-content">
             <span class="close" id="closeModalBtn">&times;</span>
             <h2>Crear Party</h2>
-            <div id="errorMessage" style="color: red; display: none;"></div>
+            <div id="errorMessage"></div>
             <form id="partyForm" onsubmit="return false;">
                 <label for="partySize">Party Size:</label>
                 <select id="partySize" name="partySize" required>
                     <option value="3">3</option>
                     <option value="5">5</option>
                     <option value="8">8</option>
-                </select><br><br>
+                </select>
 
                 <label for="creatorId">Creator ID:</label>
-                <input type="text" id="creatorId" name="creatorId" required><br><br>
+                <input type="text" id="creatorId" name="creatorId" required>
 
                 <label for="levelCap">Level Cap:</label>
-                <input type="number" id="levelCap" name="levelCap" min="1" required><br><br>
+                <input type="number" id="levelCap" name="levelCap" min="1" required>
 
                 <label for="ilvlCap">ILevel Cap:</label>
-                <input type="number" id="ilvlCap" name="ilvlCap" min="1" required><br><br>
+                <input type="number" id="ilvlCap" name="ilvlCap" min="1" required>
 
                 <label for="partyRole">Party Role:</label>
                 <select id="partyRole" name="partyRole" required>
@@ -79,25 +174,25 @@
                     <option value="HEALER">HEALER</option>
                     <option value="DAMAGE">DAMAGE</option>
                     <option value="SUPPORT">SUPPORT</option>
-                </select><br><br>
+                </select>
 
                 <label for="plannedStartDate">Planned Start Date:</label>
-                <input type="date" id="plannedStartDate" name="plannedStartDate" required><br><br>
+                <input type="date" id="plannedStartDate" name="plannedStartDate" required>
 
                 <label for="plannedStartTime">Planned Start Time:</label>
-                <input type="time" id="plannedStartTime" name="plannedStartTime" required><br><br>
+                <input type="time" id="plannedStartTime" name="plannedStartTime" required>
 
                 <button type="button" id="submitPartyBtn">Create Party</button>
             </form>
         </div>
     </div>
 
-    <div id="confirmationMessage" style="display: none; color: green;"></div>
+    <div id="confirmationMessage"></div>
     <div id="partyList">
         <h3>Parties Creadas:</h3>
-        <ul id="partyListContainer"></ul> <!-- Contenedor para listar las parties -->
+        <ul id="partyListContainer"></ul>
     </div>
 
-    <script src="ejercicio4.js"></script>
+    <script src="Ejercicio4.js"></script>
 </body>
 </html>

@@ -52,6 +52,8 @@ async function createParty(partyData) {
             displayParty(partyData); // Muestra la nueva party en la lista
             document.getElementById("confirmationMessage").textContent = "Party creada con éxito.";
             document.getElementById("confirmationMessage").style.display = "block";
+            
+            closeModalAndResetForm(); // Cerrar modal y limpiar formulario
         } else {
             showErrorMessage("No se pudo crear la party. Inténtalo de nuevo.");
         }
@@ -59,6 +61,14 @@ async function createParty(partyData) {
         console.error("Error creando party:", error);
         showErrorMessage("No se pudo crear la party. Inténtalo de nuevo.");
     }
+}
+
+// Función para cerrar el modal y limpiar el formulario
+function closeModalAndResetForm() {
+    document.getElementById("modal").style.display = "none";
+    document.getElementById("partyForm").reset(); // Limpiar los campos del formulario
+    hideErrorMessage();
+    document.getElementById("confirmationMessage").style.display = "none";
 }
 
 // Función para mostrar la party en la lista
@@ -74,10 +84,8 @@ document.getElementById("openModalBtn").onclick = () => {
     document.getElementById("modal").style.display = "block";
 };
 
-// Evento para cerrar el modal
-document.getElementById("closeModalBtn").onclick = () => {
-    document.getElementById("modal").style.display = "none";
-};
+// Evento para cerrar el modal manualmente
+document.getElementById("closeModalBtn").onclick = closeModalAndResetForm;
 
 // Evento para el botón "Create Party"
 document.getElementById("submitPartyBtn").onclick = async () => {
