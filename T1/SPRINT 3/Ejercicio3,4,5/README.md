@@ -39,7 +39,11 @@ Desarrollar un formulario en HTML y utilizar JavaScript para manejar las validac
 
 ### Pruebas de la resolución del problema:
 
- ![ejercico1](gif1.gif)
+ ![ejercico1](gif4.1.gif)
+ ![ejercico1](gif4.2.gif)
+ ![ejercico1](gif4.3.gif)
+ ![ejercico1](gif4.4.gif)
+ ![ejercico1](gif4.5.gif)
 ---
 
 ## Ejercicio 5: Gestión Avanzada de Parties con Añadir/Remover Miembros
