@@ -21,4 +21,12 @@ Dado un conjunto de datos en forma de array con información sobre estudiantes, 
 Se desarrollarán varias funciones en JavaScript para realizar las operaciones descritas, utilizando métodos como `map()`, `filter()` y `reduce()` para manipular los datos.
 
 ### Pruebas de la resolución del problema:
-Se realizarán pruebas manuales para cada función, asegurando que los resultados sean los esperados al invocar las funciones con datos de ejemplo. Para visualizar estas pruebas, se puede consultar el siguiente enlace para un GIF demostrativo: [Visualizar GIF](url_del_gif).
+Se realizarán pruebas manuales para cada función, asegurando que los resultados sean los esperados al invocar las funciones con datos de ejemplo. Para visualizar estas pruebas, se puede consultar el siguiente enlace para un GIF demostrativo: 
+ ![ejercico1](gif1.gif)
+![ejercico1](gif2.gif)
+![ejercico1](gif3.gif)
+![ejercico1](gif4.gif)
+![ejercico1](gif5.gif)
+![ejercico1](gif6.gif)
+![ejercico1](gif7.gif)
+![ejercico1](gif8.gif)
