@@ -15,5 +15,11 @@ Se desarrollarán funciones en JavaScript para realizar las peticiones a la Poke
 
 ### Pruebas de la resolución del problema:
 ![ejercico1](gif1.gif)
+![ejercico1](gif2.gif)
+![ejercico1](gif3.gif)
+![ejercico1](gif4.gif)
+![ejercico1](gif5.gif)
+![ejercico1](gif6.gif)
+![ejercico1](gif7.gif)
  
 ---
