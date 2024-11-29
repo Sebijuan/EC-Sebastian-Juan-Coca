@@ -9,4 +9,8 @@
   .member-item span {
     font-weight: bold;
   }
-  
+
+.member-item-buttons {
+    display: flex;
+    gap: 10px;
+}

@@ -3,11 +3,13 @@ import './ConfirmationDialog.css';
 
 const ConfirmationDialog = ({ message, onConfirm, onCancel }) => {
   return (
-    <div className="modal">
+    <div className="modal-overlay">
       <div className="modal-content">
         <p>{message}</p>
-        <button onClick={onConfirm}>SI</button>
-        <button onClick={onCancel}>NO</button>
+        <div className="dialog-actions">
+          <button onClick={onConfirm}>SI</button>
+          <button onClick={onCancel}>NO</button>
+        </div>
       </div>
     </div>
   );

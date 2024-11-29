@@ -55,4 +55,9 @@
   .modal-content button:last-child:hover {
     background-color: #c82333;
   }
-  
+
+  .modal-content .error {
+    color: red;
+    font-size: 12px;
+    margin-top: 5px;
+  }

@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useMemo, useCallback } from "react";
+import { BrowserRouter as Router } from 'react-router-dom';
 import FilterBar from './FilterBar/FilterBar';
 import SortControls from './SortControls/SortControls';
 import MemberList from './MemberList/MemberList';
@@ -6,9 +7,10 @@ import BulkActions from './MemberList/MemberItem/BulkActions/BulkActions';
 import MemberDetailsModal from './MemberList/MemberItem/MemberDetailsModal/MemberDetailsModal';
 import MemberEditModal from './MemberList/MemberItem/MemberEditModal/MemberEditModal';
 import Pagination from './MemberList/Pagination/Pagination';
-import ConfirmationDialog from '../../General/ConfirmationDialog/ConfirmationDialog';
-import NotificationSystem from '../../General/NotificationSystem/NotificationSystem';
-import AppHeader from '../../General/AppHeader/AppHeader';
+import ConfirmationDialog from '../General/ConfirmationDialog/ConfirmationDialog';
+import NotificationSystem from '../General/NotificationSystem/NotificationSystem';
+import AppHeader from '../General/AppHeader/AppHeader';
+import { getAllMembers } from "../../services/guild-members-API"; // Ensure this path is correct based on your project structure
 
 const GuildMemberManagement = () => {
   // Estados principales
@@ -26,8 +28,7 @@ const GuildMemberManagement = () => {
 
   // Cargar datos desde la API al iniciar
   useEffect(() => {
-    fetch("/localhost:3000/guildmembers")
-      .then((response) => response.json())
+    getAllMembers()
       .then((data) => {
         setMembers(data);
         setFilteredMembers(data);
@@ -122,75 +123,77 @@ const GuildMemberManagement = () => {
   }, []);
 
   return (
-    <div className="guild-management">
-      <AppHeader />
-      <NotificationSystem notifications={notifications} onRemove={(index) => setNotifications((prev) => prev.filter((_, i) => i !== index))} />
-      <FilterBar onFilterChange={setFilters} />
-      <SortControls onSortChange={handleSort} sortConfig={sortConfig} />
-      <BulkActions selectedMembers={selectedMembers} onAction={handleBulkAction} />
-      <MemberList
-        members={filteredMembers}
-        currentPage={currentPage}
-        itemsPerPage={itemsPerPage}
-        selectedMembers={selectedMembers}
-        onMemberClick={(member) => setModalMember(member)}
-        onEditClick={(member) => setEditMember(member)}
-        onDeleteClick={(member) =>
-          setConfirmation({
-            message: `¿Eliminar a ${member.username}?`,
-            onConfirm: () => {
+    <Router>
+      <div className="guild-management">
+        <AppHeader />
+        <NotificationSystem notifications={notifications} onRemove={(index) => setNotifications((prev) => prev.filter((_, i) => i !== index))} />
+        <FilterBar onFilterChange={setFilters} />
+        <SortControls onSortChange={handleSort} sortConfig={sortConfig} />
+        <BulkActions selectedMembers={selectedMembers} onAction={handleBulkAction} />
+        <MemberList
+          members={filteredMembers}
+          currentPage={currentPage}
+          itemsPerPage={itemsPerPage}
+          selectedMembers={selectedMembers}
+          onMemberClick={(member) => setModalMember(member)}
+          onEditClick={(member) => setEditMember(member)}
+          onDeleteClick={(member) =>
+            setConfirmation({
+              message: `¿Eliminar a ${member.username}?`,
+              onConfirm: () => {
+                setMembers((prev) =>
+                  prev.filter((m) => m.user_id !== member.user_id)
+                );
+                addNotification(`${member.username} eliminado con éxito`, "success");
+              },
+            })
+          }
+          onSelectMember={handleSelectMember}
+          onSelectAll={handleSelectAll}
+        />
+        <div className="pagination-controls">
+          <label>
+            Items per page:
+            <select value={itemsPerPage} onChange={handleItemsPerPageChange}>
+              <option value={10}>10</option>
+              <option value={20}>20</option>
+              <option value={50}>50</option>
+            </select>
+          </label>
+        </div>
+        <Pagination
+          totalPages={Math.ceil(filteredMembers.length / itemsPerPage)}
+          currentPage={currentPage}
+          onPageChange={handlePageChange}
+        />
+        {modalMember && <MemberDetailsModal member={modalMember} onClose={() => setModalMember(null)} />}
+        {editMember && (
+          <MemberEditModal
+            member={editMember}
+            onSave={(updatedMember) => {
               setMembers((prev) =>
-                prev.filter((m) => m.user_id !== member.user_id)
+                prev.map((member) =>
+                  member.user_id === updatedMember.user_id ? updatedMember : member
+                )
               );
-              addNotification(`${member.username} eliminado con éxito`, "success");
-            },
-          })
-        }
-        onSelectMember={handleSelectMember}
-        onSelectAll={handleSelectAll}
-      />
-      <div className="pagination-controls">
-        <label>
-          Items per page:
-          <select value={itemsPerPage} onChange={handleItemsPerPageChange}>
-            <option value={10}>10</option>
-            <option value={20}>20</option>
-            <option value={50}>50</option>
-          </select>
-        </label>
+              addNotification(`${updatedMember.username} actualizado`, "success");
+              setEditMember(null);
+            }}
+            onClose={() => setEditMember(null)}
+          />
+        )}
+        {confirmation && (
+          <ConfirmationDialog
+            message={confirmation.message}
+            onConfirm={() => {
+              confirmation.onConfirm();
+              setConfirmation(null);
+            }}
+            onCancel={() => setConfirmation(null)}
+          />
+        )}
       </div>
-      <Pagination
-        totalPages={Math.ceil(filteredMembers.length / itemsPerPage)}
-        currentPage={currentPage}
-        onPageChange={handlePageChange}
-      />
-      {modalMember && <MemberDetailsModal member={modalMember} onClose={() => setModalMember(null)} />}
-      {editMember && (
-        <MemberEditModal
-          member={editMember}
-          onSave={(updatedMember) => {
-            setMembers((prev) =>
-              prev.map((member) =>
-                member.user_id === updatedMember.user_id ? updatedMember : member
-              )
-            );
-            addNotification(`${updatedMember.username} actualizado`, "success");
-            setEditMember(null);
-          }}
-          onClose={() => setEditMember(null)}
-        />
-      )}
-      {confirmation && (
-        <ConfirmationDialog
-          message={confirmation.message}
-          onConfirm={() => {
-            confirmation.onConfirm();
-            setConfirmation(null);
-          }}
-          onCancel={() => setConfirmation(null)}
-        />
-      )}
-    </div>
+    </Router>
   );
 };
 

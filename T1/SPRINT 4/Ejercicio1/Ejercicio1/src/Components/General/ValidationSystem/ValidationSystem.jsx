@@ -1,9 +1,9 @@
 const validateMember = (member) => {
     if (!member.name) {
-      return 'Member name is required';
+      return 'Error: Member name is required.';
     }
     if (!member.role) {
-      return 'Member role is required';
+      return 'Error: Member role is required.';
     }
     return null;
   };
@@ -11,10 +11,10 @@ const validateMember = (member) => {
   const validateTeamComposition = (team) => {
     const roles = team.members.map(member => member.role);
     if (!roles.includes('Leader')) {
-      return 'Team must have at least one Leader';
+      return 'Error: Team must have at least one Leader.';
     }
     if (roles.filter(role => role === 'Developer').length < 2) {
-      return 'Team must have at least two Developers';
+      return 'Error: Team must have at least two Developers.';
     }
     return null;
   };

@@ -4,7 +4,7 @@ import './AppFooter.css';
 const AppFooter = () => {
   return (
     <footer className="app-footer">
-      <p>© 2023 Developed with React</p>
+      <p>© 2023 Website developed with React</p>
     </footer>
   );
 };
