@@ -1,19 +1,37 @@
 .notification-system {
-    /* ...existing code... */
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
   }
   
   .notification {
-    /* ...existing code... */
+    padding: 10px 15px;
+    border-radius: 4px;
+    color: white;
+    cursor: pointer;
+    transition: opacity 0.3s;
+  }
+  
+  .notification:hover {
+    opacity: 0.8;
   }
   
   .notification.success {
-    /* ...existing code... */
+    background-color: #28a745;
   }
   
   .notification.error {
-    /* ...existing code... */
+    background-color: #dc3545;
   }
   
   .notification.info {
-    /* ...existing code... */
+    background-color: #17a2b8;
   }
+  
+  .notification.warning {
+    background-color: #ffc107;
+  }
+  
