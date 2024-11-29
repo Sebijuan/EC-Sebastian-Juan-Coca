@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 import FilterBar from "../FilterBar/FilterBar";
 import SortControls from "../SortControls/SortControls";
-import MemberList from "./MemberList";
-import BulkActions from "./BulkActions";
-import MemberDetailsModal from "./MemberDetailsModal";
-import MemberEditModal from "./MemberEditModal";
-import Pagination from "./Pagination";
-import ConfirmationDialog from "./ConfirmationDialog";
-import NotificationSystem from "./NotificationSystem";
+import MemberList from "../MemberList/MemberList";
+import BulkActions from "../BulkActions/BulkActions";
+import MemberDetailsModal from "../MemberDetailsModal/MemberDetailsModal";
+import MemberEditModal from "../MemberEditModal/MemberEditModal";
+import Pagination from "../Pagination/Pagination";
+import ConfirmationDialog from "../ConfirmationDialog/ConfirmationDialog";
+import NotificationSystem from "../NotificationSystem/NotificationSystem";
 
 const GuildMemberManagement = () => {
   // Estados principales
@@ -25,7 +25,7 @@ const GuildMemberManagement = () => {
 
   // Cargar datos desde la API al iniciar
   useEffect(() => {
-    fetch("/api/members")
+    fetch("/localhost:3000/guildmenbers")
       .then((response) => response.json())
       .then((data) => {
         setMembers(data);
