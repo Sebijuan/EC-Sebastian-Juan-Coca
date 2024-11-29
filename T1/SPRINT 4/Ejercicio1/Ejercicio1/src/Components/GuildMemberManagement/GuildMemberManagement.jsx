@@ -1,14 +1,14 @@
-import React, { useState, useEffect } from "react";
-import FilterBar from "../FilterBar/FilterBar";
-import SortControls from "../SortControls/SortControls";
-import MemberList from "../MemberList/MemberList";
-import BulkActions from "../BulkActions/BulkActions";
-import MemberDetailsModal from "../MemberDetailsModal/MemberDetailsModal";
-import MemberEditModal from "../MemberEditModal/MemberEditModal";
-import Pagination from "../Pagination/Pagination";
-import ConfirmationDialog from "../ConfirmationDialog/ConfirmationDialog";
-import NotificationSystem from "../NotificationSystem/NotificationSystem";
-import AppHeader from "../AppHeader/AppHeader";
+import React, { useState, useEffect, useMemo, useCallback } from "react";
+import FilterBar from './FilterBar/FilterBar';
+import SortControls from './SortControls/SortControls';
+import MemberList from './MemberList/MemberList';
+import BulkActions from './MemberList/MemberItem/BulkActions/BulkActions';
+import MemberDetailsModal from './MemberList/MemberItem/MemberDetailsModal/MemberDetailsModal';
+import MemberEditModal from './MemberList/MemberItem/MemberEditModal/MemberEditModal';
+import Pagination from './MemberList/Pagination/Pagination';
+import ConfirmationDialog from '../../General/ConfirmationDialog/ConfirmationDialog';
+import NotificationSystem from '../../General/NotificationSystem/NotificationSystem';
+import AppHeader from '../../General/AppHeader/AppHeader';
 
 const GuildMemberManagement = () => {
   // Estados principales
@@ -26,7 +26,7 @@ const GuildMemberManagement = () => {
 
   // Cargar datos desde la API al iniciar
   useEffect(() => {
-    fetch("/localhost:3000/guildmenbers")
+    fetch("/localhost:3000/guildmembers")
       .then((response) => response.json())
       .then((data) => {
         setMembers(data);
@@ -77,7 +77,7 @@ const GuildMemberManagement = () => {
   };
 
   // Ordenamiento
-  const handleSort = (column) => {
+  const handleSort = useCallback((column) => {
     const newSortConfig =
       sortConfig?.key === column && sortConfig.direction === "asc"
         ? { key: column, direction: "desc" }
@@ -92,10 +92,10 @@ const GuildMemberManagement = () => {
     });
 
     setFilteredMembers(sorted);
-  };
+  }, [filteredMembers, sortConfig]);
 
   // Manejo de acciones en lote
-  const handleBulkAction = (action) => {
+  const handleBulkAction = useCallback((action) => {
     if (action === "delete") {
       setConfirmation({
         message: `¿Eliminar ${selectedMembers.length} miembros seleccionados?`,
@@ -107,13 +107,22 @@ const GuildMemberManagement = () => {
           addNotification("Miembros eliminados con éxito", "success");
         },
       });
+    } else if (action === "changeRole") {
+      // Implementar lógica para cambiar el rol del gremio
     }
-    // Otras acciones como enviar mensaje o cambiar rol se implementan aquí
-  };
+  }, [selectedMembers]);
+
+  // Paginación
+  const handlePageChange = useCallback((page) => {
+    setCurrentPage(page);
+  }, []);
+
+  const handleItemsPerPageChange = useCallback((event) => {
+    setItemsPerPage(Number(event.target.value));
+  }, []);
 
   return (
     <div className="guild-management">
-    
       <AppHeader />
       <NotificationSystem notifications={notifications} onRemove={(index) => setNotifications((prev) => prev.filter((_, i) => i !== index))} />
       <FilterBar onFilterChange={setFilters} />
@@ -140,10 +149,20 @@ const GuildMemberManagement = () => {
         onSelectMember={handleSelectMember}
         onSelectAll={handleSelectAll}
       />
+      <div className="pagination-controls">
+        <label>
+          Items per page:
+          <select value={itemsPerPage} onChange={handleItemsPerPageChange}>
+            <option value={10}>10</option>
+            <option value={20}>20</option>
+            <option value={50}>50</option>
+          </select>
+        </label>
+      </div>
       <Pagination
         totalPages={Math.ceil(filteredMembers.length / itemsPerPage)}
         currentPage={currentPage}
-        onPageChange={setCurrentPage}
+        onPageChange={handlePageChange}
       />
       {modalMember && <MemberDetailsModal member={modalMember} onClose={() => setModalMember(null)} />}
       {editMember && (
