@@ -1,0 +1,19 @@
+.notification-system {
+    /* ...existing code... */
+  }
+  
+  .notification {
+    /* ...existing code... */
+  }
+  
+  .notification.success {
+    /* ...existing code... */
+  }
+  
+  .notification.error {
+    /* ...existing code... */
+  }
+  
+  .notification.info {
+    /* ...existing code... */
+  }

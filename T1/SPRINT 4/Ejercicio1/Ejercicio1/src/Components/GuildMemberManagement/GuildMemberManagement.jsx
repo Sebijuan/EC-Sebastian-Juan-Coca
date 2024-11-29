@@ -8,6 +8,7 @@ import MemberEditModal from "../MemberEditModal/MemberEditModal";
 import Pagination from "../Pagination/Pagination";
 import ConfirmationDialog from "../ConfirmationDialog/ConfirmationDialog";
 import NotificationSystem from "../NotificationSystem/NotificationSystem";
+import AppHeader from "../AppHeader/AppHeader";
 
 const GuildMemberManagement = () => {
   // Estados principales
@@ -112,6 +113,8 @@ const GuildMemberManagement = () => {
 
   return (
     <div className="guild-management">
+    
+      <AppHeader />
       <NotificationSystem notifications={notifications} onRemove={(index) => setNotifications((prev) => prev.filter((_, i) => i !== index))} />
       <FilterBar onFilterChange={setFilters} />
       <SortControls onSortChange={handleSort} sortConfig={sortConfig} />
