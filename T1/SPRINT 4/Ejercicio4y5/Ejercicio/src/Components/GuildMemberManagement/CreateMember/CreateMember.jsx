@@ -255,7 +255,7 @@ const CreateMember = () => {
                     </select>
                     {errors.grandmasterProfessionTwo && <div className="error">{errors.grandmasterProfessionTwo}</div>}
                 </div>
-                <button type="submit">Create Member</button>
+                <button type="submit" className="create-member-button">Create Member</button>
             </form>
         </div>
     );
