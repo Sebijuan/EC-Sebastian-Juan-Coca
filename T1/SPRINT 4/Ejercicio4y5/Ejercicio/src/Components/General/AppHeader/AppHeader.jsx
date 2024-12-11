@@ -1,18 +1,24 @@
 import React from 'react';
-import { Link } from 'react-router-dom'; // Ensure react-router-dom is installed
+import { Link } from 'react-router';
 import './AppHeader.css';
 
-const AppHeader = () => {
+function AppHeader() {
   return (
-    <header className="app-header">
-      <nav>
-        <ul>
-          <li><Link to="/">Home</Link></li>
-          <li><Link to="/about">About</Link></li>
-        </ul>
-      </nav>
-    </header>
+    <nav>
+      <ul>
+        <li>
+          <Link to="/GuildMemberManagement">
+            <button className='root'>GuildMemberManagement</button>
+          </Link>
+        </li>
+        <li>
+          <Link to="/PartyFinder">
+            <button className='root'>PartyFinder</button>
+          </Link>
+        </li>
+      </ul>
+    </nav>
   );
-};
+}
 
 export default AppHeader;

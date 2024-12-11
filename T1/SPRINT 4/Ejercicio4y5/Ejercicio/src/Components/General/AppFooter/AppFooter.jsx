@@ -1,12 +1,12 @@
 import React from 'react';
 import './AppFooter.css';
 
-const AppFooter = () => {
+function AppFooter() {
   return (
     <footer className="app-footer">
-      <p>© 2023 Website developed with React</p>
+      <p>&copy; {new Date().getFullYear()} Esta web ha sido desarrollada en React.</p>
     </footer>
   );
-};
+}
 
 export default AppFooter;

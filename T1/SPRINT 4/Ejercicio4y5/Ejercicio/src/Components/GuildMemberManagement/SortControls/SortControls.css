@@ -1,18 +1,12 @@
-.sort-controls {
-    display: flex;
-    gap: 10px;
-    margin-bottom: 20px;
+.sort-bar {
+    margin: 10px 0;
   }
   
-  .sort-controls button {
-    padding: 8px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
+  .sort-bar label {
+    margin-right: 10px;
   }
   
-  .sort-controls button:hover {
-    background-color: #0056b3;
+  .sort-bar select {
+    padding: 5px;
+    font-size: 16px;
   }

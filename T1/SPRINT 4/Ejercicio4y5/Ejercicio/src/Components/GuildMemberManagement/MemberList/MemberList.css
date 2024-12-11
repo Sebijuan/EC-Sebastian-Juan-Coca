@@ -1,32 +1,52 @@
+/* Estilos generales */
+.app {
+  font-family: Arial, sans-serif;
+  padding: 20px;
+}
+
+h1 {
+  text-align: center;
+}
+
 .member-list {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
 }
 
-table {
-    width: 100%;
-    border-collapse: collapse;
+.member-list th,
+.member-list td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
 }
 
-th, td {
-    border: 1px solid #ddd;
-    padding: 8px;
+.member-list-table {
+  margin-bottom: 100px;
 }
 
-th {
-    background-color: #f2f2f2;
-    text-align: left;
+.member-list th {
+  background-color: #f2f2f2;
 }
 
 .pagination {
-    margin-top: 10px;
-    display: flex;
-    justify-content: center;
+  text-align: center;
 }
 
 .pagination button {
-    margin: 0 5px;
-    padding: 5px 10px;
-    cursor: pointer;
+  padding: 10px 20px;
+  margin: 5px;
+  border: 1px solid #ddd;
+  background-color: #f0f0f0;
+  cursor: pointer;
+}
+
+.pagination button:disabled {
+  background-color: #e0e0e0;
+  cursor: not-allowed;
+}
+
+.pagination span {
+  font-size: 16px;
+  margin: 0 10px;
 }

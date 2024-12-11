@@ -1,184 +1,172 @@
-import React, { useState, useEffect, useCallback } from "react";
-import { BrowserRouter as Router } from 'react-router-dom';
-import FilterBar from './FilterBar/FilterBar';
-import SortControls from './SortControls/SortControls';
-import MemberList from './MemberList/MemberList';
-import BulkActions from './MemberList/MemberItem/BulkActions/BulkActions';
-import MemberDetailsModal from './MemberList/MemberItem/MemberDetailsModal/MemberDetailsModal';
-import MemberEditModal from './MemberList/MemberItem/MemberEditModal/MemberEditModal';
-import ConfirmationDialog from '../General/ConfirmationDialog/ConfirmationDialog';
-import NotificationSystem from '../General/NotificationSystem/NotificationSystem';
-import AppHeader from '../General/AppHeader/AppHeader';
-import { getAllMembers } from "../../services/guild-members-API"; // Ensure this path is correct based on your project structure
+import React, { useEffect, useState } from "react";
+import { fetchMembers } from "./../../services/guildmember_API";
+import './GuildMemberManagement.css' 
+import FilterBar from "./FilterBar/FilterBar"; 
+import SortControls from "./SortControls/SortControls";
+import CreateMember from "./CreateMember/CreateMember"
+import MemberList from "./MemberList/MemberList";
+import NotificationSystem from "../general/NotificationSystem/NotificationSystem";
 
-const GuildMemberManagement = () => {
-  // Estados principales
-  const [members, setMembers] = useState([]); // Lista completa de miembros
-  const [filteredMembers, setFilteredMembers] = useState([]); // Miembros filtrados
-  const [selectedMembers, setSelectedMembers] = useState([]); // Miembros seleccionados
-  const [currentPage, setCurrentPage] = useState(1); // Página actual
-  const [itemsPerPage, setItemsPerPage] = useState(10); // Miembros por página
-  const [sortConfig, setSortConfig] = useState(null); // Configuración de ordenamiento
-  const [filters, setFilters] = useState({}); // Filtros activos
-  const [modalMember, setModalMember] = useState(null); // Miembro activo en el modal de detalles
-  const [editMember, setEditMember] = useState(null); // Miembro activo en el modal de edición
-  const [confirmation, setConfirmation] = useState(null); // Acción de confirmación activa
-  const [notifications, setNotifications] = useState([]); // Lista de notificaciones
+const GuildMembersTable = () => {
+    const [members, setMembers] = useState([]); // Datos originales
+    const [filteredMembers, setFilteredMembers] = useState([]); // Datos filtrados
+    const [filters, setFilters] = useState({}); // Estado de filtros
+    const [sortConfig, setSortConfig] = useState({ key: "", order: "" }); // Configuración de orden
+    const [error, setError] = useState(null);
+    const [loading, setLoading] = useState(true);
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [notification, setNotification] = useState(null);
+  
+    useEffect(() => {
+      const getMembers = async () => {
+        try {
+          setLoading(true);
+          const data = await fetchMembers();
+          setMembers(data);
+          setFilteredMembers(data); // Inicializar los datos filtrados con todos los miembros
+        } catch (err) {
+          setError("Error al cargar los miembros.");
+        } finally {
+          setLoading(false);
+        }
+      };
+  
+      getMembers();
+    }, []);
+  
+    // Función para manejar el cambio de filtros
+    const handleFilterChange = (name, value) => {
+      setFilters((prevFilters) => ({
+        ...prevFilters,
+        [name]: value,
+      }));
+    };
+  
+    // Función para manejar el orden
+    const handleSortChange = (key, order) => {
+      setSortConfig({ key, order });
+    };
 
-  // Cargar datos desde la API al iniciar
-  useEffect(() => {
-    getAllMembers()
-      .then((data) => {
-        setMembers(data);
-        setFilteredMembers(data);
-      })
-      .catch((error) => {
-        addNotification("Error al cargar datos", "error");
-      });
-  }, []);
+    const handleAddMember = (newMember) => {
+        setMembers((prevMembers) => [...prevMembers, newMember]);
+        setNotification({ message: 'Miembro añadido con éxito', type: 'success' });
+      };
+  
+    // Aplicar filtros
+    useEffect(() => {
+      let filtered = [...members];
+  
+      if (filters.username) {
+        filtered = filtered.filter((member) =>
+          member.username.toLowerCase().includes(filters.username.toLowerCase())
+        );
+      }
+  
+      if (filters.character_role) {
+        filtered = filtered.filter(
+          (member) => member.character_role === filters.character_role
+        );
+      }
+  
+      if (filters.guild_role) {
+        filtered = filtered.filter(
+          (member) => member.guild_role === filters.guild_role
+        );
+      }
+  
+      if (filters.main_archetype) {
+        filtered = filtered.filter(
+          (member) => member.main_archetype === filters.main_archetype
+        );
+      }
+  
+      if (filters.secondary_archetype) {
+        filtered = filtered.filter(
+          (member) => member.secondary_archetype === filters.secondary_archetype
+        );
+      }
+  
+      if (filters.grandmaster_profession_one) {
+        filtered = filtered.filter(
+          (member) =>
+            member.grandmaster_profession_one === filters.grandmaster_profession_one
+        );
+      }
+  
+      if (filters.grandmaster_profession_two) {
+        filtered = filtered.filter(
+          (member) =>
+            member.grandmaster_profession_two === filters.grandmaster_profession_two
+        );
+      }
+  
+      if (filters.min_level) {
+        filtered = filtered.filter((member) => member.level >= filters.min_level);
+      }
+  
+      if (filters.max_level) {
+        filtered = filtered.filter((member) => member.level <= filters.max_level);
+      }
+  
+      setFilteredMembers(filtered);
+    }, [filters, members]);
+  
+    // Aplicar orden
+    useEffect(() => {
+      if (sortConfig.key && sortConfig.order) {
+        const sorted = [...filteredMembers].sort((a, b) => {
+          const aValue = a[sortConfig.key];
+          const bValue = b[sortConfig.key];
+  
+          if (aValue < bValue) return sortConfig.order === "asc" ? -1 : 1;
+          if (aValue > bValue) return sortConfig.order === "asc" ? 1 : -1;
+          return 0;
+        });
+  
+        setFilteredMembers(sorted);
+      }
+    }, [sortConfig, filteredMembers]);
+  
+    if (loading) return <p>Cargando datos...</p>;
+    if (error) return <p>{error}</p>;
+  
+    return (
+      <div>
+        <h1>Guild Members</h1>
+  
+        {/* Filtros */}
+        <FilterBar filters={filters} onFilterChange={handleFilterChange} />
+  
+        {/* Ordenar */}
+        <SortControls onSortChange={handleSortChange} />
+  
+       
+        <div>
+      
+      <button onClick={() => setIsModalOpen(true)}>Añadir Miembro</button>
+      <CreateMember
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        onMemberAdded={handleAddMember}
+      />
+      {/* Aquí van FilterBar, SortBar y la tabla */}
+    </div>
 
-  // Actualizar miembros filtrados cuando cambian los filtros
-  useEffect(() => {
-    let filtered = [...members];
-    // Aplicar filtros aquí (ej. nivel, rol, etc.)
-    Object.keys(filters).forEach((key) => {
-      filtered = filtered.filter((member) => member[key] === filters[key]);
-    });
-    setFilteredMembers(filtered);
-  }, [filters, members]);
+    <MemberList members={filteredMembers} />
+    
+         
+          {notification && (
+        <NotificationSystem
+          message={notification.message}
+          type={notification.type}
+          onClose={() => setNotification(null)}
+        />
+      )}
+          
+      </div>
 
-  // Notificaciones
-  const addNotification = (message, type = "info") => {
-    setNotifications((prev) => [...prev, { message, type }]);
-    setTimeout(() => {
-      setNotifications((prev) => prev.slice(1));
-    }, 3000);
-  };
-
-  // Selección múltiple
-  const handleSelectMember = (id) => {
-    setSelectedMembers((prev) =>
-      prev.includes(id)
-        ? prev.filter((selectedId) => selectedId !== id)
-        : [...prev, id]
+      
     );
   };
 
-  const handleSelectAll = (selectAll) => {
-    if (selectAll) {
-      const currentMembers = filteredMembers.slice(
-        (currentPage - 1) * itemsPerPage,
-        currentPage * itemsPerPage
-      );
-      setSelectedMembers(currentMembers.map((member) => member.user_id));
-    } else {
-      setSelectedMembers([]);
-    }
-  };
-
-  // Ordenamiento
-  const handleSort = useCallback((column) => {
-    const newSortConfig =
-      sortConfig?.key === column && sortConfig.direction === "asc"
-        ? { key: column, direction: "desc" }
-        : { key: column, direction: "asc" };
-
-    setSortConfig(newSortConfig);
-
-    const sorted = [...filteredMembers].sort((a, b) => {
-      if (a[column] < b[column]) return newSortConfig.direction === "asc" ? -1 : 1;
-      if (a[column] > b[column]) return newSortConfig.direction === "asc" ? 1 : -1;
-      return 0;
-    });
-
-    setFilteredMembers(sorted);
-  }, [filteredMembers, sortConfig]);
-
-  // Manejo de acciones en lote
-  const handleBulkAction = useCallback((action) => {
-    if (action === "delete") {
-      setConfirmation({
-        message: `¿Eliminar ${selectedMembers.length} miembros seleccionados?`,
-        onConfirm: () => {
-          setMembers((prev) =>
-            prev.filter((member) => !selectedMembers.includes(member.user_id))
-          );
-          setSelectedMembers([]);
-          addNotification("Miembros eliminados con éxito", "success");
-        },
-      });
-    } else if (action === "changeRole") {
-      // Implementar lógica para cambiar el rol del gremio
-    }
-  }, [selectedMembers]);
-
-  // Paginación
-  const handlePageChange = useCallback((page) => {
-    setCurrentPage(page);
-  }, []);
-
-  const handleItemsPerPageChange = useCallback((event) => {
-    setItemsPerPage(Number(event.target.value));
-  }, []);
-
-  return (
-    <Router>
-      <div className="guild-management">
-        <AppHeader />
-        <NotificationSystem notifications={notifications} onRemove={(index) => setNotifications((prev) => prev.filter((_, i) => i !== index))} />
-        <FilterBar onFilterChange={setFilters} />
-        <SortControls onSortChange={handleSort} sortConfig={sortConfig} />
-        <BulkActions selectedMembers={selectedMembers} onAction={handleBulkAction} />
-        <MemberList
-          members={filteredMembers}
-          currentPage={currentPage}
-          itemsPerPage={itemsPerPage}
-          selectedMembers={selectedMembers}
-          onMemberClick={(member) => setModalMember(member)}
-          onEditClick={(member) => setEditMember(member)}
-          onDeleteClick={(member) =>
-            setConfirmation({
-              message: `¿Eliminar a ${member.username}?`,
-              onConfirm: () => {
-                setMembers((prev) =>
-                  prev.filter((m) => m.user_id !== member.user_id)
-                );
-                addNotification(`${member.username} eliminado con éxito`, "success");
-              },
-            })
-          }
-          onSelectMember={handleSelectMember}
-          onSelectAll={handleSelectAll}
-        />
-        {modalMember && <MemberDetailsModal member={modalMember} onClose={() => setModalMember(null)} />}
-        {editMember && (
-          <MemberEditModal
-            member={editMember}
-            onSave={(updatedMember) => {
-              setMembers((prev) =>
-                prev.map((member) =>
-                  member.user_id === updatedMember.user_id ? updatedMember : member
-                )
-              );
-              addNotification(`${updatedMember.username} actualizado`, "success");
-              setEditMember(null);
-            }}
-            onClose={() => setEditMember(null)}
-          />
-        )}
-        {confirmation && (
-          <ConfirmationDialog
-            message={confirmation.message}
-            onConfirm={() => {
-              confirmation.onConfirm();
-              setConfirmation(null);
-            }}
-            onCancel={() => setConfirmation(null)}
-          />
-        )}
-      </div>
-    </Router>
-  );
-};
-
-export default GuildMemberManagement;
+export default GuildMembersTable;

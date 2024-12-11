@@ -1,31 +1,18 @@
-import React, { useState } from 'react';
+import React, { useEffect } from 'react';
 import './NotificationSystem.css';
 
-/**
- * NotificationSystem:
- * Manages the display of notifications or messages to the user.
- * Used to show success, error, or informational messages.
- * Displays pop-up notifications to the user about the success or failure of actions performed.
- * Can be used to inform about scheduling conflicts, unmet requirements, etc.
- */
-const NotificationSystem = () => {
-  const [notifications, setNotifications] = useState([]);
+const NotificationSystem = ({ message, type, duration = 3000, onClose }) => {
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      onClose();
+    }, duration);
 
-  const addNotification = (message, type) => {
-    const id = new Date().getTime();
-    setNotifications([...notifications, { id, message, type }]);
-    setTimeout(() => {
-      setNotifications(notifications.filter(notification => notification.id !== id));
-    }, 3000);
-  };
+    return () => clearTimeout(timer);
+  }, [duration, onClose]);
 
   return (
-    <div className="notification-system">
-      {notifications.map(notification => (
-        <div key={notification.id} className={`notification ${notification.type}`}>
-          {notification.message}
-        </div>
-      ))}
+    <div className={`notification ${type}`}>
+      <p>{message}</p>
     </div>
   );
 };

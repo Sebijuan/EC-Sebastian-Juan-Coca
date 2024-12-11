@@ -1,18 +1,18 @@
 import React from 'react';
 import './ConfirmationDialog.css';
 
-const ConfirmationDialog = ({ message, onConfirm, onCancel }) => {
+function ConfirmationDialog({ message, onConfirm, onCancel }) {
   return (
-    <div className="modal-overlay">
-      <div className="modal-content">
+    <div className="confirmation-dialog-overlay">
+      <div className="confirmation-dialog">
         <p>{message}</p>
-        <div className="dialog-actions">
-          <button onClick={onConfirm}>SI</button>
-          <button onClick={onCancel}>NO</button>
+        <div className="confirmation-dialog-buttons">
+          <button onClick={onConfirm} className="confirm-button">Sí</button>
+          <button onClick={onCancel} className="cancel-button">No</button>
         </div>
       </div>
     </div>
   );
-};
+}
 
 export default ConfirmationDialog;

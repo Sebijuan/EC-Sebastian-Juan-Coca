@@ -1,20 +1,26 @@
-import React from 'react';
-import './SortControls.css';
+import React from "react";
+import "./SortControls.css";
 
-const SortControls = ({ onSort }) => {
+const SortControls = ({ onSortChange }) => {
+  const handleSortChange = (e) => {
+    const [key, order] = e.target.value.split(":");
+    onSortChange(key, order);
+  };
+
   return (
-    <div className="sort-controls">
-      <button onClick={() => onSort('user_id')}>Ordenar por ID</button>
-      <button onClick={() => onSort('username')}>Ordenar por Nombre</button>
-      <button onClick={() => onSort('level')}>Ordenar por Nivel</button>
-      <button onClick={() => onSort('ilvl')}>Ordenar por Item Level</button>
-      <button onClick={() => onSort('character_role')}>Ordenar por Rol de Personaje</button>
-      <button onClick={() => onSort('guild_role')}>Ordenar por Rol en Gremio</button>
-      <button onClick={() => onSort('main_archetype')}>Ordenar por Arquetipo Principal</button>
-      <button onClick={() => onSort('secondary_archetype')}>Ordenar por Arquetipo Secundario</button>
-      <button onClick={() => onSort('grandmaster_profession_one')}>Ordenar por Profesión 1</button>
-      <button onClick={() => onSort('grandmaster_profession_two')}>Ordenar por Profesión 2</button>
-      <button onClick={() => onSort(null)}>Quitar Orden</button>
+    <div className="sort-bar">
+      <label htmlFor="sort">Ordenar por:</label>
+      <select id="sort" onChange={handleSortChange}>
+        <option value="">Selecciona una opción</option>
+        <option value="level:asc">Nivel (Ascendente)</option>
+        <option value="level:desc">Nivel (Descendente)</option>
+        <option value="ilvl:asc">iLvl (Ascendente)</option>
+        <option value="ilvl:desc">iLvl (Descendente)</option>
+        <option value="character_role:asc">Character Role (Ascendente)</option>
+        <option value="character_role:desc">Character Role (Descendente)</option>
+        <option value="guild_role:asc">Guild Role (Ascendente)</option>
+        <option value="guild_role:desc">Guild Role (Descendente)</option>
+      </select>
     </div>
   );
 };
