@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo, useCallback } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { BrowserRouter as Router } from 'react-router-dom';
 import FilterBar from './FilterBar/FilterBar';
 import SortControls from './SortControls/SortControls';
@@ -6,7 +6,6 @@ import MemberList from './MemberList/MemberList';
 import BulkActions from './MemberList/MemberItem/BulkActions/BulkActions';
 import MemberDetailsModal from './MemberList/MemberItem/MemberDetailsModal/MemberDetailsModal';
 import MemberEditModal from './MemberList/MemberItem/MemberEditModal/MemberEditModal';
-import Pagination from './MemberList/Pagination/Pagination';
 import ConfirmationDialog from '../General/ConfirmationDialog/ConfirmationDialog';
 import NotificationSystem from '../General/NotificationSystem/NotificationSystem';
 import AppHeader from '../General/AppHeader/AppHeader';
@@ -150,21 +149,6 @@ const GuildMemberManagement = () => {
           }
           onSelectMember={handleSelectMember}
           onSelectAll={handleSelectAll}
-        />
-        <div className="pagination-controls">
-          <label>
-            Items per page:
-            <select value={itemsPerPage} onChange={handleItemsPerPageChange}>
-              <option value={10}>10</option>
-              <option value={20}>20</option>
-              <option value={50}>50</option>
-            </select>
-          </label>
-        </div>
-        <Pagination
-          totalPages={Math.ceil(filteredMembers.length / itemsPerPage)}
-          currentPage={currentPage}
-          onPageChange={handlePageChange}
         />
         {modalMember && <MemberDetailsModal member={modalMember} onClose={() => setModalMember(null)} />}
         {editMember && (
