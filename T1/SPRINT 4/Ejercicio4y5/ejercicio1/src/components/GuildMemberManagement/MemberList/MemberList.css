@@ -1,0 +1,52 @@
+/* Estilos generales */
+.app {
+  font-family: Arial, sans-serif;
+  padding: 20px;
+}
+
+h1 {
+  text-align: center;
+}
+
+.member-list {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+.member-list th,
+.member-list td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+.member-list-table {
+  margin-bottom: 100px;
+}
+
+.member-list th {
+  background-color: #f2f2f2;
+}
+
+.pagination {
+  text-align: center;
+}
+
+.pagination button {
+  padding: 10px 20px;
+  margin: 5px;
+  border: 1px solid #ddd;
+  background-color: #f0f0f0;
+  cursor: pointer;
+}
+
+.pagination button:disabled {
+  background-color: #e0e0e0;
+  cursor: not-allowed;
+}
+
+.pagination span {
+  font-size: 16px;
+  margin: 0 10px;
+}
