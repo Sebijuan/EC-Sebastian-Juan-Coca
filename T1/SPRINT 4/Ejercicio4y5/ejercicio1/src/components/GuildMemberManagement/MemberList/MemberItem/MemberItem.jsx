@@ -4,6 +4,7 @@ import MemberDetailsModal from './MemberDetailsModal/MemberDetailsModal';
 import MemberEditModal from './MemberEditModal/MemberEditModal';
 import ConfirmationDialog from '../../../general/ConfirmationDialog/ConfirmationDialog';
 import NotificationSystem from '../../../general/NotificationSystem/NotificationSystem';
+import { deleteMemberById } from '../../../../services/guildmember_API';
 
 const MemberItem = ({ member, isSelected, onSelect }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -15,17 +16,8 @@ const MemberItem = ({ member, isSelected, onSelect }) => {
     setShowDialog(false);
     try {
       console.log('Eliminando miembro con ID:', member.user_id);
-  
-      const response = await fetch(`http://localhost:3000/guildmembers/${member.user_id}`, {
-        method: 'DELETE',
-      });
-  
-      if (!response.ok) {
-        throw new Error(`Error al eliminar el miembro: ${response.statusText}`);
-      }
-  
+      await deleteMemberById(member.user_id);
       setNotification({ message: 'Miembro eliminado exitosamente.', type: 'success' });
-      
       // Opcional: Notificar al usuario y actualizar la lista
     } catch (error) {
       console.error('Error al eliminar el miembro:', error);

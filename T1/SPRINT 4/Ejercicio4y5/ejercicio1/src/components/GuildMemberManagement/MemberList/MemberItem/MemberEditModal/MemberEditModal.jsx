@@ -3,6 +3,7 @@ import './MemberEditModal.css';
 import ConfirmationDialog from '../../../../general/ConfirmationDialog/ConfirmationDialog';
 import NotificationSystem from '../../../../general/NotificationSystem/NotificationSystem';
 import ValidationSystem from '../../../../general/ValidationSystem/ValidationSystem';
+import { fetchTeam, updateMember } from '../../../../../services/guildmember_API';
 
 const MemberEditModal = ({ member, onSave, onClose }) => {
   const [editedMember, setEditedMember] = useState(member);
@@ -12,20 +13,16 @@ const MemberEditModal = ({ member, onSave, onClose }) => {
   const [team, setTeam] = useState([]);
 
   useEffect(() => {
-    const fetchTeam = async () => {
+    const loadTeam = async () => {
       try {
-        const response = await fetch("http://localhost:3000/guildmembers");
-        if (!response.ok) {
-          throw new Error("Error al obtener la lista de miembros.");
-        }
-        const data = await response.json();
+        const data = await fetchTeam();
         setTeam(data);
       } catch (err) {
         setNotification({ message: "Error al obtener la lista de miembros", type: "error" });
       }
     };
 
-    fetchTeam();
+    loadTeam();
   }, []);
 
   const handleInputChange = (e) => {
@@ -52,24 +49,10 @@ const MemberEditModal = ({ member, onSave, onClose }) => {
     }
 
     try {
-      const response = await fetch(`http://localhost:3000/guildmembers/${editedMember.user_id}`, {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(editedMember),
-      });
-
-      if (!response.ok) {
-        throw new Error(`Error al guardar los cambios: ${response.statusText}`);
-      }
-
-      const data = await response.json();
-      console.log('Cambios guardados exitosamente:', data);
-      
-      onSave(data);
+      const updatedMember = await updateMember(member.user_id, editedMember);
+      onSave(updatedMember);
     } catch (error) {
-      console.error('Error al guardar los cambios:', error);
+      console.error("Error al actualizar el miembro:", error);
       setNotification({ message: 'No se pudieron guardar los cambios. Intentalo nuevamente', type: 'error' });
     }
   }

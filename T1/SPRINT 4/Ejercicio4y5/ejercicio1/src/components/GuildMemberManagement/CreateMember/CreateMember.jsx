@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./CreateMember.css"
 import NotificationSystem from "../../general/NotificationSystem/NotificationSystem";
 import ValidationSystem from "../../general/ValidationSystem/ValidationSystem";
+import { fetchTeam, addMember } from '../../../services/guildmember_API';
 
 const CreateMember = ({ isOpen, onClose, onMemberAdded }) => {
   const [formData, setFormData] = useState({
@@ -21,20 +22,16 @@ const CreateMember = ({ isOpen, onClose, onMemberAdded }) => {
   const [notification, setNotification] = useState(null);
 
   useEffect(() => {
-    const fetchTeam = async () => {
+    const loadTeam = async () => {
       try {
-        const response = await fetch("http://localhost:3000/guildmembers");
-        if (!response.ok) {
-          throw new Error("Error al obtener la lista de miembros.");
-        }
-        const data = await response.json();
+        const data = await fetchTeam();
         setTeam(data);
       } catch (err) {
         setNotification({ message: "Error al obtener la lista de miembros", type: "error" });
       }
     };
 
-    fetchTeam();
+    loadTeam();
   }, []);
 
   // Manejar cambios en el formulario
@@ -56,17 +53,7 @@ const CreateMember = ({ isOpen, onClose, onMemberAdded }) => {
     }
 
     try {
-      const response = await fetch("http://localhost:3000/guildmembers", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
-      });
-
-      if (!response.ok) {
-        throw new Error("Error al agregar el miembro.");
-      }
-
-      const newMember = await response.json();
+      const newMember = await addMember(formData);
       onMemberAdded(newMember); // Actualizar la lista de miembros
       
       onClose(); // Cerrar el modal
