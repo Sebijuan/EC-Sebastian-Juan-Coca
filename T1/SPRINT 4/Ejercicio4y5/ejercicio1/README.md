@@ -76,33 +76,33 @@ Este ejercicio se basa en ampliar y mejorar el sistema de gestión de miembros d
    - Seleccionar todos los miembros filtrados utilizando la casilla de verificación en el encabezado.
    - Realizar una acción en lote para cambiar su Guild Role a 'GERENTE'.
    - Verificar que solo los miembros visibles y filtrados se actualizan correctamente y que la paginación refleja los cambios.
-   - ![Prueba 1 GIF]()
+   - ![Prueba 1 GIF](./resources/prueba1.gif)
 
 2. **Prueba 2: Edición de Miembro con Validación en Tiempo Real y Manejo de Errores de API**
    - Editar un miembro desde el MemberEditModal e introducir valores inválidos (e.g., Level negativo, ilvl no numérico).
    - Comprobar que las validaciones en tiempo real impiden la sumisión y muestran mensajes de error claros.
    - Simular un fallo en la API al guardar cambios válidos y verificar que el NotificationSystem informa adecuadamente sin afectar la usabilidad.
-   - ![Prueba 2 GIF](link-to-gif-2)
+   - ![Prueba 2 GIF](./resources/prueba2.gif)
 
 3. **Prueba 3: Creación de Miembro con Duplicidad de user_id y Actualización en Tiempo Real**
    - Intentar crear un nuevo miembro con un `user_id` que ya existe.
    - Verificar que el ValidationSystem detecta la duplicidad antes de enviar y muestra un mensaje de error claro.
    - Corregir el `user_id` y completar la creación.
    - Confirmar que el nuevo miembro aparece inmediatamente en la MemberList sin necesidad de recargar.
-   - ![Prueba 3 GIF](link-to-gif-3)
+   - ![Prueba 3 GIF](./resources/prueba3.gif)
 
 4. **Prueba 4: Persistencia y Consistencia al Filtrar, Ordenar y Editar**
    - Aplicar filtros y ordenamientos específicos.
    - Editar un miembro de manera que ya no cumpla con los filtros aplicados (e.g., cambiar su Level fuera del rango filtrado).
    - Comprobar que, tras guardar, el miembro desaparece de la lista filtrada y que la paginación se ajusta correctamente.
-   - ![Prueba 4 GIF](link-to-gif-4)
+   - ![Prueba 4 GIF](./resources/prueba4.gif)
 
 5. **Prueba 5: Paginación Dinámica y Manejo de Cambios en el Conjunto de Datos**
    - Cambiar el número de miembros mostrados por página (10, 20, 50).
    - Navegar a una página específica.
    - Aplicar un filtro que reduce el número total de páginas.
    - Verificar que la aplicación redirige a una página válida y no muestra contenido vacío o errores.
-   - ![Prueba 5 GIF](link-to-gif-5)
+   - ![Prueba 5 GIF](./resources/prueba5.gif)
 
 ### Componentes Involucrados:
 - **`GuildMemberManagement` (Componente Principal)**:
