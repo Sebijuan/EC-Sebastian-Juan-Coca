@@ -1,0 +1,24 @@
+.Footer {
+    background: #1e1e1e;
+    color: white;
+    text-align: center;
+    padding: 20px 10px;
+    font-size: 1rem;
+    font-family: 'Arial', sans-serif;
+    border-top: 3px solid #ff0000;
+  }
+  
+  .Footer p {
+    margin: 5px 0;
+  }
+  
+  .Footer a {
+    color: #ff0000;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  .Footer a:hover {
+    text-decoration: underline;
+  }
+  
