@@ -1,11 +1,14 @@
 import React from 'react';
-import ContentCard from './ContentCard';
+import ProductCard from './ProductCard';
+import '../styles/home.css';
+
+
 
 const ContentList = ({ products }) => {
   return (
     <div className="content-list">
       {products.map((product) => (
-        <ContentCard key={product.id} product={product} />
+        <ProductCard key={product.id} product={product} />
       ))}
     </div>
   );

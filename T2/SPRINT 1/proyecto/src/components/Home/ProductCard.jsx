@@ -1,7 +1,15 @@
 import React from 'react';
-import './contentCard.css'; // Archivo para los estilos.
+import { useNavigate } from 'react-router-dom';
+import '../styles/products.css';
 
-const ContentCard = ({ product }) => {
+const ProductCard = ({ product }) => {
+  const navigate = useNavigate();
+
+  const handleConfigureClick = () => {
+    // Navegar a cart-preview con los datos del producto
+    navigate('/cart-preview', { state: { from: 'productCard', product } });
+  };
+
   return (
     <div className="content-card">
       <img src={product.image} alt={product.name} className="card-image" />
@@ -10,10 +18,10 @@ const ContentCard = ({ product }) => {
       <div className="card-buttons">
         <button onClick={() => alert('Añadido al carrito')}>Añadir al carrito</button>
         <button onClick={() => alert('Abrir chat')}>Abrir Chat</button>
-        <button onClick={() => alert('Configurar coche')}>Configurar</button>
+        <button onClick={handleConfigureClick}>Configurar</button>
       </div>
     </div>
   );
 };
 
-export default ContentCard;
+export default ProductCard;

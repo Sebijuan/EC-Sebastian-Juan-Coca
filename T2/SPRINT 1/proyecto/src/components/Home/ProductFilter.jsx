@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
-import './ProductFilter.css'; // Archivo para los estilos del filtro.
+import '../styles/products.css';
 
 const ProductFilter = ({ onFilterChange }) => {
   const [filters, setFilters] = useState({
-    category: '',
-    price: '',
-    brand: '',
+    categoria: '',
+    precio: '',
+    marca: '',
     rating: '',
+    color: '', 
   });
 
   const handleChange = (e) => {
@@ -17,7 +18,7 @@ const ProductFilter = ({ onFilterChange }) => {
 
   return (
     <div className="product-filter">
-      <select name="category" onChange={handleChange}>
+      <select name="categoria" onChange={handleChange}>
         <option value="">Categoría</option>
         <option value="deportivos">Deportivos</option>
         <option value="clásicos">Clásicos</option>
@@ -27,15 +28,25 @@ const ProductFilter = ({ onFilterChange }) => {
         <option value="low">Menor a Mayor</option>
         <option value="high">Mayor a Menor</option>
       </select>
-      <select name="brand" onChange={handleChange}>
+      <select name="marca" onChange={handleChange}>
         <option value="">Marca</option>
         <option value="bmw">BMW</option>
         <option value="audi">Audi</option>
+        <option value="seat">Seat</option>
+        <option value="volkswagen">Volkswagen</option>
       </select>
       <select name="rating" onChange={handleChange}>
         <option value="">Valoración</option>
-        <option value="4">4 estrellas o más</option>
-        <option value="3">3 estrellas o más</option>
+        <option value="5">5 estrellas</option>
+        <option value="4">4 estrellas</option>
+        <option value="3">3 estrellas</option>
+      </select>
+      <select name="color" onChange={handleChange}> {/* Added color filter dropdown */}
+        <option value="">Color</option>
+        <option value="rojo">Rojo</option>
+        <option value="azul">Azul</option>
+        <option value="negro">Negro</option>
+        <option value="blanco">Blanco</option>
       </select>
     </div>
   );

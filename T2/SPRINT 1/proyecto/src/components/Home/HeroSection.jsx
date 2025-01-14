@@ -1,11 +1,12 @@
 import React from 'react';
-import './hero.css'; // Puedes crear este archivo para los estilos específicos del HeroSection.
+import '../styles/home.css';
+
 
 const HeroSection = () => {
   return (
     <div className="hero-section">
       <img
-        src="/assets/images/banner.jpg" // Cambia esto por la ruta de tu imagen promocional.
+        src="/assets/images/banner.jpg" // Verifica que esta ruta sea correcta.
         alt="Promoción destacada"
         className="hero-image"
       />
