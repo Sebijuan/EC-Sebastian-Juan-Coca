@@ -4,22 +4,22 @@ import '../styles/layout.css';
 const Navbar = () => {
   const handleHomeClick = (event) => {
     event.preventDefault();
-    // Add logic here if needed to handle the click event
+    window.location.href = '#home';
   };
 
   const handleAboutClick = (event) => {
     event.preventDefault();
-    // Add logic here if needed to handle the click event
+    window.location.href = '#about';
   };
 
   const handleProductsClick = (event) => {
     event.preventDefault();
-    // Add logic here if needed to handle the click event
+    window.location.href = '#products';
   };
 
   const handleContactClick = (event) => {
     event.preventDefault();
-    // Add logic here if needed to handle the click event
+    window.location.href = '#contact';
   };
 
   return (

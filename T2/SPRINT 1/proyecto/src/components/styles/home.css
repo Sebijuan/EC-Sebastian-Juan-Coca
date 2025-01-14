@@ -29,12 +29,14 @@
 .cart-preview button {
   background-color: #007bff;
   color: white;
-  padding: 10px 20px;
+  padding: 10px 20px; /* Ensure both buttons have the same padding */
   border: none;
   border-radius: 5px;
   cursor: pointer;
   font-size: 1em;
   transition: background-color 0.3s ease;
+  margin-right: 10px; /* Add margin to create space between buttons */
+  display: inline-block; /* Ensure buttons are inline */
 }
 
 .cart-preview button:hover {

@@ -67,6 +67,11 @@
   color: #e67e22;
 }
 
+.navbar-link {
+  padding: 15px 30px;
+  font-size: 20px;
+}
+
 .navbar-cart {
   display: flex;
   align-items: center;

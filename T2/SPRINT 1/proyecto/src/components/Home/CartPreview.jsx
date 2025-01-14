@@ -9,8 +9,10 @@ const CartPreview = () => {
   const from = location.state?.from;
   const product = location.state?.product;
 
-  const [configOption, setConfigOption] = useState('Interior');
-  const [subOption, setSubOption] = useState('');
+  const [selectedOptions, setSelectedOptions] = useState({
+    Interior: [],
+    Exterior: []
+  });
 
   const interiorOptions = ['Leather', 'Fabric', 'Wood'];
   const exteriorOptions = ['Metal', 'Plastic', 'Glass'];
@@ -22,19 +24,31 @@ const CartPreview = () => {
   }, [from, product, navigate]);
 
   const handleConfigChange = (event) => {
-    setConfigOption(event.target.value);
-    setSubOption('');
-  };
-
-  const handleSubOptionChange = (event) => {
-    setSubOption(event.target.value);
+    const { name, value, checked } = event.target;
+    setSelectedOptions((prevOptions) => {
+      const options = prevOptions[name];
+      if (checked) {
+        return {
+          ...prevOptions,
+          [name]: [...options, value]
+        };
+      } else {
+        return {
+          ...prevOptions,
+          [name]: options.filter(option => option !== value)
+        };
+      }
+    });
   };
 
   const handleBackToHome = () => {
     navigate('/');
   };
 
-  const options = configOption === 'Interior' ? interiorOptions : exteriorOptions;
+  const handleAccept = () => {
+    // Implement the logic for accepting the selected options
+    console.log('Accepted options:', selectedOptions);
+  };
 
   if (!product) {
     return <div>Cargando...</div>;
@@ -53,35 +67,48 @@ const CartPreview = () => {
         </li>
       </ul>
       <div className="config-menu">
-        <label>
-          Configuration:
-          <select value={configOption} onChange={handleConfigChange}>
-            <option value="Interior">Interior</option>
-            <option value="Exterior">Exterior</option>
-          </select>
-        </label>
-        {configOption && (
-          <label>
-            Type:
-            <select value={subOption} onChange={handleSubOptionChange}>
-              <option value="">Select a type</option>
-              {options.map((option) => (
-                <option key={option} value={option}>
-                  {option}
-                </option>
-              ))}
-            </select>
-          </label>
-        )}
+        <div>
+          <h4>Interior:</h4>
+          {interiorOptions.map((option) => (
+            <label key={option}>
+              <input
+                type="checkbox"
+                name="Interior"
+                value={option}
+                checked={selectedOptions.Interior.includes(option)}
+                onChange={handleConfigChange}
+              />
+              {option}
+            </label>
+          ))}
+        </div>
+        <div>
+          <h4>Exterior:</h4>
+          {exteriorOptions.map((option) => (
+            <label key={option}>
+              <input
+                type="checkbox"
+                name="Exterior"
+                value={option}
+                checked={selectedOptions.Exterior.includes(option)}
+                onChange={handleConfigChange}
+              />
+              {option}
+            </label>
+          ))}
+        </div>
       </div>
-      {subOption && (
+      {(selectedOptions.Interior.length > 0 || selectedOptions.Exterior.length > 0) && (
         <div className="selected-config">
           <h3>Selected Configuration</h3>
-          <p>Configuration: {configOption}</p>
-          <p>Type: {subOption}</p>
+          {selectedOptions.Interior.length > 0 && <p>Interior: {selectedOptions.Interior.join(', ')}</p>}
+          {selectedOptions.Exterior.length > 0 && <p>Exterior: {selectedOptions.Exterior.join(', ')}</p>}
+          <div>
+            <button onClick={handleBackToHome}>Volver a la página de inicio</button>
+            <button onClick={handleAccept}>Aceptar</button>
+          </div>
         </div>
       )}
-      <button onClick={handleBackToHome}>Volver a la página de inicio</button>
     </div>
   );
 };
