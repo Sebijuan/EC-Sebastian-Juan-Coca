@@ -8,7 +8,7 @@ const ProductCard = ({ product }) => {
   const handleConfigureClick = () => {
     navigate('/cart-preview', { state: { from: 'productCard', product } });
   };
-
+ console.log(product.image);
   return (
     <div className="product-card">
       <img src={product.image} alt={product.name} className="product-image" />

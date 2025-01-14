@@ -6,7 +6,7 @@ const HeroSection = () => {
   return (
     <div className="hero-section">
       <img
-        src="/assets/images/banner.jpg" // Verifica que esta ruta sea correcta.
+        src="/assests/products/golfgti.jpg" // Verifica que esta ruta sea correcta.
         alt="Promoción destacada"
         className="hero-image"
       />

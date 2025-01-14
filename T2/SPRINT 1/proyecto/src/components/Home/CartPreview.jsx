@@ -14,8 +14,8 @@ const CartPreview = () => {
     Exterior: []
   });
 
-  const interiorOptions = ['Leather', 'Fabric', 'Wood'];
-  const exteriorOptions = ['Metal', 'Plastic', 'Glass'];
+  const interiorOptions = ['Asientos Deportivos', 'Pack de luces LED de interior', 'Pack de Altavoces Supreme'];
+  const exteriorOptions = ['Pintura Cromada', 'Paquete Deportivo', 'Llantas de aleación de 18"'];
 
   useEffect(() => {
     if (!from || !product) {
@@ -54,8 +54,8 @@ const CartPreview = () => {
   }
 
   return (
-    <div className="cart-preview">
-      <h2>Cart Summary</h2>
+    <div className="car-tuning-preview">
+      <h2>Personalizar</h2>
       <ul>
         <li key={product.id}>
           <img src={product.image} alt={product.name} />
@@ -65,7 +65,7 @@ const CartPreview = () => {
           </div>
         </li>
       </ul>
-      <div className="config-menu">
+      <div className="car-tuning-menu">
         <div>
           <h4>Interior:</h4>
           {interiorOptions.map((option) => (
@@ -98,8 +98,8 @@ const CartPreview = () => {
         </div>
       </div>
       {(selectedOptions.Interior.length > 0 || selectedOptions.Exterior.length > 0) && (
-        <div className="selected-config">
-          <h3>Selected Configuration</h3>
+        <div className="car-tuning-selected-config">
+          <h3>Tu Configuracion Seleccionada</h3>
           {selectedOptions.Interior.length > 0 && <p>Interior: {selectedOptions.Interior.join(', ')}</p>}
           {selectedOptions.Exterior.length > 0 && <p>Exterior: {selectedOptions.Exterior.join(', ')}</p>}
           <div>

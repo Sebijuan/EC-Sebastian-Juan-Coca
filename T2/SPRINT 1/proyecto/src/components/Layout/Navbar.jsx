@@ -23,7 +23,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="navbar">
+    <nav className="navbar navbar-visible">
       <h1>SJ XTREMEMODS</h1>
       <ul>
         <li><a href="#home" onClick={handleHomeClick} className="navbar-link">Inicio</a></li>

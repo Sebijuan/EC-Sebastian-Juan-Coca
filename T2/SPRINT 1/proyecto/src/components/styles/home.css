@@ -1,32 +1,34 @@
-.cart-preview {
+.car-tuning-preview {
   padding: 20px;
   background-color: #f4f4f4;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  margin: 0 auto; /* Center horizontally */
+  max-width: 600px; /* Optional: limit the width */
 }
 
-.cart-preview h2 {
+.car-tuning-preview h2 {
   margin-bottom: 20px;
 }
 
-.cart-preview ul {
+.car-tuning-preview ul {
   list-style-type: none;
   padding: 0;
 }
 
-.cart-preview li {
+.car-tuning-preview li {
   display: flex;
   align-items: center;
   margin-bottom: 20px;
 }
 
-.cart-preview img {
+.car-tuning-preview img {
   width: 100px;
   height: auto;
   margin-right: 20px;
 }
 
-.cart-preview button {
+.car-tuning-preview button {
   background-color: #007bff;
   color: white;
   padding: 10px 20px; /* Ensure both buttons have the same padding */
@@ -39,7 +41,7 @@
   display: inline-block; /* Ensure buttons are inline */
 }
 
-.cart-preview button:hover {
+.car-tuning-preview button:hover {
   background-color: #0056b3;
 }
 
@@ -48,10 +50,11 @@
   text-align: center;
   color: white;
   margin-top: 20px;
+  padding-top: 60px; /* Add padding to prevent overlap with navbar */
 }
 
 .hero-image {
-  width: 100%;
+  width: 50%; /* Reduce the width to 50% */
   height: auto;
   filter: brightness(70%);
 }
@@ -62,6 +65,11 @@
   left: 50%;
   transform: translate(-50%, -50%);
   color: black; /* Change the text color to black */
+  padding: 20px; /* Add padding to improve appearance */
+}
+
+.hero-content h1 {
+  margin-bottom: 20px; /* Add margin to separate the h1 element */
 }
 
 .hero-button {
@@ -91,24 +99,40 @@
   display: block;
 }
 
-.config-menu {
+.car-tuning-menu {
   margin-top: 20px;
+  margin: 0 auto; /* Center horizontally */
+  max-width: 600px; /* Optional: limit the width */
 }
 
-.config-menu label {
+.car-tuning-menu label {
   display: block;
   margin-bottom: 10px;
 }
 
-.config-menu select {
+.car-tuning-menu select {
   padding: 5px;
   font-size: 1em;
 }
 
-.content-card {
+.car-tuning-selected-config {
   margin-top: 100px; /* Increase the value to move the cards further down */
+  margin: 0 auto; /* Center horizontally */
+  max-width: 600px; /* Optional: limit the width */
 }
 
 .product-card {
   margin-top: 20px; /* Add margin to move the product card further down */
+}
+
+.navbar h1 {
+  font-size: 1.5em; /* Adjust the font size */
+  white-space: nowrap; /* Prevent text from wrapping */
+  overflow: hidden; /* Hide overflow text */
+  text-overflow: ellipsis; /* Add ellipsis for overflow text */
+}
+
+.navbar-visible {
+  z-index: 1000; /* Ensure the navbar is on top */
+  position: relative; /* Ensure the navbar is positioned correctly */
 }
