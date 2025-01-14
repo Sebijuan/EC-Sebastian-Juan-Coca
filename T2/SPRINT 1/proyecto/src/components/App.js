@@ -2,7 +2,7 @@ import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import Navbar from './Layout/Navbar';
 import HeroSection from './Home/HeroSection';
-import ContentList from './Home/ContentList';
+import ProductList from './Home/ProductList';
 import Footer from './Layout/Footer';
 import CartPreview from './Home/CartPreview';
 
@@ -17,7 +17,7 @@ const App = () => {
           element={
             <>
               <HeroSection />
-              <ContentList />
+              <ProductList />
             </>
           }
         />

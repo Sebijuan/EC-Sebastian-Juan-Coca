@@ -51,17 +51,21 @@
   color: white;
   margin-top: 20px;
   padding-top: 60px; /* Add padding to prevent overlap with navbar */
+  z-index: 1; /* Ensure the hero section is above other elements */
 }
 
 .hero-image {
-  width: 50%; /* Reduce the width to 50% */
+  width: 30%; /* Reduce the width to 30% */
   height: auto;
   filter: brightness(70%);
+  position: relative;
+  z-index: -1; /* Ensure the image is behind the content */
 }
 
 .hero-content {
-  position: absolute;
-  top: 60%; /* Move the content further down */
+  position: relative;
+  z-index: 4; /* Ensure the content is above the image */
+  top: -50%; /* Adjust the position to move the content above the image */
   left: 50%;
   transform: translate(-50%, -50%);
   color: black; /* Change the text color to black */

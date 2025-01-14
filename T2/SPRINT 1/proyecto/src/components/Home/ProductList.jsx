@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import ProductCard from './ProductCard';
-import '../styles/home.css';
+import '../styles/products.css';
 import { fetchProducts } from '../services/content_API';
 import ProductFilter from './ProductFilter'; 
-const ContentList = () => {
+const ProductList = () => {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
@@ -13,7 +13,7 @@ const ContentList = () => {
   }, []);
 
   return (
-    <div className="content-list">
+    <div className="Product-list">
        <ProductFilter onFilterChange={(filters) => console.log(filters)} />
       {products.map((product) => (
         <ProductCard key={product.id} product={product} />
@@ -22,4 +22,4 @@ const ContentList = () => {
   );
 };
 
-export default ContentList;
+export default ProductList;
