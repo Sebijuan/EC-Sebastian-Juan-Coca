@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import '../styles/products.css';
+import { fetchProducts } from '../services/content_API'; // Import fetchProducts
 
 const ProductFilter = ({ onFilterChange }) => {
   const [filters, setFilters] = useState({
@@ -9,6 +10,12 @@ const ProductFilter = ({ onFilterChange }) => {
     rating: '',
     color: '', 
   });
+
+  useEffect(() => {
+    fetchProducts().then((products) => {
+      // Handle fetched products if needed
+    });
+  }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -23,7 +30,7 @@ const ProductFilter = ({ onFilterChange }) => {
         <option value="deportivos">Deportivos</option>
         <option value="clásicos">Clásicos</option>
       </select>
-      <select name="price" onChange={handleChange}>
+      <select name="precio" onChange={handleChange}> {/* Fixed typo here */}
         <option value="">Precio</option>
         <option value="low">Menor a Mayor</option>
         <option value="high">Mayor a Menor</option>

@@ -30,6 +30,10 @@ const CartPreview = () => {
     setSubOption(event.target.value);
   };
 
+  const handleBackToHome = () => {
+    navigate('/');
+  };
+
   const options = configOption === 'Interior' ? interiorOptions : exteriorOptions;
 
   if (!product) {
@@ -70,6 +74,14 @@ const CartPreview = () => {
           </label>
         )}
       </div>
+      {subOption && (
+        <div className="selected-config">
+          <h3>Selected Configuration</h3>
+          <p>Configuration: {configOption}</p>
+          <p>Type: {subOption}</p>
+        </div>
+      )}
+      <button onClick={handleBackToHome}>Volver a la página de inicio</button>
     </div>
   );
 };
