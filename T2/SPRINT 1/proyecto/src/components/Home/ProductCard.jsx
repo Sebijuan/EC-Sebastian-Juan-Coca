@@ -6,18 +6,12 @@ const ProductCard = ({ product }) => {
   const navigate = useNavigate();
 
   const handleConfigureClick = () => {
-    // Navegar a cart-preview con los datos del producto
     navigate('/cart-preview', { state: { from: 'productCard', product } });
   };
 
   return (
     <div className="product-card">
-      <img
-        src={product.image}
-        alt={product.name}
-        className="product-image"
-        
-      />
+      <img src={product.image} alt={product.name} className="product-image" />
       <h3>{product.name}</h3>
       <p>Precio: ${product.price}</p>
       <div className="card-buttons">

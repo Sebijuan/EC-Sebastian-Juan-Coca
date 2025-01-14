@@ -46,7 +46,6 @@ const CartPreview = () => {
   };
 
   const handleAccept = () => {
-    // Implement the logic for accepting the selected options
     console.log('Accepted options:', selectedOptions);
   };
 

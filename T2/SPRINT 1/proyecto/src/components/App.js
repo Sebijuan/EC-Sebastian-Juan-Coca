@@ -2,7 +2,6 @@ import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import Navbar from './Layout/Navbar';
 import HeroSection from './Home/HeroSection';
-import ProductFilter from './Home/ProductFilter'; 
 import ContentList from './Home/ContentList';
 import Footer from './Layout/Footer';
 import CartPreview from './Home/CartPreview'; // Corrected import path
@@ -17,13 +16,14 @@ const App = () => {
   return (
     <div className="App">
       <Navbar />
-      <HeroSection />
-      <ProductFilter onFilterChange={(filters) => console.log(filters)} />
+      
+     
       <Routes>
         <Route path="/" element={<ContentList products={products} />} />
         <Route path="/cart-preview" element={<CartPreview />} />
       </Routes>
       <Footer />
+      <HeroSection />
     </div>
   );
 };

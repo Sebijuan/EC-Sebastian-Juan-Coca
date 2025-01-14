@@ -58,9 +58,10 @@
 
 .hero-content {
   position: absolute;
-  top: 50%;
+  top: 60%; /* Move the content further down */
   left: 50%;
   transform: translate(-50%, -50%);
+  color: black; /* Change the text color to black */
 }
 
 .hero-button {
@@ -101,5 +102,5 @@
 }
 
 .content-card {
-  margin-top: 50px; /* Adjust the value as needed */
+  margin-top: 100px; /* Increase the value to move the cards further down */
 }
