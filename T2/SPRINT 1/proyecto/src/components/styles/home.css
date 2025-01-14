@@ -84,7 +84,11 @@
   gap: 20px;
   justify-content: center;
   padding: 20px;
-  margin-top: 20px;
+  margin-top: 80px; /* Increase the value to move the cards further down */
+  max-width: 500px; /* Limit the width of the content list */
+  margin-left: auto; /* Center the content list */
+  margin-right: auto; /* Center the content list */
+  display: block;
 }
 
 .config-menu {
@@ -103,4 +107,8 @@
 
 .content-card {
   margin-top: 100px; /* Increase the value to move the cards further down */
+}
+
+.product-card {
+  margin-top: 20px; /* Add margin to move the product card further down */
 }

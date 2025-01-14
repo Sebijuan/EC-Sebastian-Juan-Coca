@@ -1,9 +1,10 @@
+
 const mockProducts = [
   {
     id: 1,
     name: 'BMW X5',
     price: 30000,
-    image: '/assets/products/bmw-x5.jpg',
+    image: '/public/assets/products/bmw-x5.jpg',
     category: 'deportivos',
     brand: 'bmw',
     rating: 5,
@@ -13,7 +14,7 @@ const mockProducts = [
     id: 2,
     name: 'Audi A4',
     price: 25000,
-    image: '/assets/products/audi-a4.jpg',
+    image: '/public/assets/products/audi-a4.jpg',
     category: 'deportivos',
     brand: 'audi',
     rating: 4,
@@ -23,7 +24,7 @@ const mockProducts = [
     id: 3,
     name: 'BMW M3',
     price: 75000,
-    image: '/components/assets/products/bmwM3.jpg', 
+    image: '/public/assets/products/bmwM3.jpg', 
     category: 'deportivos',
     brand: 'bmw',
     rating: 5,
@@ -33,7 +34,7 @@ const mockProducts = [
     id: 4,
     name: 'Mercedes C 63 S',
     price: 60000,
-    image: '/assets/products/mercedesamgc63s.jpg',
+    image: '/public/assets/products/mercedesamgc63s.jpg',
     category: 'deportivos',
     brand: 'mercedes',
     rating: 5,
