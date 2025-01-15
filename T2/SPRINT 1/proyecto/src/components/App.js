@@ -5,7 +5,7 @@ import HeroSection from './Home/HeroSection';
 import ProductList from './Home/ProductList';
 import Footer from './Layout/Footer';
 import CartPreview from './Home/CartPreview';
-
+import '../App.css';
 const App = () => {
   return (
     <div className="App">

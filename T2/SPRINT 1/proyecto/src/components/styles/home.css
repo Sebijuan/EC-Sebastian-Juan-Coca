@@ -1,50 +1,4 @@
-.car-tuning-preview {
-  padding: 20px;
-  background-color: #f4f4f4;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  margin: 0 auto; /* Center horizontally */
-  max-width: 600px; /* Optional: limit the width */
-}
 
-.car-tuning-preview h2 {
-  margin-bottom: 20px;
-  color: #333;
-}
-
-.car-tuning-preview ul {
-  list-style-type: none;
-  padding: 0;
-}
-
-.car-tuning-preview li {
-  display: flex;
-  align-items: center;
-  margin-bottom: 20px;
-}
-
-.car-tuning-preview img {
-  width: 400px;
-  height: auto;
-  margin-right: 20px;
-}
-
-.car-tuning-preview button {
-  background-color: #007bff;
-  color: white;
-  padding: 10px 20px; /* Ensure both buttons have the same padding */
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 1em;
-  transition: background-color 0.3s ease;
-  margin-right: 10px; /* Add margin to create space between buttons */
-  display: inline-block; /* Ensure buttons are inline */
-}
-
-.car-tuning-preview button:hover {
-  background-color: #0056b3;
-}
 
 .hero-section {
   position: relative;
@@ -56,7 +10,7 @@
 }
 
 .hero-image {
-  width: 30%; /* Reduce the width to 30% */
+  width: 100%; 
   height: auto;
   filter: brightness(70%);
   position: relative;
@@ -104,67 +58,7 @@
   display: block;
 }
 
-.car-tuning-menu {
-  margin-top: 20px;
-  margin: 0 auto; /* Center horizontally */
-  max-width: 600px; /* Optional: limit the width */
-}
 
-.car-tuning-menu label {
-  display: block;
-  margin-bottom: 10px;
-}
-
-.car-tuning-menu h4 {
-  margin-bottom: 10px;
-  color: #333;
-}
-
-.car-tuning-menu select {
-  width: 100%;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  font-size: 1em;
-}
-
-.car-tuning-selected-config {
-  margin-top: 20px;
-  padding: 20px;
-  background-color: #fff;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  margin: 0 auto; /* Center horizontally */
-  max-width: 600px; /* Optional: limit the width */
-}
-
-.car-tuning-selected-config h3 {
-  margin-top: 0;
-  color: #333;
-}
-
-.car-tuning-selected-config p {
-  margin: 10px 0;
-  color: #555;
-}
-
-.car-tuning-selected-config button {
-  padding: 10px 20px;
-  margin-right: 10px;
-  border: none;
-  border-radius: 4px;
-  background-color: #007bff;
-  color: #fff;
-  cursor: pointer;
-}
-
-.car-tuning-selected-config button:hover {
-  background-color: #0056b3;
-}
-
-.product-card {
-  margin-top: 20px; /* Add margin to move the product card further down */
-}
 
 .navbar h1 {
   font-size: 1.5em; /* Adjust the font size */

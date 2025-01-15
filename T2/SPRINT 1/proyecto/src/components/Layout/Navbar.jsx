@@ -37,7 +37,7 @@ const Navbar = () => {
 
   return (
     <nav className="navbar navbar-visible">
-      <h1>SJ XTREMEMODS</h1>
+      <h1>SJ CUSTOMS</h1>
       <ul>
         <li><a href="#home" onClick={handleHomeClick} className="navbar-link">Inicio</a></li>
         <li><a href="#about" onClick={handleAboutClick} className="navbar-link">Sobre Nosotros</a></li>
@@ -47,7 +47,7 @@ const Navbar = () => {
         <li><a href="/register-page" onClick={handleRegisterClick} className="navbar-link">Registrate</a></li>
       </ul>
       <div className="navbar-icon">
-        <img src="/assests/icons/icon.jpg" alt="Icono" />
+        <img src="/assests/icons/Logo.webp" alt="Icono" />
         <span></span>
       </div>
     </nav>
