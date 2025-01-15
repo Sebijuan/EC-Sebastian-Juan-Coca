@@ -32,9 +32,6 @@ const Navbar = () => {
     window.location.href = '/register-page';
   };
 
-
-
-
   return (
     <nav className="navbar navbar-visible">
       <h1>SJ CUSTOMS</h1>

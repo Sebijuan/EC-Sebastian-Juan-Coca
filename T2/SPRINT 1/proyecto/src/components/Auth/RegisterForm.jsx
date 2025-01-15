@@ -1,15 +1,44 @@
-import React, { useState } from 'react';
-import '../styles/auth.css';
+import React, { useState, useEffect } from 'react';
+import '../styles/register.css';
+import { validateEmail, validatePassword, validatePasswordMatch } from '../Shared/ValidationSystem';
+import { showSuccessNotification, showErrorNotification } from '../Shared/NotificationSystem';
 
 const RegisterForm = () => {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  const [errors, setErrors] = useState({});
 
-  const handleRegister = (event) => {
+ 
+
+  const handleRegister = async (event) => {
     event.preventDefault();
-    // Handle registration logic here
+    if (Object.keys(errors).length === 0) {
+      try {
+        // Simulate API call for user registration
+        const response = await fakeApiCall({ username, email, password });
+        if (response.success) {
+          showSuccessNotification('Registro exitoso');
+          handleLoginRedirect();
+        } else {
+          showErrorNotification('Error en el registro');
+        }
+      } catch (error) {
+        showErrorNotification('Error en el registro');
+      }
+    } else {
+      showErrorNotification('Por favor, corrija los errores en el formulario');
+    }
+  };
+
+  const fakeApiCall = async (data) => {
+    // Simulate API call delay
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        resolve({ success: true });
+      }, 1000);
+    });
   };
 
   const handleLoginRedirect = () => {
@@ -28,6 +57,7 @@ const RegisterForm = () => {
           required
         />
       </label>
+      {errors.username && <p className="error">{errors.username}</p>}
       <label>
         Correo Electrónico:
         <input
@@ -37,6 +67,7 @@ const RegisterForm = () => {
           required
         />
       </label>
+      {errors.email && <p className="error">{errors.email}</p>}
       <label>
         Contraseña:
         <input
@@ -46,6 +77,7 @@ const RegisterForm = () => {
           required
         />
       </label>
+      {errors.password && <p className="error">{errors.password}</p>}
       <label>
         Confirmar Contraseña:
         <input
@@ -55,6 +87,7 @@ const RegisterForm = () => {
           required
         />
       </label>
+      {errors.confirmPassword && <p className="error">{errors.confirmPassword}</p>}
       <button type="submit">Registrarse</button>
       <button type="button" onClick={handleLoginRedirect}>
         ¿Ya tienes una cuenta? Inicia Sesión

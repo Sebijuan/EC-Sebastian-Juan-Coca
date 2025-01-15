@@ -7,7 +7,9 @@ const ProductCard = ({ product }) => {
 
   const handleConfigureClick = () => {
     navigate('/cart-preview', { state: { from: 'productCard', product } });
-    window.scrollTo({ top: 0, behavior: 'smooth' }); // Scroll to top after navigation
+    setTimeout(() => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }, 0); // Scroll to top after navigation
   };
 
   return (

@@ -27,8 +27,11 @@ const CartPreview = () => {
     if (!from || !product) {
       navigate('/'); // Si no tenemos los datos, redirigimos a la página de inicio
     }
-    window.scrollTo({ top: 0, behavior: 'smooth' }); // Scroll to top on mount
   }, [from, product, navigate]);
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' }); // Scroll to top on mount
+  }, []);
 
   const handleConfigChange = (event) => {
     const { name, value, checked, type } = event.target;

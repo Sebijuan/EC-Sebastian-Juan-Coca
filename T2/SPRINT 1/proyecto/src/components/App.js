@@ -5,7 +5,10 @@ import HeroSection from './Home/HeroSection';
 import ProductList from './Home/ProductList';
 import Footer from './Layout/Footer';
 import CartPreview from './Home/CartPreview';
+import RegisterForm from './Auth/RegisterForm'; 
 import '../App.css';
+
+
 const App = () => {
   return (
     <div className="App">
@@ -23,6 +26,8 @@ const App = () => {
         />
         {/* Ruta para la vista de CartPreview */}
         <Route path="/cart-preview" element={<CartPreview />} />
+        {/* Ruta para la vista de RegisterPage */}
+        <Route path="/register-page" element={<RegisterForm />} />
       </Routes>
       <Footer />
     </div>
