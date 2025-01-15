@@ -1,11 +1,9 @@
-
-
 .hero-section {
   position: relative;
   text-align: center;
   color: white;
-  margin-top: 20px;
-  padding-top: 60px; /* Add padding to prevent overlap with navbar */
+  /* margin-top: 20px; Remove margin-top to eliminate gap */
+  /* padding-top: 60px; Remove padding-top to eliminate gap */
   z-index: 1; /* Ensure the hero section is above other elements */
 }
 
@@ -57,8 +55,6 @@
   margin-right: auto; /* Center the content list */
   display: block;
 }
-
-
 
 .navbar h1 {
   font-size: 1.5em; /* Adjust the font size */

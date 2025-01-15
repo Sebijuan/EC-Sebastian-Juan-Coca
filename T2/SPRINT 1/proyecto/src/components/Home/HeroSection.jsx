@@ -1,7 +1,6 @@
 import React from 'react';
 import '../styles/home.css';
 
-
 const HeroSection = () => {
   return (
     <div className="hero-section">
@@ -11,7 +10,7 @@ const HeroSection = () => {
         className="hero-image"
       />
       <div className="hero-content">
-        
+        {/* ...existing code... */}
       </div>
     </div>
   );

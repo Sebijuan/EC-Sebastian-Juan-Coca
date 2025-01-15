@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { validateEmail, validatePassword } from '../Shared/ValidationSystem';
 import { showErrorNotification } from '../Shared/NotificationSystem';
+import { loginAccount } from '../services/auth_API';
 import '../Layout/Navbar.jsx';
 import '../styles/login.css';
 
@@ -10,7 +11,18 @@ const LoginForm = () => {
     const [rememberMe, setRememberMe] = useState(false);
     const [errors, setErrors] = useState({});
 
-    const handleLogin = () => {
+    useEffect(() => {
+        const newErrors = {};
+        if (email && !validateEmail(email)) {
+            newErrors.email = 'El correo debe tener un formato válido.';
+        }
+        if (password && !validatePassword(password)) {
+            newErrors.password = 'La contraseña no puede estar vacía.';
+        }
+        setErrors(newErrors);
+    }, [email, password]);
+
+    const handleLogin = async () => {
         const newErrors = {};
         if (!validateEmail(email)) {
             newErrors.email = 'El correo debe tener un formato válido.';
@@ -21,10 +33,13 @@ const LoginForm = () => {
         setErrors(newErrors);
 
         if (Object.keys(newErrors).length === 0) {
-            if (password === '4dA1Ts_2425') {
-                // Redirigir al panel principal
-                window.location.href = '/main-panel';
-            } else {
+            try {
+                const response = await loginAccount(email, password);
+                if (response.success) {
+                    // Redirigir a la página de inicio
+                    window.location.href = '/';
+                }
+            } catch (err) {
                 showErrorNotification('Credenciales inválidas');
             }
         }

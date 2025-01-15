@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import '../styles/register.css';
 import { validateEmail, validatePassword, validatePasswordMatch } from '../Shared/ValidationSystem';
 import { showSuccessNotification, showErrorNotification } from '../Shared/NotificationSystem';
+import { createAccount, getAccounts } from '../services/auth_API';
 
 const RegisterForm = () => {
   const [username, setUsername] = useState('');
@@ -10,19 +11,43 @@ const RegisterForm = () => {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [errors, setErrors] = useState({});
 
- 
+  useEffect(() => {
+    const newErrors = {};
+    if (email && !validateEmail(email)) {
+      newErrors.email = 'El correo debe tener un formato válido.';
+    }
+    if (password && !validatePassword(password)) {
+      newErrors.password = 'La contraseña debe tener al menos 8 caracteres, incluir una mayúscula, un número y un símbolo.';
+    }
+    if (confirmPassword && !validatePasswordMatch(password, confirmPassword)) {
+      newErrors.confirmPassword = 'Las contraseñas no coinciden.';
+    }
+    setErrors(newErrors);
+  }, [email, password, confirmPassword]);
 
   const handleRegister = async (event) => {
     event.preventDefault();
-    if (Object.keys(errors).length === 0) {
+    const newErrors = {};
+    if (!validateEmail(email)) {
+      newErrors.email = 'El correo debe tener un formato válido.';
+    }
+    if (!validatePassword(password)) {
+      newErrors.password = 'La contraseña debe tener al menos 8 caracteres, incluir una mayúscula, un número y un símbolo.';
+    }
+    if (!validatePasswordMatch(password, confirmPassword)) {
+      newErrors.confirmPassword = 'Las contraseñas no coinciden.';
+    }
+    setErrors(newErrors);
+
+    if (Object.keys(newErrors).length === 0) {
       try {
-        // Simulate API call for user registration
-        const response = await fakeApiCall({ username, email, password });
-        if (response.success) {
+        const accounts = await getAccounts();
+        if (accounts.some(acc => acc.email === email || acc.username === username)) {
+          showErrorNotification('El correo o nombre de usuario ya está registrado.');
+        } else {
+          createAccount(username, email, password);
           showSuccessNotification('Registro exitoso');
           handleLoginRedirect();
-        } else {
-          showErrorNotification('Error en el registro');
         }
       } catch (error) {
         showErrorNotification('Error en el registro');
@@ -30,15 +55,6 @@ const RegisterForm = () => {
     } else {
       showErrorNotification('Por favor, corrija los errores en el formulario');
     }
-  };
-
-  const fakeApiCall = async (data) => {
-    // Simulate API call delay
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        resolve({ success: true });
-      }, 1000);
-    });
   };
 
   const handleLoginRedirect = () => {

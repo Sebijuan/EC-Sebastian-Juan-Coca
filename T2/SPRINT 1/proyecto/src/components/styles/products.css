@@ -174,7 +174,8 @@
   
   .car-tuning-menu h4 {
     margin-bottom: 10px;
-    color: #333;
+    color: #ff0000;
+    font-size: 40px;
   }
   
   .car-tuning-menu select {
@@ -227,16 +228,16 @@
 
   .car-tuning-preview {
     padding: 20px;
-    background-color: #f4f4f4;
+    background-color: #000000;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     margin: 0 auto; /* Center horizontally */
-    max-width: 1000px; /* Optional: limit the width */
+    max-width: 1200px; /* Optional: limit the width */
   }
   
   .car-tuning-preview h2 {
     margin-bottom: 50px;
-    color: #333;
+    color: #ff0000;
     font-size: 60px;
   }
   
@@ -245,6 +246,11 @@
     padding: 0;
   }
   
+  .car-tuning-preview h3{
+
+    color: #ff0000;
+    font-size: 40px;
+  }
   .car-tuning-preview li {
     display: flex;
     align-items: center;
@@ -297,4 +303,39 @@ select {
 
 select:focus {
   border-color: #ff0000; /* Change the border color on focus */
+}
+
+.custom-checkbox {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  font-size: 1.2em;
+  color: #ffffff;
+}
+
+.custom-checkbox input[type="checkbox"] {
+  margin-right: 10px;
+  transform: scale(1.5);
+  cursor: pointer;
+}
+
+.custom-checkbox input[type="checkbox"]:checked {
+  accent-color: #ff0000; /* Change the checkbox color when checked */
+}
+
+.product-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.product-item img {
+  margin-bottom: 20px;
+}
+
+.product-details {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }

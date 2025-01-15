@@ -67,9 +67,9 @@ const CartPreview = () => {
     <div className="car-tuning-preview">
       <h2>Personalizar</h2>
       <ul>
-        <li key={product.id}>
+        <li key={product.id} className="product-item">
           <img src={product.image} alt={product.name} />
-          <div>
+          <div className="product-details">
             <h3>{product.name}</h3>
             <p>${product.price}</p>
           </div>
@@ -79,7 +79,7 @@ const CartPreview = () => {
         <div>
           <h4>Interior:</h4>
           {interiorOptions.map((option) => (
-            <label key={option}>
+            <label key={option} className="custom-checkbox">
               <input
                 type="checkbox"
                 name="Interior"
@@ -93,7 +93,7 @@ const CartPreview = () => {
         <div>
           <h4>Exterior:</h4>
           {exteriorOptions.map((option) => (
-            <label key={option}>
+            <label key={option} className="custom-checkbox">
               <input
                 type="checkbox"
                 name="Exterior"
@@ -129,7 +129,7 @@ const CartPreview = () => {
         <div>
           <h4>Extras Exclusivos:</h4>
           {extrasOptions.map((option) => (
-            <label key={option}>
+            <label key={option} className="custom-checkbox">
               <input
                 type="checkbox"
                 name="Extras"

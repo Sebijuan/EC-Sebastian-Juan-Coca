@@ -1,16 +1,15 @@
 import React, { useState } from 'react';
 import '../styles/forgotpassword.css';
+import { validateEmail } from '../Shared/ValidationSystem';
+import { showSuccessNotification, showErrorNotification } from '../Shared/NotificationSystem';
+import { recoverPassword } from '../services/auth_API';
+
 const ForgotPasswordForm = () => {
     const [email, setEmail] = useState('');
     const [error, setError] = useState('');
     const [success, setSuccess] = useState('');
 
-    const validateEmail = (email) => {
-        const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        return re.test(String(email).toLowerCase());
-    };
-
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         setError('');
         setSuccess('');
@@ -20,11 +19,15 @@ const ForgotPasswordForm = () => {
             return;
         }
 
-        // Simulate API request
-        console.log(`Sending recovery link to: ${email}`);
-        if (email === 'registered@example.com') {
-            setSuccess('Enlace de recuperación enviado con éxito.');
-        } else {
+        try {
+            console.log(`Sending recovery link to: ${email}`);
+            const response = await recoverPassword(email);
+            if (response.success) {
+                showSuccessNotification('Enlace de recuperación enviado con éxito.');
+                setSuccess('Enlace de recuperación enviado con éxito.');
+            }
+        } catch (err) {
+            showErrorNotification('El correo no está registrado.');
             setError('El correo no está registrado.');
         }
     };
@@ -43,7 +46,7 @@ const ForgotPasswordForm = () => {
             {error && <p style={{ color: 'red' }}>{error}</p>}
             {success && <p style={{ color: 'green' }}>{success}</p>}
             <button type="submit">Enviar Enlace de Recuperación</button>
-            <button type="button" onClick={() => window.location.href = '/login'}>
+            <button type="button" onClick={() => window.location.href = '/login-page'}>
                 Volver al Inicio de Sesión
             </button>
         </form>
