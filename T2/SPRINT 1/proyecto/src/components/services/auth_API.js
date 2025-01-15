@@ -29,6 +29,7 @@ function loginAccount(email, password) {
                 const isPasswordValid = bcrypt.compareSync(password, account.password);
                 console.log("Password comparison result:", isPasswordValid);
                 if (isPasswordValid) {
+                    alert('Login successful!'); // Confirmation of success
                     resolve({ success: true, account });
                 } else {
                     reject({ success: false, message: 'Credenciales inválidas' });
