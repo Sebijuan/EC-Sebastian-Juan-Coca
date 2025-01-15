@@ -22,6 +22,19 @@ const Navbar = () => {
     window.location.href = '#contact';
   };
 
+  const handleLoginClick = (event) => {
+    event.preventDefault();
+    window.location.href = '/login-page';
+  };
+
+  const handleRegisterClick = (event) => {
+    event.preventDefault();
+    window.location.href = '/register-page';
+  };
+
+
+
+
   return (
     <nav className="navbar navbar-visible">
       <h1>SJ XTREMEMODS</h1>
@@ -30,10 +43,12 @@ const Navbar = () => {
         <li><a href="#about" onClick={handleAboutClick} className="navbar-link">Sobre Nosotros</a></li>
         <li><a href="#products" onClick={handleProductsClick} className="navbar-link">Productos</a></li>
         <li><a href="#contact" onClick={handleContactClick} className="navbar-link">Contacto</a></li>
+        <li><a href="/login-page" onClick={handleLoginClick} className="navbar-link">Iniciar Sesión</a></li>
+        <li><a href="/register-page" onClick={handleRegisterClick} className="navbar-link">Registrate</a></li>
       </ul>
-      <div className="navbar-cart">
-        <img src="src/components/assets/icons/icon.jpg" alt="Carrito" />
-        <span>3</span>
+      <div className="navbar-icon">
+        <img src="/assests/icons/icon.jpg" alt="Icono" />
+        <span></span>
       </div>
     </nav>
   );

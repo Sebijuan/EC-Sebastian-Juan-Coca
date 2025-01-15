@@ -7,16 +7,15 @@ const ProductCard = ({ product }) => {
 
   const handleConfigureClick = () => {
     navigate('/cart-preview', { state: { from: 'productCard', product } });
+    window.scrollTo({ top: 0, behavior: 'smooth' }); // Scroll to top after navigation
   };
- console.log(product.image);
+
   return (
     <div className="product-card">
       <img src={product.image} alt={product.name} className="product-image" />
       <h3>{product.name}</h3>
       <p>Precio: ${product.price}</p>
       <div className="card-buttons">
-        <button onClick={() => alert('Añadido al carrito')}>Añadir al carrito</button>
-        <button onClick={() => alert('Abrir chat')}>Abrir Chat</button>
         <button onClick={handleConfigureClick}>Configurar</button>
       </div>
     </div>

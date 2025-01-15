@@ -11,33 +11,40 @@ const CartPreview = () => {
 
   const [selectedOptions, setSelectedOptions] = useState({
     Interior: [],
-    Exterior: []
+    Exterior: [],
+    Motor: [],
+    Extras: [],
+    Color: []
   });
 
-  const interiorOptions = ['Asientos Deportivos', 'Pack de luces LED de interior', 'Pack de Altavoces Supreme'];
-  const exteriorOptions = ['Pintura Cromada', 'Paquete Deportivo', 'Llantas de aleación de 18"'];
+  const interiorOptions = ['Asientos Tipo Bucket', 'Pack de luces LED de interior', 'Pack de Altavoces Supreme', 'Instalación de un cielo estrellado con fibra óptica tipo Rolls-Royce','Pantallas táctiles más grandes (tipo tablet)','Portavasos iluminados','Tweeters motorizados que emergen al encender el coche','Tapizado con materiales especiales (Alcantara, microfibra)'];
+  const exteriorOptions = ['Pintura Cromada', 'Faros LED', 'Llantas de aleación de 18"','Escape Akrapovic','Techo Solar','Parachoques','Faldones Laterales','Difusor Aerodinámico'];
+  const motorOptions = ['Motor Gasolina 1.5', 'Motor Gasolina 2.0', 'Motor Eléctrico', 'Motor 1.5 Hibrido','Motor 2.0 Hibrido'];
+  const extrasOptions = ['Sistema de Navegación Avanzado', 'Asistente de Conducción Autónoma', 'Enfriadores de bebidas', 'Detalles en oro, plata o cristales Swarovski'];
+  const colorOptions = ['Rojo', 'Azul', 'Negro', 'Blanco', 'Gris'];
 
   useEffect(() => {
     if (!from || !product) {
       navigate('/'); // Si no tenemos los datos, redirigimos a la página de inicio
     }
+    window.scrollTo({ top: 0, behavior: 'smooth' }); // Scroll to top on mount
   }, [from, product, navigate]);
 
   const handleConfigChange = (event) => {
-    const { name, value, checked } = event.target;
+    const { name, value, checked, type } = event.target;
     setSelectedOptions((prevOptions) => {
-      const options = prevOptions[name];
-      if (checked) {
-        return {
-          ...prevOptions,
-          [name]: [...options, value]
-        };
-      } else {
-        return {
-          ...prevOptions,
-          [name]: options.filter(option => option !== value)
-        };
+      let updatedOptions;
+      if (type === 'checkbox') {
+        updatedOptions = checked
+          ? [...prevOptions[name], value]
+          : prevOptions[name].filter((option) => option !== value);
+      } else if (type === 'select-one') {
+        updatedOptions = [value];
       }
+      return {
+        ...prevOptions,
+        [name]: updatedOptions
+      };
     });
   };
 
@@ -74,7 +81,6 @@ const CartPreview = () => {
                 type="checkbox"
                 name="Interior"
                 value={option}
-                checked={selectedOptions.Interior.includes(option)}
                 onChange={handleConfigChange}
               />
               {option}
@@ -89,7 +95,42 @@ const CartPreview = () => {
                 type="checkbox"
                 name="Exterior"
                 value={option}
-                checked={selectedOptions.Exterior.includes(option)}
+                onChange={handleConfigChange}
+              />
+              {option}
+            </label>
+          ))}
+        </div>
+        <div>
+          <h4>Motor:</h4>
+          <select name="Motor" onChange={handleConfigChange}>
+            <option value="">Selecciona una opción</option>
+            {motorOptions.map((option) => (
+              <option key={option} value={option}>
+                {option}
+              </option>
+            ))}
+          </select>
+        </div>
+        <div>
+          <h4>Color:</h4>
+          <select name="Color" onChange={handleConfigChange}>
+            <option value="">Selecciona un color</option>
+            {colorOptions.map((option) => (
+              <option key={option} value={option}>
+                {option}
+              </option>
+            ))}
+          </select>
+        </div>
+        <div>
+          <h4>Extras Exclusivos:</h4>
+          {extrasOptions.map((option) => (
+            <label key={option}>
+              <input
+                type="checkbox"
+                name="Extras"
+                value={option}
                 onChange={handleConfigChange}
               />
               {option}
@@ -97,11 +138,14 @@ const CartPreview = () => {
           ))}
         </div>
       </div>
-      {(selectedOptions.Interior.length > 0 || selectedOptions.Exterior.length > 0) && (
+      {(selectedOptions.Interior.length > 0 || selectedOptions.Exterior.length > 0 || selectedOptions.Motor.length > 0 || selectedOptions.Extras.length > 0 || selectedOptions.Color.length > 0) && (
         <div className="car-tuning-selected-config">
-          <h3>Tu Configuracion Seleccionada</h3>
+          <h3>Tu Configuración Seleccionada</h3>
           {selectedOptions.Interior.length > 0 && <p>Interior: {selectedOptions.Interior.join(', ')}</p>}
           {selectedOptions.Exterior.length > 0 && <p>Exterior: {selectedOptions.Exterior.join(', ')}</p>}
+          {selectedOptions.Motor.length > 0 && <p>Motor: {selectedOptions.Motor.join(', ')}</p>}
+          {selectedOptions.Extras.length > 0 && <p>Extras Exclusivos: {selectedOptions.Extras.join(', ')}</p>}
+          {selectedOptions.Color.length > 0 && <p>Color: {selectedOptions.Color.join(', ')}</p>}
           <div>
             <button onClick={handleBackToHome}>Volver a la página de inicio</button>
             <button onClick={handleAccept}>Aceptar</button>

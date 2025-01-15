@@ -26,10 +26,10 @@
     color: white;
     border-radius: 10px;
     overflow: hidden;
-    margin: 20px auto; /* Center the card horizontally */
+    margin: 40px auto; /* Increase margin to move the card further down */
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
     transition: transform 0.3s ease;
-    width: 300px; /* Adjusted width to make the card larger */
+    width: 500px; /* Adjusted width to make the card larger */
 }
 
 .product-card:hover {
@@ -38,7 +38,7 @@
 
 .product-image {
     width: 100%;
-    height: 150px; /* Adjusted height to make the image larger */
+    height: 250px; /* Adjusted height to make the image larger */
     object-fit: cover;
     border-bottom: 3px solid #ff0000;
     filter: brightness(0.8) contrast(1.2) saturate(1.5);
@@ -59,21 +59,90 @@
 
 .product-card p {
     font-size: 1.2rem;
-    color: #ff0000;
+    color: #ffffff;
     text-align: center;
 }
 
 .Product-list {
-    display: flex;
-    flex-direction: column;
-    align-items: center; /* Center the contents horizontally */
-    margin: 0 auto; /* Center the Product-list div */
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Ensure two columns */
+    grid-template-rows: repeat(5, auto); /* Ensure five rows */
+    gap: 20px;
+    justify-items: center; /* Center the cards horizontally */
+    align-items: center; /* Center the cards vertically */
+    justify-content: center; /* Center the grid container */
+    margin-top: 20px; /* Add margin to separate from the table */
+}
+
+.Product-list > :nth-child(odd) {
+    margin-top: 20px; /* Add margin to lower the right column */
 }
 
 .product-filter {
+    display: flex;
+    justify-content: center; /* Center the filter */
     margin-bottom: 20px;
 }
 
 .product-filter select {
     margin: 0 10px;
+}
+
+.card-buttons {
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+}
+
+.card-buttons button {
+    padding: 10px 20px;
+    background: #fc0202;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.card-buttons button:hover {
+    background: #0056b3;
+    transform: scale(1.1);
+}
+
+.product-table {
+    width: 80%; /* Adjust width to ensure it fits well */
+    margin: 0 auto 20px auto; /* Center the table and add bottom margin */
+    border-collapse: collapse;
+    font-size: 1rem;
+    text-align: left;
+}
+
+.product-table th, .product-table td {
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    text-align: center; /* Center align the table data */
+}
+
+.product-table th {
+    background-color: #333;
+    color: white;
+    text-transform: uppercase;
+}
+
+.product-table tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.product-table tr:hover {
+    background-color: #ddd;
+}
+
+.product-table td {
+    color: #333;
+}
+
+.product-card {
+    margin-top: 20px; /* Add margin to move the product card further down */
 }

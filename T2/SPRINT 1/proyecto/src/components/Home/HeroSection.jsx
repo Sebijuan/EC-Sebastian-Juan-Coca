@@ -11,9 +11,7 @@ const HeroSection = () => {
         className="hero-image"
       />
       <div className="hero-content">
-        <h1>¡Grandes ofertas en coches personalizados!</h1>
-        <p>Explora nuestra gama de coches únicos y empieza a personalizar el tuyo hoy.</p>
-        <button className="hero-button">Comprar ahora</button>
+        
       </div>
     </div>
   );

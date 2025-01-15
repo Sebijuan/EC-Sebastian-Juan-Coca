@@ -13,11 +13,13 @@ const ProductList = () => {
   }, []);
 
   return (
-    <div className="Product-list">
-       <ProductFilter onFilterChange={(filters) => console.log(filters)} />
-      {products.map((product) => (
-        <ProductCard key={product.id} product={product} />
-      ))}
+    <div>
+      <ProductFilter onFilterChange={(filters) => console.log(filters)} />
+      <div className="Product-list">
+        {products.map((product) => (
+          <ProductCard key={product.id} product={product} />
+        ))}
+      </div>
     </div>
   );
 };
