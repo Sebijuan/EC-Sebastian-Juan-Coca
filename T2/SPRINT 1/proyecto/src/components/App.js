@@ -7,6 +7,8 @@ import Footer from './Layout/Footer';
 import CartPreview from './Home/CartPreview';
 import RegisterForm from './Auth/RegisterForm'; 
 import '../App.css';
+import LoginForm from './Auth/LoginForm';
+import ForgotPasswordForm from './Auth/ForgotPasswordForm';
 
 
 const App = () => {
@@ -28,6 +30,10 @@ const App = () => {
         <Route path="/cart-preview" element={<CartPreview />} />
         {/* Ruta para la vista de RegisterPage */}
         <Route path="/register-page" element={<RegisterForm />} />
+
+        <Route path="/forgot-password" element={<ForgotPasswordForm />} />
+
+        <Route path="/login-page" element={<LoginForm />} />
       </Routes>
       <Footer />
     </div>

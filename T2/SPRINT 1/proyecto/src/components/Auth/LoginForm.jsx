@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { validateEmail, validatePassword } from '../Shared/ValidationSystem';
-import { showNotification } from '../Shared/NotificationSystem';
+import { showErrorNotification } from '../Shared/NotificationSystem';
 import '../Layout/Navbar.jsx';
+import '../styles/login.css';
 
 const LoginForm = () => {
     const [email, setEmail] = useState('');
@@ -24,34 +25,36 @@ const LoginForm = () => {
                 // Redirigir al panel principal
                 window.location.href = '/main-panel';
             } else {
-                showNotification('Credenciales inválidas', 'error');
+                showErrorNotification('Credenciales inválidas');
             }
         }
     };
 
     return (
-        <div>
-            <h2>Iniciar Sesión</h2>
-            <form onSubmit={(e) => e.preventDefault()}>
-                <div>
+        <div className="login-container">
+            <h2 className="login-title">Iniciar Sesión</h2>
+            <form className="login-form" onSubmit={(e) => e.preventDefault()}>
+                <div className="form-group">
                     <label>Correo Electrónico</label>
                     <input
                         type="email"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
+                        className="form-input"
                     />
-                    {errors.email && <span>{errors.email}</span>}
+                    {errors.email && <span className="error-message">{errors.email}</span>}
                 </div>
-                <div>
+                <div className="form-group">
                     <label>Contraseña</label>
                     <input
                         type="password"
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
+                        className="form-input"
                     />
-                    {errors.password && <span>{errors.password}</span>}
+                    {errors.password && <span className="error-message">{errors.password}</span>}
                 </div>
-                <div>
+                <div className="form-group remember-me">
                     <label>
                         <input
                             type="checkbox"
@@ -61,8 +64,8 @@ const LoginForm = () => {
                         Recordarme
                     </label>
                 </div>
-                <button type="button" onClick={handleLogin}>Iniciar Sesión</button>
-                <button type="button" onClick={() => window.location.href = '/forgot-password'}>
+                <button type="button" onClick={handleLogin} className="login-button">Iniciar Sesión</button>
+                <button type="button" onClick={() => window.location.href = '/forgot-password'} className="forgot-password-button">
                     ¿Olvidaste tu contraseña?
                 </button>
             </form>
