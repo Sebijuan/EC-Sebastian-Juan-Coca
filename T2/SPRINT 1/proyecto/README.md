@@ -1,70 +1,120 @@
-# Getting Started with Create React App
+## Ejercicios
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### 📌 Ejercicio 1: Implementación de la Pantalla de Inicio (Home)
 
-## Available Scripts
+#### 🎯 Contexto
+Desarrollar una Pantalla de Inicio funcional, adaptable y estéticamente atractiva, con los elementos mínimos requeridos según la categoría del proyecto seleccionada.
 
-In the project directory, you can run:
+#### ⚙️ Elementos Mínimos independientes de la categoría
+1. 🔝 Barra de Navegación (Navbar)
+2. 🖼️ Sección Principal (Hero Section)
+3. 📄 Listado Dinámico de Contenido (Content List)
+4. 📄 Detalle Resumido del Contenido (Content Card)
+5. 📝 Pie de Página (Footer)
 
-### `npm start`
+### 🛒 Categoría 3: Sitio de Ventas (Salesforce / Shopify)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+#### ⚙️ Elementos Específicos
+1. Barra de Filtros Avanzados (ProductFilter.jsx)
+   - Filtros por categoría, precio, marca y valoración.
+2. Tarjetas de Producto (ProductCard.jsx)
+   - Es el uso del “ContentCard.jsx” pero para unos de datos concretos.
+   - Imagen del producto, nombre, precio y botón Añadir al carrito, Abrir Chat o Abrir Configurador.
+3. Resumen de Carrito (CartPreview.jsx), Chat de Venta o Pantalla del Configurador
+   - Icono de carrito con resumen de productos añadidos.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+#### 🧪 Pruebas Funcionales independientemente de la categoría
+- ✅ Prueba: Comprobación de elementos mínimos y específicos
+  - Navegar a la pantalla de Home.
+  - Comprobar que aparecen los elementos mínimos y específicos definidos anteriormente con el detalle descrito en los diferentes enumerados.
 
-### `npm test`
+      ![Ejercicio1 GIF](./Resources/gif-ej1.gif)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### 📌 Ejercicio 2: Implementación de Módulos de Autenticación (Login, Registro y Recuperación de Contraseña)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+#### 🎯 Contexto
+El objetivo de este ejercicio es desarrollar un sistema de autenticación completo para la aplicación web. Se deben implementar los componentes de Login, Registro y Recuperación de Contraseña con validaciones avanzadas, interacción con la API mockeadas y una experiencia de usuario fluida y segura.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+#### ⚙️ Requerimientos Funcionales
+1. Formulario de Inicio de Sesión (Login)
+   - **Campos:**
+     - Correo Electrónico (Email)
+     - Contraseña (Password)
+     - Casilla de "Recordarme" (Remember Me)
+   - **Botones:**
+     - Iniciar Sesión
+     - ¿Olvidaste tu contraseña? (Redirige al formulario de recuperación)
+   - **Validaciones:**
+     - El correo debe tener un formato válido.
+     - La contraseña no puede estar vacía.
+     - Mostrar errores en tiempo real.
+   - **Flujo de Inicio de Sesión:**
+     - Al hacer clic en Iniciar Sesión, se debe validar el formulario.
+     - Si las credenciales son correctas (Poner por defecto el valor 4dA1Ts_2425), redirigir al panel principal.
+     - Si hay error (credenciales inválidas), mostrar mensaje claro mediante el NotificationSystem.
+2. Formulario de Registro (Register)
+   - **Campos:**
+     - Nombre de Usuario (Username)
+     - Correo Electrónico (Email)
+     - Contraseña (Password)
+     - Confirmar Contraseña
+   - **Botones:**
+     - Registrarse
+     - ¿Ya tienes una cuenta? Inicia Sesión (Redirige al formulario de login)
+   - **Validaciones:**
+     - Email con formato válido.
+     - La contraseña debe tener al menos 8 caracteres, incluir una mayúscula, un número y un símbolo.
+     - Confirmar que ambas contraseñas coinciden.
+     - Verificación de duplicidad de correo o usuario mediante la API.
+     - Validaciones en tiempo real.
+   - **Flujo de Registro:**
+     - Al registrarse correctamente, mostrar notificación de éxito y redirigir al login.
+     - Si ocurre un error (simularlo a mano), mostrar notificación de error.
+3. Formulario de Recuperación de Contraseña (Forgot Password)
+   - **Campos:**
+     - Correo Electrónico (Email)
+   - **Botones:**
+     - Enviar Enlace de Recuperación
+     - Volver al Inicio de Sesión
+   - **Validaciones:**
+     - El correo debe tener un formato válido.
+     - Verificar si el correo está registrado.
+   - **Flujo de Recuperación:**
+     - Al enviar el formulario, se debe enviar una solicitud a la API (pintar por consola lo que se mandaría en la llamada) para enviar el enlace de recuperación.
+     - Mostrar notificación de éxito si se envía el correo.
+     - Mostrar error si el correo no está registrado o si falla la API. (simularlo a mano)
 
-### `npm run eject`
+#### 🧪 Pruebas a Realizar
+- ✅ Prueba 1: Inicio de Sesión Correcto
+  - Ingresar un correo y contraseña válidos.
+  - Hacer clic en Iniciar Sesión.
+  - Verificar que el usuario es redirigido al panel principal.
+  - Confirmar notificación de éxito.
+- ❌ Prueba 2: Error en Inicio de Sesión
+  - Ingresar credenciales incorrectas.
+  - Verificar que aparece una notificación de error.
+- 🆕 Prueba 3: Registro con Validaciones
+  - Ingresar datos inválidos (correo incorrecto, contraseñas que no coinciden).
+  - Verificar que se muestran mensajes de error en tiempo real.
+  - Corregir los datos y completar el registro.
+  - Verificar notificación de éxito y redirección al login.
+- 🔐 Prueba 4: Recuperación de Contraseña
+  - Ingresar un correo registrado.
+  - Verificar que se envía un correo de recuperación.
+  - Probar con un correo no registrado y verificar el mensaje de error.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Prueba 1
+![Ejercicio2 GIF](./Resources/gif1-ej2.gif)
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Prueba 2
+![Ejercicio2 GIF](./Resources/gif2-ej2.gif)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Prueba 3
+![Ejercicio2 GIF](./Resources/gif3-ej2.gif)
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+Prueba 4
+![Ejercicio2 GIF](./Resources/gif4-ej2.gif)
 
-## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
