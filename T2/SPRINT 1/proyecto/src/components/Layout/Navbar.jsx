@@ -1,10 +1,13 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import '../styles/layout.css';
 
 const Navbar = () => {
+  const navigate = useNavigate();
+
   const handleHomeClick = (event) => {
     event.preventDefault();
-    window.location.href = '#home';
+    navigate('/');
   };
 
   const handleAboutClick = (event) => {
