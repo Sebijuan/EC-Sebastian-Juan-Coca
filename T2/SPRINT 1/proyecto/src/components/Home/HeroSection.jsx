@@ -9,9 +9,7 @@ const HeroSection = () => {
         alt="Promoción destacada"
         className="hero-image"
       />
-      <div className="hero-content">
-        {/* ...existing code... */}
-      </div>
+     
     </div>
   );
 };
