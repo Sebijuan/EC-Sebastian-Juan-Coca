@@ -116,7 +116,7 @@ Prueba 3
 
 Prueba 4
 ![Ejercicio2 GIF](./Resources/gif4-ej2.gif)
-DISEÑO
+## DISEÑO
 ![Descripción de la Imagen](./Resources/IniciarSesion.jpg)
 ![Descripción de la Imagen](./Resources/CrearCuenta.jpg)
 ![Descripción de la Imagen](./Resources/RecuperacionCuenta.jpg)
