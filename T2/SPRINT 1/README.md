@@ -27,7 +27,7 @@ Desarrollar una Pantalla de Inicio funcional, adaptable y estéticamente atracti
 - ✅ Prueba: Comprobación de elementos mínimos y específicos
   - Navegar a la pantalla de Home.
   - Comprobar que aparecen los elementos mínimos y específicos definidos anteriormente con el detalle descrito en los diferentes enumerados.
-
+    Prueba1
       ![Ejercicio1 GIF](./Resources/gif-ej1.gif)
 
 
