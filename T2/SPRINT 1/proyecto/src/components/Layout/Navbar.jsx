@@ -47,7 +47,7 @@ const Navbar = () => {
         <li><a href="/register-page" onClick={handleRegisterClick} className="navbar-link">Registrate</a></li>
       </ul>
       <div className="navbar-icon">
-        <img src="/assests/icons/Logo.webp" alt="Icono" />
+        <img src="/assests/icons/icon.jpg" alt="Icono" />
         <span></span>
       </div>
     </nav>
