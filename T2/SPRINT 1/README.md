@@ -28,7 +28,7 @@ Desarrollar una Pantalla de Inicio funcional, adaptable y estéticamente atracti
   - Navegar a la pantalla de Home.
   - Comprobar que aparecen los elementos mínimos y específicos definidos anteriormente con el detalle descrito en los diferentes enumerados.
 
-  
+
     Prueba1
       ![Ejercicio1 GIF](./Resources/gif-ej1.gif)
 
@@ -123,3 +123,4 @@ Prueba 4
 ![Descripción de la Imagen](./Resources/CrearCuenta.jpg)
 ![Descripción de la Imagen](./Resources/RecuperacionCuenta.jpg)
 ![Descripción de la Imagen](./Resources/Diseño.jpg)
+![Descripción de la Imagen](./Resources/Diagrama.jpg)
