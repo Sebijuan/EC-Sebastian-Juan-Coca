@@ -1,0 +1,414 @@
+.product-buttons {
+    display: flex;
+    justify-content: space-around;
+    padding: 10px;
+}
+
+.product-buttons button {
+    padding: 10px 15px;
+    background: #333;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.product-buttons button:hover {
+    background: #ff0000;
+    transform: scale(1.1);
+}
+
+.product-card {
+    background: #000000;
+    color: white;
+    border-radius: 10px;
+    overflow: hidden;
+    margin: 40px auto; /* Increase margin to move the card further down */
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+    transition: transform 0.3s ease;
+    width: 500px; /* Adjusted width to make the card larger */
+}
+
+.product-card:hover {
+    transform: scale(1.05);
+}
+
+.product-image {
+    width: 100%;
+    height: 250px; /* Adjusted height to make the image larger */
+    object-fit: cover;
+    border-bottom: 3px solid #ff0000;
+    filter: brightness(0.8) contrast(1.2) saturate(1.5);
+    transition: filter 0.3s ease, transform 0.3s ease;
+}
+
+.product-image:hover {
+    filter: brightness(1) contrast(1.5) saturate(2);
+    transform: scale(1.1) rotate(2deg);
+}
+
+.product-card h3 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin: 10px 0;
+    text-align: center;
+}
+
+.product-card p {
+    font-size: 1.2rem;
+    color: #ffffff;
+    text-align: center;
+}
+
+.Product-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Ensure two columns */
+    grid-template-rows: repeat(5, auto); /* Ensure five rows */
+    gap: 20px;
+    justify-items: center; /* Center the cards horizontally */
+    align-items: center; /* Center the cards vertically */
+    justify-content: center; /* Center the grid container */
+    margin-top: 20px; /* Add margin to separate from the table */
+}
+
+.Product-list > :nth-child(odd) {
+    margin-top: 20px; /* Add margin to lower the right column */
+}
+
+.product-filter {
+    display: flex;
+    justify-content: center; /* Center the filter */
+    margin-bottom: 20px;
+}
+
+.product-filter select {
+    margin: 0 10px;
+    background-color: #ff0000; /* Set background color to red */
+    color: white; /* Set text color to white */
+    border: none; /* Remove border */
+    padding: 10px; /* Add padding */
+    border-radius: 5px; /* Add border radius */
+    font-size: 1rem; /* Set font size */
+    cursor: pointer; /* Set cursor to pointer */
+    transition: background 0.3s ease; /* Add transition for background */
+}
+
+.product-filter select:hover {
+    background-color: #cc0000; /* Darken background color on hover */
+}
+
+.card-buttons {
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+}
+
+.card-buttons button {
+    padding: 10px 20px;
+    background: #fc0202;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.card-buttons button:hover {
+    background: #000000;
+    transform: scale(1.1);
+}
+
+.product-table {
+    width: 80%; /* Adjust width to ensure it fits well */
+    margin: 0 auto 20px auto; /* Center the table and add bottom margin */
+    border-collapse: collapse;
+    font-size: 1rem;
+    text-align: left;
+    background-color: #000; /* Set table background to black */
+}
+
+.product-table th, .product-table td {
+    padding: 12px 15px;
+    border: 1px solid #ff0000; /* Set border color to red */
+    text-align: center; /* Center align the table data */
+}
+
+.product-table th {
+    background-color: #ff0000; /* Set header background to red */
+    color: white;
+    text-transform: uppercase;
+}
+
+.product-table tr:nth-child(even) {
+    background-color: #000; /* Set even row background to dark gray */
+}
+
+.product-table tr:hover {
+    background-color: #555; /* Set hover background to a lighter gray */
+}
+
+.product-table td {
+    color: white; /* Set text color to white */
+}
+
+.product-card {
+    margin-top: 20px; /* Add margin to move the product card further down */
+}
+
+.car-tuning-menu {
+    margin-top: 20px;
+    margin: 0 auto; /* Center horizontally */
+    max-width: 600px; /* Optional: limit the width */
+    font-size: 25px;
+  }
+  
+  .car-tuning-menu label {
+    display: block;
+    margin-bottom: 10px;
+  }
+  
+  .car-tuning-menu h4 {
+    margin-bottom: 10px;
+    color: #ff0000;
+    font-size: 40px;
+  }
+  
+  .car-tuning-menu select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1em;
+  }
+  
+  .car-tuning-selected-config {
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin: 0 auto; /* Center horizontally */
+    max-width: 600px; /* Optional: limit the width */
+    font-size: 20px;
+  }
+  
+  .car-tuning-selected-config h3 {
+    margin-top: 0;
+    color: #000000;
+  }
+  
+  .car-tuning-selected-config p {
+    margin: 10px 0;
+    color: #000000;
+    font-size: 25px;
+  }
+  
+  .car-tuning-selected-config button {
+    padding: 10px 20px;
+    margin-right: 10px;
+    border: none;
+    border-radius: 4px;
+    background-color: #ff0000;
+    color: #fff;
+    cursor: pointer;
+  }
+  
+  .car-tuning-selected-config button:hover {
+    background-color: #000000;
+  }
+  
+  .product-card {
+    margin-top: 20px; /* Add margin to move the product card further down */
+  }
+
+  .car-tuning-preview {
+    padding: 20px;
+    background-color: #000000;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin: 0 auto; /* Center horizontally */
+    max-width: 1200px; /* Optional: limit the width */
+  }
+  
+  .car-tuning-preview h2 {
+    margin-bottom: 50px;
+    color: #ff0000;
+    font-size: 60px;
+  }
+  
+  .car-tuning-preview ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .car-tuning-preview h3{
+
+    color: #ff0000;
+    font-size: 40px;
+  }
+  .car-tuning-preview li {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    font-size: 30px;
+  }
+  
+  .car-tuning-preview img {
+    width: 600px;
+    height: auto;
+    margin-right: 20px;
+  }
+  
+  .car-tuning-preview button {
+    background-color: #000000;
+    color: white;
+    padding: 10px 20px; /* Ensure both buttons have the same padding */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.3s ease;
+    margin-right: 10px; /* Add margin to create space between buttons */
+    display: inline-block; /* Ensure buttons are inline */
+  }
+  
+  .car-tuning-preview button:hover {
+    background-color: #ff0000;
+  }
+
+input[type="checkbox"] {
+  margin-right: 10px;
+  transform: scale(1.9);
+  cursor: pointer;
+}
+
+input[type="checkbox"]:checked {
+  accent-color: #ff0000; /* Change the checkbox color when checked */
+}
+
+select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 2em;
+  cursor: pointer;
+  transition: border-color 0.3s ease;
+}
+
+select:focus {
+  border-color: #ff0000; /* Change the border color on focus */
+}
+
+.custom-checkbox {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  font-size: 1.2em;
+  color: #ffffff;
+}
+
+.custom-checkbox input[type="checkbox"] {
+  margin-right: 10px;
+  transform: scale(1.5);
+  cursor: pointer;
+}
+
+.custom-checkbox input[type="checkbox"]:checked {
+  accent-color: #ff0000; /* Change the checkbox color when checked */
+}
+
+.product-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.product-item img {
+  margin-bottom: 20px;
+}
+
+.product-details {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.productos-container {
+    background-color: #000000;
+    color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.productos-container h1 {
+    color: #ff0000;
+    font-size: 3rem;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+}
+
+.productos-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+.productos-item {
+    background-color: #1a1a1a;
+    border: 2px solid #ff0000;
+    border-radius: 10px;
+    padding: 20px;
+    width: 300px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.productos-item:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 15px rgba(255, 0, 0, 0.5);
+}
+
+.productos-item img {
+    width: 100%;
+    height: 150px; /* Set a fixed height for all images */
+    object-fit: cover; /* Ensure the image covers the area without distortion */
+    border-bottom: 2px solid #ff0000;
+    margin-bottom: 15px;
+}
+
+.productos-item h2 {
+    color: #ff0000;
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+.productos-item p {
+    color: #ffffff;
+    font-size: 1rem;
+    margin-bottom: 15px;
+}
+
+.productos-item button {
+    background-color: #ff0000;
+    color: #ffffff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.productos-item button:hover {
+    background-color: #cc0000;
+}
