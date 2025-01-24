@@ -42,6 +42,9 @@ const App = () => {
         <Route path="/contacts-page" element={<Contacto />} />
 
         <Route path="/sobrenosotros-page" element={<SobreNosotros />} />
+
+        <Route path="/aemet" element={<SobreNosotros />} />
+
       </Routes>
       <Footer />
     </div>
