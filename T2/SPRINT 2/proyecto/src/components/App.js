@@ -12,6 +12,7 @@ import ForgotPasswordForm from './Auth/ForgotPasswordForm';
 import Productos from './Home/Productos';
 import Contacto from './Home/Contacto';
 import SobreNosotros from './Home/Sobrenosotros';
+import Aemetpage from './Aemet/Aemetpage';
 
 const App = () => {
   return (
@@ -43,7 +44,7 @@ const App = () => {
 
         <Route path="/sobrenosotros-page" element={<SobreNosotros />} />
 
-        <Route path="/aemet" element={<SobreNosotros />} />
+        <Route path="/aemet" element={<Aemetpage />} />
 
       </Routes>
       <Footer />
