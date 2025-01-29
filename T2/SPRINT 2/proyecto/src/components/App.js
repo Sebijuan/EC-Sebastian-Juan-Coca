@@ -13,6 +13,7 @@ import Productos from './Home/Productos';
 import Contacto from './Home/Contacto';
 import SobreNosotros from './Home/Sobrenosotros';
 import Aemetpage from './Aemet/Aemetpage';
+import ResumenCompra from './Home/ResumenCompra';
 
 const App = () => {
   return (
@@ -45,6 +46,8 @@ const App = () => {
         <Route path="/sobrenosotros-page" element={<SobreNosotros />} />
 
         <Route path="/aemet" element={<Aemetpage />} />
+
+        <Route path="/resumen-compra" element={<ResumenCompra />} />
 
       </Routes>
       <Footer />

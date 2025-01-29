@@ -20,14 +20,6 @@ const CartPreview = () => {
     };
   });
 
-  const [customOptions, setCustomOptions] = useState({
-    Interior: '',
-    Exterior: '',
-    Motor: '',
-    Extras: '',
-    Color: ''
-  });
-
   const options = {
     Interior: ['Asientos Tipo Bucket', 'Pack de luces LED de interior', 'Pack de Altavoces Supreme', 'Instalación de un cielo estrellado con fibra óptica tipo Rolls-Royce', 'Pantallas táctiles más grandes (tipo tablet)', 'Portavasos iluminados', 'Tweeters motorizados que emergen al encender el coche', 'Tapizado con materiales especiales (Alcantara, microfibra)'],
     Exterior: ['Pintura Cromada', 'Faros LED', 'Llantas de aleación de 18"', 'Escape Akrapovic', 'Techo Solar', 'Parachoques', 'Faldones Laterales', 'Difusor Aerodinámico'],
@@ -83,31 +75,12 @@ const CartPreview = () => {
     });
   };
 
-  const handleCustomOptionsChange = (event) => {
-    const { name, value } = event.target;
-    setCustomOptions((prevOptions) => ({
-      ...prevOptions,
-      [name]: value
-    }));
-  };
-
-  const handleAddCustomOption = (category) => {
-    setSelectedOptions((prevOptions) => ({
-      ...prevOptions,
-      [category]: [...prevOptions[category], customOptions[category]]
-    }));
-    setCustomOptions((prevOptions) => ({
-      ...prevOptions,
-      [category]: ''
-    }));
-  };
-
   const handleBackToHome = () => {
     navigate('/');
   };
 
   const handleAccept = () => {
-    console.log('Accepted options:', selectedOptions);
+    navigate('/resumen-compra', { state: { product, selectedOptions } });
   };
 
   const calculateTotalPrice = () => {
@@ -131,6 +104,7 @@ const CartPreview = () => {
           <div className="product-details">
             <h3>{product.name}</h3>
             <p>${product.price}</p>
+            <p>Motor: {selectedOptions.Motor.join(', ')}</p>
           </div>
         </li>
       </ul>
@@ -149,14 +123,6 @@ const CartPreview = () => {
               {option}
             </label>
           ))}
-          <input
-            type="text"
-            name="Interior"
-            value={customOptions.Interior}
-            onChange={handleCustomOptionsChange}
-            placeholder="Añadir opción personalizada"
-          />
-          <button onClick={() => handleAddCustomOption('Interior')}>Añadir</button>
         </div>
         <div>
           <h4>Exterior:</h4>
@@ -172,14 +138,6 @@ const CartPreview = () => {
               {option}
             </label>
           ))}
-          <input
-            type="text"
-            name="Exterior"
-            value={customOptions.Exterior}
-            onChange={handleCustomOptionsChange}
-            placeholder="Añadir opción personalizada"
-          />
-          <button onClick={() => handleAddCustomOption('Exterior')}>Añadir</button>
         </div>
         <div>
           <h4>Motor:</h4>
@@ -191,14 +149,6 @@ const CartPreview = () => {
               </option>
             ))}
           </select>
-          <input
-            type="text"
-            name="Motor"
-            value={customOptions.Motor}
-            onChange={handleCustomOptionsChange}
-            placeholder="Añadir opción personalizada"
-          />
-          <button onClick={() => handleAddCustomOption('Motor')}>Añadir</button>
         </div>
         <div>
           <h4>Color:</h4>
@@ -210,14 +160,6 @@ const CartPreview = () => {
               </option>
             ))}
           </select>
-          <input
-            type="text"
-            name="Color"
-            value={customOptions.Color}
-            onChange={handleCustomOptionsChange}
-            placeholder="Añadir opción personalizada"
-          />
-          <button onClick={() => handleAddCustomOption('Color')}>Añadir</button>
         </div>
         <div>
           <h4>Extras Exclusivos:</h4>
@@ -233,14 +175,6 @@ const CartPreview = () => {
               {option}
             </label>
           ))}
-          <input
-            type="text"
-            name="Extras"
-            value={customOptions.Extras}
-            onChange={handleCustomOptionsChange}
-            placeholder="Añadir opción personalizada"
-          />
-          <button onClick={() => handleAddCustomOption('Extras')}>Añadir</button>
         </div>
       </div>
       {(selectedOptions.Interior.length > 0 || selectedOptions.Exterior.length > 0 || selectedOptions.Motor.length > 0 || selectedOptions.Extras.length > 0 || selectedOptions.Color.length > 0) && (

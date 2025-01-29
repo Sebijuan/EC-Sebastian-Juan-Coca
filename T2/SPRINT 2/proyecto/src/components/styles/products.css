@@ -228,7 +228,7 @@
 
   .car-tuning-preview {
     padding: 20px;
-    background-color: #000000;
+    background-color: #000;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     margin: 0 auto; /* Center horizontally */
@@ -341,7 +341,7 @@ select:focus {
 }
 
 .productos-container {
-    background-color: #000000;
+    background-color: #000;
     color: #ffffff;
     padding: 20px;
     border-radius: 10px;
@@ -431,7 +431,7 @@ select:focus {
   padding: 20px;
   border-radius: 10px;
   width: 80%;
-  max-width: 800px;
+  max-width: 1000px;
   text-align: center;
   color: white;
 }
@@ -452,6 +452,7 @@ select:focus {
   padding: 12px 15px;
   border: 1px solid #ff0000;
   text-align: center;
+  font-size: 1.2rem;
 }
 
 .modal-content th {
@@ -470,6 +471,13 @@ select:focus {
 
 .modal-content td {
   color: white;
+  width: 100px;
+}
+
+.modal-content img {
+  width: 200px; /* Increase the width */
+  height: auto;
+  margin: 0 auto;
 }
 
 .close {
@@ -479,4 +487,11 @@ select:focus {
   font-size: 2rem;
   color: white;
   cursor: pointer;
+}
+
+.highlighted-text {
+  color: #ff0000;
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  text-transform: uppercase;
 }
