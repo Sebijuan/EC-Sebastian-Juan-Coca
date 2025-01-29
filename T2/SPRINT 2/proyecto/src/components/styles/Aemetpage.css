@@ -1,0 +1,67 @@
+.aemet-page {
+  padding: 20px;
+  text-align: center;
+  font-family: Arial, sans-serif;
+}
+
+.aemet-page.light {
+  background-color: #ffffff;
+  color: #000000;
+}
+
+.aemet-page.dark {
+  background-color: #000000;
+  color: #ffffff;
+}
+
+.aemet-page input {
+  padding: 10px;
+  margin: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 80%;
+  max-width: 300px;
+}
+
+.aemet-page button {
+  padding: 10px 20px;
+  margin: 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.aemet-page.light button {
+  background-color: #000000;
+  color: #ffffff;
+}
+
+.aemet-page.dark button {
+  background-color: #ffffff;
+  color: #000000;
+}
+
+.aemet-page button:hover {
+  opacity: 0.8;
+}
+
+.aemet-page h1 {
+  font-size: 2em;
+  margin-bottom: 20px;
+}
+
+.aemet-page h2 {
+  font-size: 1.5em;
+  margin-top: 20px;
+}
+
+.aemet-page h3 {
+  font-size: 1.2em;
+  margin-top: 15px;
+}
+
+.aemet-page p {
+  font-size: 1em;
+  margin: 5px 0;
+}

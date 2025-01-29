@@ -1,8 +1,14 @@
 import React from 'react';
+import '../styles/SobreNosotros.css';
 
 const Sobrenosotros = () => {
     return (
         <div className="sobrenosotros-container">
+            <img
+                src="/assests/images/sobrenosotros.jpg" // Verifica que esta ruta sea correcta.
+                alt="Nosotros"
+                className="sobrenosotros-image"
+            />
             <h2>Sobre Nosotros</h2>
             <p>
                 Bienvenidos a nuestra empresa de tuneo y personalización de coches. Nos especializamos en transformar vehículos ordinarios en obras maestras únicas y personalizadas. 

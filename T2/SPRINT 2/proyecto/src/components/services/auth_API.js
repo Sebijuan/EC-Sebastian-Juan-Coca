@@ -1,9 +1,11 @@
 import bcrypt from 'bcryptjs';
 
 const fakeAccounts = JSON.parse(localStorage.getItem('accounts') || '[]');
+console.log('Loaded fakeAccounts from localStorage:', fakeAccounts);
 
 function saveAccounts() {
     localStorage.setItem('accounts', JSON.stringify(fakeAccounts));
+    console.log('Saved fakeAccounts to localStorage:', fakeAccounts);
 }
 
 function createAccount(username, email, password) {
@@ -62,6 +64,22 @@ function getAccounts() {
     });
 }
 
-export { createAccount, loginAccount, recoverPassword, getAccounts };
+function checkUserExists(email) {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            console.log('Checking user existence for email:', email);
+            const account = fakeAccounts.find(acc => acc.email === email);
+            if (account) {
+                console.log('User found:', account);
+                resolve({ exists: true, account });
+            } else {
+                console.log('User not found for email:', email);
+                resolve({ exists: false });
+            }
+        }, 1000);
+    });
+}
+
+export { createAccount, loginAccount, recoverPassword, getAccounts, checkUserExists };
 
 
