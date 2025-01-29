@@ -115,8 +115,29 @@ const mockProducts = [
   },
 
 
+  {
+    id: 11,
+    name: 'Toyota Gr Supra',
+    precio: 52000,
+    image: '/assests/products/toyotagr.jpg',
+    category: 'deportivos',
+    brand: 'Toyota',
+    rating: 4,
+   
+  },
 
 
+
+  {
+    id: 12,
+    name: 'Ford Focus Rs',
+    precio: 45000,
+    image: '/assests/products/Fordfocusrs.jpg',
+    category: 'deportivos',
+    brand: 'Ford',
+    rating: 4,
+   
+  },
 
 
 
