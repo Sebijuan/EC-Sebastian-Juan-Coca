@@ -5,7 +5,7 @@ const Sobrenosotros = () => {
     return (
         <div className="sobrenosotros-container">
             <img
-                src="/assests/images/sobrenosotros.jpg" // Verifica que esta ruta sea correcta.
+                src="/assests/images/sobrenosotros.jpg" 
                 alt="Nosotros"
                 className="sobrenosotros-image"
             />

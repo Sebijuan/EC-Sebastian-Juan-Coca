@@ -50,11 +50,7 @@ const Productos = () => {
     );
   };
 
-  const handleConfigClick = (id) => {
-    const newConfigCounts = { ...configCounts, [id]: (configCounts[id] || 0) + 1 };
-    setConfigCounts(newConfigCounts);
-    localStorage.setItem('configCounts', JSON.stringify(newConfigCounts));
-  };
+ 
 
   const sortedProducts = [...products].sort((a, b) => (likes[b.id] || 0) - (likes[a.id] || 0));
 
