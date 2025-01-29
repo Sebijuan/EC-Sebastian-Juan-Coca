@@ -80,6 +80,14 @@ const CartPreview = () => {
   };
 
   const handleAccept = () => {
+    localStorage.removeItem(`config-${product.id}`);
+    setSelectedOptions({
+      Interior: [],
+      Exterior: [],
+      Motor: [],
+      Extras: [],
+      Color: []
+    });
     navigate('/resumen-compra', { state: { product, selectedOptions } });
   };
 
@@ -103,8 +111,8 @@ const CartPreview = () => {
           <img src={product.image} alt={product.name} />
           <div className="product-details">
             <h3>{product.name}</h3>
-            <p>${product.price}</p>
-            <p>Motor: {selectedOptions.Motor.join(', ')}</p>
+            <p>{product.price}</p>
+        
           </div>
         </li>
       </ul>
