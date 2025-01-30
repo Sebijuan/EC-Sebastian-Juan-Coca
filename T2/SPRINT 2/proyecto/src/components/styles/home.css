@@ -13,6 +13,49 @@
   filter: brightness(70%);
   position: relative;
   z-index: -1; /* Ensure the image is behind the content */
+  animation: glow 2s infinite alternate, pulse 10s infinite ease-in-out, brighten 5s infinite alternate;
+}
+
+@keyframes glow {
+  0% {
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+  }
+  100% {
+    box-shadow: 0 0 20px rgba(255, 255, 255, 1);
+  }
+}
+
+@keyframes move {
+  0% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(10px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.02);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes brighten {
+  0% {
+    filter: brightness(70%);
+  }
+  100% {
+    filter: brightness(100%);
+  }
 }
 
 .hero-content {
