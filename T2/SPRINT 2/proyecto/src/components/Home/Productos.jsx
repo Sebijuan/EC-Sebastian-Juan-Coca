@@ -25,6 +25,8 @@ const Productos = () => {
       12: ['Motor Gasolina 2.3(400cv)', 'Motor Gasolina 2.3 EcoBoost(280cv)'],
       13: ['Motor Gasolina 3.5(304cv)', ],
       14: ['Motor Gasolina VTEC® 2.0L (315cv)'],
+      15: ['Motor Gasolina V8 4.OL(650cv)', 'Motor Hibrido(800cv)'],
+      16: ['Motor Gasolina V8 4.5L(570cv)', 'Motor Gasolina V8 GTB(670cv)'],
 
     }
   };

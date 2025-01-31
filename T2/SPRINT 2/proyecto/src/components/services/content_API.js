@@ -164,6 +164,30 @@ const mockProducts = [
   },
 
 
+  {
+    id: 15,
+    name: 'Lamborghini Urus',
+    precio: 232000,
+    image: '/assests/products/lamborguiniurus.jpg',
+    category: 'Superdeportivos',
+    brand: 'Lamborghini',
+    rating: 5,
+   
+  },
+
+
+  {
+    id: 16,
+    name: 'Ferrari 458 italia',
+    precio: 245000,
+    image: '/assests/products/ferrari458italia.jpg',
+    category: 'Superdeportivos',
+    brand: 'Ferrari',
+    rating: 5,
+   
+  },
+
+
 
 ];
 
