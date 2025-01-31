@@ -30,4 +30,10 @@
   max-width: 100%;
   height: auto;
   border-radius: 8px;
+  transition: transform 0.3s ease, filter 0.3s ease; /* Add transition for movement and light */
+}
+
+.sobrenosotros-image:hover {
+  transform: scale(1.05); /* Slightly enlarge the image on hover */
+  filter: brightness(1.2); /* Increase brightness on hover */
 }

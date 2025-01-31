@@ -36,6 +36,8 @@ const CartPreview = () => {
       10: ['Motor Gasolina 1.6 T-GDI(204cv)'],
       11: ['Motor Gasolina 2.0(255cv)', 'Motor Gasolina 3.0(382cv)'],
       12: ['Motor Gasolina 2.3(400cv)', 'Motor Gasolina 2.3 EcoBoost(280cv)'],
+      13: ['Motor Gasolina 3.5(304cv)', ],
+      14: ['Motor Gasolina VTEC® 2.0L (315cv)'],
     },
     Extras: ['Sistema de Navegación Avanzado', 'Asistente de Conducción Autónoma', 'Enfriadores de bebidas', 'Detalles en oro, plata o cristales Swarovski'],
     Color: ['Rojo', 'Azul', 'Negro', 'Blanco', 'Gris']

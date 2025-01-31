@@ -140,6 +140,29 @@ const mockProducts = [
   },
 
 
+  {
+    id: 13,
+    name: 'Nissan Maxima',
+    precio: 40000,
+    image: '/assests/products/nissanmaxima.jpg',
+    category: 'deportivos',
+    brand: 'Nissan',
+    rating: 4,
+   
+  },
+
+
+  {
+    id: 14,
+    name: 'Honda Civic Type R',
+    precio: 58000,
+    image: '/assests/products/hondacivic.jpg',
+    category: 'deportivos',
+    brand: 'Honda',
+    rating: 4,
+   
+  },
+
 
 
 ];
