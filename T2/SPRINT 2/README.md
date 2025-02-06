@@ -89,7 +89,7 @@ Cada categoría del proyecto incluye tres funcionalidades clave, que deben ser d
   - Seleccionar al menos dos productos para comparar.
   - Verificar que las diferencias clave se resaltan correctamente.
 
-  ![Prueba1 GIF](./Resources/gif2.1.gif)
+  ![Prueba1 GIF](./Resources/gi2.1.gif)
 
 - **Prueba 2: Encuestas y votaciones**
   - Completar una encuesta de satisfacción.
