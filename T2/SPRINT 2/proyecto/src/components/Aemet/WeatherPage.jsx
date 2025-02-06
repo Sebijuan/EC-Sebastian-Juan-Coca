@@ -179,7 +179,7 @@ const getWeatherAtTime = (day, time) => {
         {/* Indicador de carga */}
         {loading && (
             <div className="loading-container">
-                <img src="../../assets/images/LoadingScreen.gif" alt="Cargando..." className="loading-gif" />
+                <img src="../assests/images/kakote.gif" alt="Cargando..." className="loading-gif" />
             </div>
         )}
 
