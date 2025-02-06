@@ -14,6 +14,7 @@ import Contacto from './Home/Contacto';
 import SobreNosotros from './Home/Sobrenosotros';
 import Aemetpage from './Aemet/Aemetpage';
 import ResumenCompra from './Home/ResumenCompra';
+import WeatherPage from './Aemet/WeatherPage';
 
 const App = () => {
   return (
@@ -45,7 +46,7 @@ const App = () => {
 
         <Route path="/sobrenosotros-page" element={<SobreNosotros />} />
 
-        <Route path="/aemet" element={<Aemetpage />} />
+        <Route path="/aemet" element={<WeatherPage />} />
 
         <Route path="/resumen-compra" element={<ResumenCompra />} />
 
