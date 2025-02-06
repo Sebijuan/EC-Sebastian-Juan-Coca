@@ -1,120 +1,106 @@
-## Ejercicios
+## Descripción del ejercicio
 
-### 📌 Ejercicio 1: Implementación de la Pantalla de Inicio (Home)
+Para asentar los conocimientos mostrados en la parte teórica, se tendrá que proceder a resolver los siguientes ejercicios/problemas en el orden correcto. Para ello, primero pasamos a explicar los criterios que debemos seguir para la resolución de los ejercicios/problemas.
 
-#### 🎯 Contexto
-Desarrollar una Pantalla de Inicio funcional, adaptable y estéticamente atractiva, con los elementos mínimos requeridos según la categoría del proyecto seleccionada.
+### Fases de la resolución de problemas
 
-#### ⚙️ Elementos Mínimos independientes de la categoría
-1. 🔝 Barra de Navegación (Navbar)
-2. 🖼️ Sección Principal (Hero Section)
-3. 📄 Listado Dinámico de Contenido (Content List)
-4. 📄 Detalle Resumido del Contenido (Content Card)
-5. 📝 Pie de Página (Footer)
+1. **Análisis del problema**: Se debe indicar en el directorio específico de la asignatura el problema que se va a resolver de una forma adecuada, es decir, no debe contener ambigüedades, debe ser simple y autocontenido.
+2. **Diseño de la propuesta de solución del problema**: Como todo aquel problema que se quiere resolver, es necesario realizar el diseño de la o las soluciones que se procederá a implementar en el siguiente paso. Para esto nos debemos ayudar de las herramientas para realizar esquemas gráficos (UML, Diagramas de flujos, etc…).
+3. **Implementación del diseño propuesto**: En este punto ya se procederá a implementar todo el diseño establecido en el punto anterior.
+4. **Pruebas de la resolución del problema**: Es indispensable el realizar pruebas para verificar la integridad y correcto funcionamiento de la implementación realizada, para ello simplemente compararemos si el comportamiento esperado del análisis del problema se ha implementado de forma adecuada.
 
-### 🛒 Categoría 3: Sitio de Ventas (Salesforce / Shopify)
-
-#### ⚙️ Elementos Específicos
-1. Barra de Filtros Avanzados (ProductFilter.jsx)
-   - Filtros por categoría, precio, marca y valoración.
-2. Tarjetas de Producto (ProductCard.jsx)
-   - Es el uso del “ContentCard.jsx” pero para unos de datos concretos.
-   - Imagen del producto, nombre, precio y botón Añadir al carrito, Abrir Chat o Abrir Configurador.
-3. Resumen de Carrito (CartPreview.jsx), Chat de Venta o Pantalla del Configurador
-   - Icono de carrito con resumen de productos añadidos.
-
-#### 🧪 Pruebas Funcionales independientemente de la categoría
-- ✅ Prueba: Comprobación de elementos mínimos y específicos
-  - Navegar a la pantalla de Home.
-  - Comprobar que aparecen los elementos mínimos y específicos definidos anteriormente con el detalle descrito en los diferentes enumerados.
-
-      ![Ejercicio1 GIF](./Resources/gif-ej1.gif)
-
-
-
-### 📌 Ejercicio 2: Implementación de Módulos de Autenticación (Login, Registro y Recuperación de Contraseña)
+### 📌 Ejercicio 1: Implementación de una Web del Tiempo con la API de AEMET
 
 #### 🎯 Contexto
-El objetivo de este ejercicio es desarrollar un sistema de autenticación completo para la aplicación web. Se deben implementar los componentes de Login, Registro y Recuperación de Contraseña con validaciones avanzadas, interacción con la API mockeadas y una experiencia de usuario fluida y segura.
+
+El objetivo de este ejercicio es desarrollar una aplicación web del tiempo que permita a los usuarios consultar información meteorológica de diferentes ubicaciones de España, utilizando la API de AEMET (Agencia Estatal de Meteorología).
+
+La interfaz estará inspirada en la web de [eltiempo.es](https://www.eltiempo.es/sevilla.html), proporcionando datos detallados como:
+- Estado actual del tiempo.
+- Pronóstico por horas y días.
+- Mapa meteorológico interactivo.
+- Índices de calidad del aire y avisos meteorológicos.
 
 #### ⚙️ Requerimientos Funcionales
-1. Formulario de Inicio de Sesión (Login)
-   - **Campos:**
-     - Correo Electrónico (Email)
-     - Contraseña (Password)
-     - Casilla de "Recordarme" (Remember Me)
-   - **Botones:**
-     - Iniciar Sesión
-     - ¿Olvidaste tu contraseña? (Redirige al formulario de recuperación)
-   - **Validaciones:**
-     - El correo debe tener un formato válido.
-     - La contraseña no puede estar vacía.
-     - Mostrar errores en tiempo real.
-   - **Flujo de Inicio de Sesión:**
-     - Al hacer clic en Iniciar Sesión, se debe validar el formulario.
-     - Si las credenciales son correctas (Poner por defecto el valor 4dA1Ts_2425), redirigir al panel principal.
-     - Si hay error (credenciales inválidas), mostrar mensaje claro mediante el NotificationSystem.
-2. Formulario de Registro (Register)
-   - **Campos:**
-     - Nombre de Usuario (Username)
-     - Correo Electrónico (Email)
-     - Contraseña (Password)
-     - Confirmar Contraseña
-   - **Botones:**
-     - Registrarse
-     - ¿Ya tienes una cuenta? Inicia Sesión (Redirige al formulario de login)
-   - **Validaciones:**
-     - Email con formato válido.
-     - La contraseña debe tener al menos 8 caracteres, incluir una mayúscula, un número y un símbolo.
-     - Confirmar que ambas contraseñas coinciden.
-     - Verificación de duplicidad de correo o usuario mediante la API.
-     - Validaciones en tiempo real.
-   - **Flujo de Registro:**
-     - Al registrarse correctamente, mostrar notificación de éxito y redirigir al login.
-     - Si ocurre un error (simularlo a mano), mostrar notificación de error.
-3. Formulario de Recuperación de Contraseña (Forgot Password)
-   - **Campos:**
-     - Correo Electrónico (Email)
-   - **Botones:**
-     - Enviar Enlace de Recuperación
-     - Volver al Inicio de Sesión
-   - **Validaciones:**
-     - El correo debe tener un formato válido.
-     - Verificar si el correo está registrado.
-   - **Flujo de Recuperación:**
-     - Al enviar el formulario, se debe enviar una solicitud a la API (pintar por consola lo que se mandaría en la llamada) para enviar el enlace de recuperación.
-     - Mostrar notificación de éxito si se envía el correo.
-     - Mostrar error si el correo no está registrado o si falla la API. (simularlo a mano)
 
-#### 🧪 Pruebas a Realizar
-- ✅ Prueba 1: Inicio de Sesión Correcto
-  - Ingresar un correo y contraseña válidos.
-  - Hacer clic en Iniciar Sesión.
-  - Verificar que el usuario es redirigido al panel principal.
-  - Confirmar notificación de éxito.
-- ❌ Prueba 2: Error en Inicio de Sesión
-  - Ingresar credenciales incorrectas.
-  - Verificar que aparece una notificación de error.
-- 🆕 Prueba 3: Registro con Validaciones
-  - Ingresar datos inválidos (correo incorrecto, contraseñas que no coinciden).
-  - Verificar que se muestran mensajes de error en tiempo real.
-  - Corregir los datos y completar el registro.
-  - Verificar notificación de éxito y redirección al login.
-- 🔐 Prueba 4: Recuperación de Contraseña
-  - Ingresar un correo registrado.
-  - Verificar que se envía un correo de recuperación.
-  - Probar con un correo no registrado y verificar el mensaje de error.
+1️⃣ **Consulta del tiempo actual por provincia**
+- Introducción de la ubicación en un buscador (sólo por provincia).
+- Visualización del estado actual (temperatura, condición climática y velocidad del viento).
+- Iconos dinámicos según la condición climática (soleado, nublado, lluvia, etc.).
 
-Prueba 1
-![Ejercicio2 GIF](./Resources/gif1-ej2.gif)
+2️⃣ **Pronóstico detallado por horas y días**
+- Representación visual de la evolución del tiempo (gráficos de temperatura, precipitaciones, etc.).
+- Predicción por días con intervalos de mañana (8:00), tarde (15:00) y noche (21:00).
+- Predicción de mínimo 48 horas, es decir, dos días posterior al actual.
 
-Prueba 2
-![Ejercicio2 GIF](./Resources/gif2-ej2.gif)
+#### 🔗 Documentación de la API de AEMET
 
-Prueba 3
-![Ejercicio2 GIF](./Resources/gif3-ej2.gif)
+Para obtener los datos meteorológicos, se utilizará la API de AEMET, que proporciona información detallada sobre el clima en tiempo real y pronósticos.
 
-Prueba 4
-![Ejercicio2 GIF](./Resources/gif4-ej2.gif)
+- **Registro y obtención de API Key**:
+  - Acceder a AEMET API y obtener la clave de acceso.
+  - Usar POSTMAN para verificar manualmente la llamada al endpoint.
+- **Seguir la documentación de SWAGGER**:
+  - Acceder a AEMET API SWAGGER para obtener toda la información relevante a volcar en Postman para verificar el correcto funcionamiento de nuestra petición.
+
+#### ✅ Pruebas a realizar
+
+- **Prueba 1: Consulta de provincia y visualización de datos actuales**
+  - Ingresar Sevilla en el filtro de provincia.
+  - Verificar que se muestra la temperatura, el estado del clima (lluvioso, soleado, o nublado) y la velocidad del viento actual.
+  - Verificar que se muestra la temperatura, el estado del clima (lluvioso, soleado, o nublado) y la velocidad del viento pronosticada en al menos las siguientes 48 horas.
+  - Ingresar Madrid en el filtro de provincia.
+  - Verificar que se muestra la temperatura, el estado del clima (lluvioso, soleado, o nublado) y la velocidad del viento actual.
+  - Verificar que se muestra la temperatura, el estado del clima (lluvioso, soleado, o nublado) y la velocidad del viento pronosticada en al menos las siguientes 48 horas.
+
+  ![Prueba1 GIF](./Resources/gif1.1.gif)
+
+- **Prueba 2: Cambio entre unidades de temperatura**
+  - Cambiar de Celsius a Fahrenheit.
+  - Confirmar que los valores se actualizan correctamente.
+
+  ![Prueba2 GIF](./Resources/gif1.2.gif)
+
+### 📌 Ejercicio 2: Funcionalidades Interactivas por Categoría
+
+El objetivo de este ejercicio es que el alumnado desarrolle funcionalidades interactivas avanzadas basadas en su categoría de proyecto. Se espera que implementen componentes reutilizables que permitan mejorar la experiencia del usuario mediante dashboards, comparadores, rankings, planificadores o encuestas.
+
+Cada categoría del proyecto incluye tres funcionalidades clave, que deben ser desarrolladas siguiendo las buenas prácticas de modularidad y reutilización de código.
+
+#### 🛒 Categoría 3: Sitio de Ventas (Salesforce / Shopify)
+
+##### ⚙️ Descripción de las funcionalidades
+
+1️⃣ **Comparador de Productos**
+- Comparación de productos según precio, valoraciones y especificaciones técnicas.
+- Posibilidad de seleccionar múltiples productos y visualizar sus diferencias clave.
+
+2️⃣ **Sistemas de Encuestas o Votaciones**
+- Encuestas de satisfacción post-compra o interacción de “me gusta”.
+- Votaciones para determinar los productos mejor valorados en distintas categorías o visualización de los productos con más “me gusta”.
+
+3️⃣ **Simuladores de Decisiones/configuraciones**
+- Configuración personalizada de productos según necesidades del usuario (colores, tuning, motor, etc.).
+- Recomendaciones de productos con base en preferencias seleccionadas.
+
+##### 🧪 Pruebas a realizar
+
+- **Prueba 1: Comparación de productos**
+  - Seleccionar al menos dos productos para comparar.
+  - Verificar que las diferencias clave se resaltan correctamente.
+
+  ![Prueba1 GIF](./Resources/gif2.1.gif)
+
+- **Prueba 2: Encuestas y votaciones**
+  - Completar una encuesta de satisfacción.
+  - Validar que los votos se registran correctamente y afectan la clasificación.
+
+  ![Prueba2 GIF](./Resources/gif2.2.gif)
+
+- **Prueba 3: Simulación de decisión de compra**
+  - Configurar un producto utilizando distintos parámetros.
+  - Verificar que las recomendaciones son coherentes con la configuración elegida.
+
+  ![Prueba3 GIF](./Resources/gif2.3.gif)
 
 
