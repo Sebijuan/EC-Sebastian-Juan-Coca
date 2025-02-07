@@ -1,0 +1,205 @@
+.hero-section {
+  position: relative;
+  text-align: center;
+  color: white;
+  /* margin-top: 20px; Remove margin-top to eliminate gap */
+  /* padding-top: 60px; Remove padding-top to eliminate gap */
+  z-index: 1; /* Ensure the hero section is above other elements */
+}
+
+.hero-image {
+  width: 100%; 
+  height: auto;
+  filter: brightness(70%);
+  position: relative;
+  z-index: -1; /* Ensure the image is behind the content */
+  animation: glow 2s infinite alternate, pulse 10s infinite ease-in-out, brighten 5s infinite alternate;
+}
+
+@keyframes glow {
+  0% {
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+  }
+  100% {
+    box-shadow: 0 0 20px rgba(255, 255, 255, 1);
+  }
+}
+
+@keyframes move {
+  0% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(10px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.02);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes brighten {
+  0% {
+    filter: brightness(70%);
+  }
+  100% {
+    filter: brightness(100%);
+  }
+}
+
+.hero-content {
+  position: relative;
+  z-index: 4; /* Ensure the content is above the image */
+  top: -50%; /* Adjust the position to move the content above the image */
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: black; /* Change the text color to black */
+  padding: 20px; /* Add padding to improve appearance */
+}
+
+.hero-content h1 {
+  margin-bottom: 20px; /* Add margin to separate the h1 element */
+}
+
+.hero-button {
+  background-color: #ff0000;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  font-size: 1.2em;
+  transition: background-color 0.3s ease;
+}
+
+.hero-button:hover {
+  background-color: #cc0000;
+}
+
+.content-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  padding: 20px;
+  margin-top: 80px; /* Increase the value to move the cards further down */
+  max-width: 500px; /* Limit the width of the content list */
+  margin-left: auto; /* Center the content list */
+  margin-right: auto; /* Center the content list */
+  display: block;
+}
+
+.navbar h1 {
+  font-size: 1.5em; /* Adjust the font size */
+  white-space: nowrap; /* Prevent text from wrapping */
+  overflow: hidden; /* Hide overflow text */
+  text-overflow: ellipsis; /* Add ellipsis for overflow text */
+}
+
+.navbar-visible {
+  z-index: 1000; /* Ensure the navbar is on top */
+  position: relative; /* Ensure the navbar is positioned correctly */
+}
+
+.contacto-container {
+  background-color: #000000;
+  color: #ffffff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.contacto-container h1 {
+  color: #ff0000;
+  font-size: 3rem;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+}
+
+.contacto-info {
+  margin-bottom: 20px;
+}
+
+.contacto-info p {
+  font-size: 1.2rem;
+  margin: 10px 0;
+}
+
+.contacto-form {
+  background-color: #1a1a1a;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
+}
+
+.contacto-form h2 {
+  color: #ff0000;
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+.contacto-form label {
+  display: block;
+  margin-bottom: 10px;
+  font-size: 1.2rem;
+}
+
+.contacto-form input,
+.contacto-form textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
+}
+
+.contacto-form button {
+  background-color: #ff0000;
+  color: #ffffff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.contacto-form button:hover {
+  background-color: #cc0000;
+}
+
+.sobrenosotros-container {
+  background-color: #000000;
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: left;
+}
+
+.sobrenosotros-container h2 {
+  color: #ff0000;
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+}
+
+.sobrenosotros-container p {
+  color: #ff0000;
+  font-size: 1.2rem;
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
