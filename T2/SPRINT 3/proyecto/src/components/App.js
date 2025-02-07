@@ -15,6 +15,7 @@ import SobreNosotros from './Home/Sobrenosotros';
 import Aemetpage from './Aemet/Aemetpage';
 import ResumenCompra from './Home/ResumenCompra';
 import WeatherPage from './Aemet/WeatherPage';
+import ChatTelegram from './Home/ChatTelegram';
 
 const App = () => {
   return (
@@ -28,6 +29,7 @@ const App = () => {
             <>
               <HeroSection />
               <ProductList />
+              <ChatTelegram />
             </>
           }
         />
