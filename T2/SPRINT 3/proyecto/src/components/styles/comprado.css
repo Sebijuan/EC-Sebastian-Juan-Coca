@@ -1,0 +1,19 @@
+.comprado {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #000;
+  border-radius: 8px;
+  background-color: #000000; /* Change background color to black */
+  text-align: center;
+}
+
+.comprado h2 {
+  color: #ff0000; /* Change text color to red */
+  margin-bottom: 20px;
+}
+
+.comprado p {
+  color: #ffffff; /* Change text color to white */
+  font-size: 18px;
+}

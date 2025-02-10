@@ -17,6 +17,8 @@ import ResumenCompra from './Home/ResumenCompra';
 import WeatherPage from './Aemet/WeatherPage';
 import ChatTelegram from './Home/ChatTelegram';
 import Ventacoche from './Home/Ventacoche';
+import Comprado from './Home/Comprado';
+
 
 const App = () => {
   return (
@@ -53,7 +55,8 @@ const App = () => {
 
         <Route path="/resumen-compra" element={<ResumenCompra />} />
         <Route path="/comprar" element={<Ventacoche/>} />
-
+        <Route path="/comprado" element={<Comprado/>} />
+       
       </Routes>
       <Footer />
     </div>
