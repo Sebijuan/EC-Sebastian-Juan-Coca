@@ -11,6 +11,10 @@ const ResumenCompra = () => {
     navigate('/');
   };
 
+  const handleNext = () => {
+    navigate('/comprar', { state: { product, selectedOptions } });
+  };
+
   const calculateTotalPrice = () => {
     const basePrice = product.precio;
     const interiorExteriorColorCount = selectedOptions.Interior.length + selectedOptions.Exterior.length + selectedOptions.Color.length;
@@ -34,6 +38,7 @@ const ResumenCompra = () => {
         <p>Total: ${calculateTotalPrice()}</p>
       </div>
       <button onClick={handleBackToHome}>Volver a la página de inicio</button>
+      <button onClick={handleNext}>Siguiente</button>
     </div>
   );
 };

@@ -4,80 +4,92 @@ import '../styles/ChatTelegram.css';
 const ChatTelegram = () => {
     const [message, setMessage] = useState('');
     const [chat, setChat] = useState([]);
-    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [isChatOpen, setIsChatOpen] = useState(false);
+    const [isOptionSelected, setIsOptionSelected] = useState(false);
 
-    const sendMessage = async () => {
+    const sendMessage = () => {
         if (message.trim() === '') return;
 
-        const response = await fetch(`https://api.telegram.org/bot<YOUR_BOT_TOKEN>/sendMessage`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                chat_id: '<YOUR_CHAT_ID>',
-                text: message
-            })
-        });
+        const newChat = [...chat, { sender: 'You', text: message }];
+        setChat(newChat);
+        setMessage('');
 
-        if (response.ok) {
-            setChat([...chat, { sender: 'You', text: message }]);
-            setMessage('');
+        setTimeout(() => {
+            handleMechanicResponse(message, newChat);
+        }, 1000);
+    };
+
+    const handleMechanicResponse = (message, newChat) => {
+        let response = "No entiendo el mensaje, por favor intente más tarde.";
+        if (message.includes('Consulta General')) {
+            response = "¿Cuál es el problema que está experimentando?";
+        } else if (message.includes('Consulta Reparaciones')) {
+            response = "¿Qué tipo de reparación necesita?";
+        } else if (message.includes('Consulta de Venta')) {
+            response = "¿Qué producto está interesado en comprar?";
+        } else if (message.includes('Consulta de Mantenimiento')) {
+            response = "¿Qué tipo de mantenimiento necesita?";
+        } else if (newChat.length > 1) {
+            response = "Pronto se pondrá en contacto un asesor con usted. Gracias por su consulta.";
+        }
+
+        setChat([...newChat, { sender: 'Mecánico', text: response }]);
+    };
+
+    const toggleChat = () => {
+        setIsChatOpen(!isChatOpen);
+        if (isChatOpen) {
+            setChat([]);
+            setIsOptionSelected(false);
         }
     };
 
-    const openModal = () => {
-        setIsModalOpen(true);
+    const handleOptionClick = (option) => {
+        setMessage(option);
+        setIsOptionSelected(true);
+        sendMessage();
     };
-
-    const closeModal = () => {
-        setIsModalOpen(false);
-    };
-
-    const handleClickOutside = useCallback((event) => {
-        if (event.target.className === 'modal') {
-            closeModal();
-        }
-    }, []);
-
-    useEffect(() => {
-        if (isModalOpen) {
-            window.addEventListener('click', handleClickOutside);
-        } else {
-            window.removeEventListener('click', handleClickOutside);
-        }
-
-        return () => {
-            window.removeEventListener('click', handleClickOutside);
-        };
-    }, [isModalOpen, handleClickOutside]);
 
     return (
         <div>
-            <button className="help-button" onClick={openModal}>Te podemos ayudar?</button>
-            {isModalOpen && (
-                <div className="modal">
-                    <div className="modal-content">
-                        <span className="close-button" onClick={closeModal}>&times;</span>
-                        <div className="chat-container">
-                            <div className="chat-box">
-                                {chat.map((msg, index) => (
-                                    <div key={index} className={`chat-message ${msg.sender === 'You' ? 'sent' : 'received'}`}>
-                                        <span>{msg.text}</span>
-                                    </div>
-                                ))}
-                            </div>
-                            <div className="chat-input">
-                                <input
-                                    type="text"
-                                    value={message}
-                                    onChange={(e) => setMessage(e.target.value)}
-                                    placeholder="Type your message..."
-                                />
-                                <button onClick={sendMessage}>Send</button>
-                            </div>
-                        </div>
+            <button className="help-button" onClick={toggleChat}>Te podemos ayudar?</button>
+            {isChatOpen && (
+                <div className="chat-box-container">
+                    <div className="chat-header">
+                        Chat de Asistencia
+                        <span className="close-chat-button" onClick={toggleChat}>&times;</span>
                     </div>
+                    <div className="chat-body">
+                        {!isOptionSelected ? (
+                            <div className="options">
+                                <button onClick={() => handleOptionClick('Consulta General')}>Consulta General</button>
+                                <button onClick={() => handleOptionClick('Consulta Reparaciones')}>Consulta Reparaciones</button>
+                                <button onClick={() => handleOptionClick('Consulta de Venta')}>Consulta de Venta</button>
+                                <button onClick={() => handleOptionClick('Consulta de Mantenimiento')}>Consulta de Mantenimiento</button>
+                            </div>
+                        ) : (
+                            <div className="chat-container">
+                                <div className="chat-box">
+                                    {chat.map((msg, index) => (
+                                        <div key={index} className={`chat-message ${msg.sender === 'You' ? 'sent' : 'received'}`}>
+                                            <span>{msg.text}</span>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+                        )}
+                    </div>
+                    {isOptionSelected && (
+                        <div className="chat-footer">
+                            <input
+                                type="text"
+                                value={message}
+                                onChange={(e) => setMessage(e.target.value)}
+                                placeholder="Type your message..."
+                            />
+                            <button onClick={sendMessage}>Enviar</button>
+                        </div>
+                    )}
                 </div>
             )}
         </div>

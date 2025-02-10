@@ -12,10 +12,11 @@ import ForgotPasswordForm from './Auth/ForgotPasswordForm';
 import Productos from './Home/Productos';
 import Contacto from './Home/Contacto';
 import SobreNosotros from './Home/Sobrenosotros';
-import Aemetpage from './Aemet/Aemetpage';
+
 import ResumenCompra from './Home/ResumenCompra';
 import WeatherPage from './Aemet/WeatherPage';
 import ChatTelegram from './Home/ChatTelegram';
+import Ventacoche from './Home/Ventacoche';
 
 const App = () => {
   return (
@@ -51,6 +52,7 @@ const App = () => {
         <Route path="/aemet" element={<WeatherPage />} />
 
         <Route path="/resumen-compra" element={<ResumenCompra />} />
+        <Route path="/comprar" element={<Ventacoche/>} />
 
       </Routes>
       <Footer />
