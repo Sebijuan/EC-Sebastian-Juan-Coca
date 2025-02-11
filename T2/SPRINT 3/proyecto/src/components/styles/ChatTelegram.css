@@ -90,7 +90,7 @@
     right: 20px;
     width: 80px; /* Increased width */
     height: 80px; /* Increased height */
-    background-color: #007bff;
+    background-color: #0026ff;
     color: #fff;
     border: none;
     border-radius: 50%;
@@ -105,7 +105,7 @@
 }
 
 .help-button:hover {
-    background-color: #0056b3;
+    background-color: #000000;
 }
 
 .chat-box-container {
