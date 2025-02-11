@@ -6,6 +6,30 @@ const ChatTelegram = () => {
     const [chat, setChat] = useState([]);
     const [isChatOpen, setIsChatOpen] = useState(false);
     const [isOptionSelected, setIsOptionSelected] = useState(false);
+    const [currentConsultation, setCurrentConsultation] = useState('');
+
+    const predefinedResponses = {
+        'Consulta General': [
+            { question: '¿Cuál es el horario de atención?', answer: 'Nuestro horario de atención es de lunes a viernes de 9:00 a 18:00.' },
+            { question: '¿Dónde están ubicados?', answer: 'Estamos ubicados en la Calle Falsa 123, Ciudad Ficticia.' },
+            { question: '¿Ofrecen servicios a domicilio?', answer: 'Sí, ofrecemos servicios a domicilio dentro de la ciudad.' }
+        ],
+        'Consulta Reparaciones': [
+            { question: '¿Cuánto cuesta una reparación de motor?', answer: 'El costo de la reparación de motor depende del tipo de daño. Por favor, tráiganos su vehículo para una evaluación.' },
+            { question: '¿Cuánto tiempo tarda una reparación de frenos?', answer: 'La reparación de frenos generalmente toma entre 2 y 4 horas.' },
+            { question: '¿Ofrecen garantía en las reparaciones?', answer: 'Sí, ofrecemos una garantía de 6 meses en todas nuestras reparaciones.' }
+        ],
+        'Consulta de Venta': [
+            { question: '¿Qué modelos de coches tienen disponibles?', answer: 'Tenemos una amplia variedad de modelos disponibles. Por favor, visite nuestra página web para ver el catálogo completo.' },
+            { question: '¿Ofrecen financiamiento?', answer: 'Sí, ofrecemos opciones de financiamiento con tasas de interés competitivas.' },
+            { question: '¿Puedo hacer una prueba de manejo?', answer: 'Sí, puede programar una prueba de manejo contactándonos a través de nuestro formulario de contacto.' }
+        ],
+        'Consulta de Mantenimiento': [
+            { question: '¿Cada cuánto debo hacer el mantenimiento del coche?', answer: 'Recomendamos hacer el mantenimiento del coche cada 10,000 km o cada 6 meses, lo que ocurra primero.' },
+            { question: '¿Qué incluye el mantenimiento básico?', answer: 'El mantenimiento básico incluye cambio de aceite, revisión de frenos, y chequeo general del vehículo.' },
+            { question: '¿Cuánto cuesta el mantenimiento completo?', answer: 'El costo del mantenimiento completo varía según el modelo del coche. Por favor, contáctenos para obtener una cotización.' }
+        ]
+    };
 
     const sendMessage = () => {
         if (message.trim() === '') return;
@@ -21,16 +45,14 @@ const ChatTelegram = () => {
 
     const handleMechanicResponse = (message, newChat) => {
         let response = "No entiendo el mensaje, por favor intente más tarde.";
-        if (message.includes('Consulta General')) {
-            response = "¿Cuál es el problema que está experimentando?";
-        } else if (message.includes('Consulta Reparaciones')) {
-            response = "¿Qué tipo de reparación necesita?";
-        } else if (message.includes('Consulta de Venta')) {
-            response = "¿Qué producto está interesado en comprar?";
-        } else if (message.includes('Consulta de Mantenimiento')) {
-            response = "¿Qué tipo de mantenimiento necesita?";
-        } else if (newChat.length > 1) {
-            response = "Pronto se pondrá en contacto un asesor con usted. Gracias por su consulta.";
+        const responses = predefinedResponses[currentConsultation];
+        if (responses) {
+            const matchedResponse = responses.find(r => message.toLowerCase().includes(r.question.toLowerCase()));
+            if (matchedResponse) {
+                response = matchedResponse.answer;
+            } else {
+                response = "Pronto se pondrá en contacto un asesor con usted. Gracias por su consulta.";
+            }
         }
 
         setChat([...newChat, { sender: 'Mecánico', text: response }]);
@@ -41,13 +63,14 @@ const ChatTelegram = () => {
         if (isChatOpen) {
             setChat([]);
             setIsOptionSelected(false);
+            setCurrentConsultation('');
         }
     };
 
     const handleOptionClick = (option) => {
-        setMessage(option);
+        setCurrentConsultation(option);
         setIsOptionSelected(true);
-        sendMessage();
+        setChat([...chat, { sender: 'Mecánico', text: `Ha seleccionado ${option}. ¿Cuál es el motivo por el que contacta?` }]);
     };
 
     return (
@@ -72,6 +95,9 @@ const ChatTelegram = () => {
                                 <div className="chat-box">
                                     {chat.map((msg, index) => (
                                         <div key={index} className={`chat-message ${msg.sender === 'You' ? 'sent' : 'received'}`}>
+                                            {msg.sender === 'Mecánico' && (
+                                                <img src="/assests/icons/bot.jpg" alt="Assistant" className="assistant-image" />
+                                            )}
                                             <span>{msg.text}</span>
                                         </div>
                                     ))}
