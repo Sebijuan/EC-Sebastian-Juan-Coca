@@ -27,7 +27,7 @@ const Productos = () => {
       14: ['Motor Gasolina VTEC® 2.0L (315cv)'],
       15: ['Motor Gasolina V8 4.OL(650cv)', 'Motor Hibrido(800cv)'],
       16: ['Motor Gasolina V8 4.5L(570cv)', 'Motor Gasolina V8 GTB(670cv)'],
-
+      17: ['Motor Gasolina 1.2T(100cv)', 'Motor Hibrido 1.2T XHL(100cv)','Motor Hibrido 1.2T XHL(136cv)','Motor Electrico 115kw y 51kWh Bateria(156cv)'],
     }
   };
 
