@@ -12,7 +12,7 @@ const mockProducts = [
   {
     id: 2,
     name: 'Audi A4',
-    precio: 25000,
+    precio: 40000,
     image: '/assests/products/audi-a4.jpg',
     category: 'deportivos',
     brand: 'Audi',
@@ -192,7 +192,7 @@ const mockProducts = [
     name: 'Opel Corsa Gs Line',
     precio: 22000,
     image: '/assests/products/opelcorsa.jpg',
-    category: 'Deportivos',
+    category: 'deportivos',
     brand: 'Opel',
     rating: 4,
    
