@@ -24,11 +24,7 @@ const ChatTelegram = () => {
         }
     };
 
-    return (
-        <div>
-            <button className="help-button" onClick={handleChatToggle}>Te podemos ayudar?</button>
-        </div>
-    );
+    
 };
 
 export default ChatTelegram;
