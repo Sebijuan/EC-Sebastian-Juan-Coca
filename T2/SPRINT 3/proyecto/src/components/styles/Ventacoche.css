@@ -62,3 +62,53 @@ button[type="submit"] {
 button[type="submit"]:hover {
   background-color: #000000; /* Change hover background color to black */
 }
+
+@media (max-width: 1023px) and (min-width: 768px) {
+  .ventacoche {
+    max-width: 80%;
+    padding: 15px;
+  }
+
+  .ventacoche h2 {
+    font-size: 1.5rem;
+  }
+
+  form {
+    padding: 15px;
+  }
+
+  .form-group input,
+  .form-group select {
+    padding: 6px;
+  }
+
+  button[type="submit"] {
+    padding: 8px;
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 767px) {
+  .ventacoche {
+    max-width: 90%;
+    padding: 10px;
+  }
+
+  .ventacoche h2 {
+    font-size: 1.2rem;
+  }
+
+  form {
+    padding: 10px;
+  }
+
+  .form-group input,
+  .form-group select {
+    padding: 5px;
+  }
+
+  button[type="submit"] {
+    padding: 6px;
+    font-size: 12px;
+  }
+}

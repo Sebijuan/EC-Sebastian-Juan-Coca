@@ -55,3 +55,41 @@
 .register-form button[type="button"]:hover {
   background-color: #5a6268;
 }
+
+@media (max-width: 1023px) and (min-width: 768px) {
+  .register-form {
+    padding: 15px;
+  }
+
+  .register-form h2 {
+    font-size: 20px;
+  }
+
+  .register-form input {
+    padding: 8px;
+  }
+
+  .register-form button {
+    padding: 8px;
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 767px) {
+  .register-form {
+    padding: 10px;
+  }
+
+  .register-form h2 {
+    font-size: 18px;
+  }
+
+  .register-form input {
+    padding: 6px;
+  }
+
+  .register-form button {
+    padding: 6px;
+    font-size: 12px;
+  }
+}

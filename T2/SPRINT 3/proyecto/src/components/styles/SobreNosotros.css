@@ -37,3 +37,31 @@
   transform: scale(1.05); /* Slightly enlarge the image on hover */
   filter: brightness(1.2); /* Increase brightness on hover */
 }
+
+@media (max-width: 1023px) and (min-width: 768px) {
+  .sobrenosotros-container {
+    padding: 15px;
+  }
+
+  .sobrenosotros-container h2 {
+    font-size: 1.8rem;
+  }
+
+  .sobrenosotros-container p {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 767px) {
+  .sobrenosotros-container {
+    padding: 10px;
+  }
+
+  .sobrenosotros-container h2 {
+    font-size: 1.5rem;
+  }
+
+  .sobrenosotros-container p {
+    font-size: 0.9rem;
+  }
+}

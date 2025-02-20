@@ -495,3 +495,47 @@ select:focus {
   margin-bottom: 20px;
   text-transform: uppercase;
 }
+
+@media (max-width: 1023px) and (min-width: 768px) {
+  .product-card {
+    width: 80%;
+  }
+
+  .product-image {
+    height: 200px;
+  }
+
+  .product-card h3 {
+    font-size: 1.2rem;
+  }
+
+  .product-card p {
+    font-size: 1rem;
+  }
+
+  .Product-list {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 767px) {
+  .product-card {
+    width: 90%;
+  }
+
+  .product-image {
+    height: 150px;
+  }
+
+  .product-card h3 {
+    font-size: 1rem;
+  }
+
+  .product-card p {
+    font-size: 0.9rem;
+  }
+
+  .Product-list {
+    grid-template-columns: 1fr;
+  }
+}

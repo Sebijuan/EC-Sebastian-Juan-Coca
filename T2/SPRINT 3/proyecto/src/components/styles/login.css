@@ -77,3 +77,41 @@
 .forgot-password-button:hover {
     background-color: #5a6268;
 }
+
+@media (max-width: 1023px) and (min-width: 768px) {
+  .login-container {
+    padding: 15px;
+  }
+
+  .login-title {
+    font-size: 20px;
+  }
+
+  .form-input {
+    padding: 8px;
+  }
+
+  .login-button, .forgot-password-button {
+    padding: 8px;
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 767px) {
+  .login-container {
+    padding: 10px;
+  }
+
+  .login-title {
+    font-size: 18px;
+  }
+
+  .form-input {
+    padding: 6px;
+  }
+
+  .login-button, .forgot-password-button {
+    padding: 6px;
+    font-size: 12px;
+  }
+}

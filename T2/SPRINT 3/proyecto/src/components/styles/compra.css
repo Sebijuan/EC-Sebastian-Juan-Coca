@@ -59,3 +59,49 @@ button {
 button:hover {
   background-color: #000;
 }
+
+@media (max-width: 1023px) and (min-width: 768px) {
+  .resumen-compra {
+    padding: 15px;
+  }
+
+  .resumen-compra h2 {
+    font-size: 2rem;
+  }
+
+  .product-details h3 {
+    font-size: 1.5rem;
+  }
+
+  .product-details p {
+    font-size: 1.2rem;
+  }
+
+  button {
+    padding: 8px;
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 767px) {
+  .resumen-compra {
+    padding: 10px;
+  }
+
+  .resumen-compra h2 {
+    font-size: 1.5rem;
+  }
+
+  .product-details h3 {
+    font-size: 1.2rem;
+  }
+
+  .product-details p {
+    font-size: 1rem;
+  }
+
+  button {
+    padding: 6px;
+    font-size: 12px;
+  }
+}

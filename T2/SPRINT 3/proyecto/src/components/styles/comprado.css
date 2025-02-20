@@ -18,3 +18,31 @@
   font-size: 18px;
   margin-bottom: 10px;
 }
+
+@media (max-width: 1023px) and (min-width: 768px) {
+  .comprado {
+    padding: 15px;
+  }
+
+  .comprado h2 {
+    font-size: 1.5rem;
+  }
+
+  .comprado p {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 767px) {
+  .comprado {
+    padding: 10px;
+  }
+
+  .comprado h2 {
+    font-size: 1.2rem;
+  }
+
+  .comprado p {
+    font-size: 0.9rem;
+  }
+}
