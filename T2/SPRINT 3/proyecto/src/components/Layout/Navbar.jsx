@@ -40,12 +40,9 @@ const Navbar = () => {
     window.location.href = '/aemet';
   };
 
-
-
-
   return (
     <nav className="navbar navbar-visible">
-      <h1>SJ CUSTOMS</h1>
+      <h1 className="navbar-title">SJ CUSTOMS</h1>
       <ul>
         <li><a href="#home" onClick={handleHomeClick} className="navbar-link">Inicio</a></li>
         <li><a href="/sobrenosotros-page" onClick={handleAboutClick} className="navbar-link">Sobre Nosotros</a></li>
