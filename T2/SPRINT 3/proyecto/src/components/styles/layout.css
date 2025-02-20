@@ -178,6 +178,6 @@ main {
   }
 
   .navbar-title {
-    font-size: 1.0em; /* Smaller font size for mobile devices */
+    font-size: 1em; /* Further reduce font size for mobile devices */
   }
 }
