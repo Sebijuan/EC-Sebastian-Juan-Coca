@@ -191,7 +191,7 @@ const mockProducts = [
     id: 17,
     name: 'Opel Corsa Gs Line',
     precio: 22000,
-    image: '/assests/products/opelcorsa.jpg',
+    image: '/assests/products/Opelcorsa.jpg',
     category: 'deportivos',
     brand: 'Opel',
     rating: 4,
