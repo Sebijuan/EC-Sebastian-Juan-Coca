@@ -1,106 +1,117 @@
 ## Descripción del ejercicio
 
-Para asentar los conocimientos mostrados en la parte teórica, se tendrá que proceder a resolver los siguientes ejercicios/problemas en el orden correcto. Para ello, primero pasamos a explicar los criterios que debemos seguir para la resolución de los ejercicios/problemas.
+### 📌 Ejercicio 3: FUNCIONALIDAD LIBRE
 
-### Fases de la resolución de problemas
+El objetivo de este ejercicio es que el/la alumno/a proponga tres nuevas funcionalidades para su proyecto web, alineadas con los objetivos de su categoría, y que sigan una metodología estructurada de desarrollo. Cada funcionalidad deberá estar bien fundamentada y documentada en historias de usuario, con sus respectivos criterios de aceptación, diseño propuesto, implementación y pruebas.
 
-1. **Análisis del problema**: Se debe indicar en el directorio específico de la asignatura el problema que se va a resolver de una forma adecuada, es decir, no debe contener ambigüedades, debe ser simple y autocontenido.
-2. **Diseño de la propuesta de solución del problema**: Como todo aquel problema que se quiere resolver, es necesario realizar el diseño de la o las soluciones que se procederá a implementar en el siguiente paso. Para esto nos debemos ayudar de las herramientas para realizar esquemas gráficos (UML, Diagramas de flujos, etc…).
-3. **Implementación del diseño propuesto**: En este punto ya se procederá a implementar todo el diseño establecido en el punto anterior.
-4. **Pruebas de la resolución del problema**: Es indispensable el realizar pruebas para verificar la integridad y correcto funcionamiento de la implementación realizada, para ello simplemente compararemos si el comportamiento esperado del análisis del problema se ha implementado de forma adecuada.
+#### 🔸 Historia de Usuario 1: Apartado de Contacto
 
-### 📌 Ejercicio 1: Implementación de una Web del Tiempo con la API de AEMET
+**📝 Descripción:**
+"Como usuario del sitio web, quiero poder enviar un mensaje a través del apartado de contacto para que el equipo de soporte pueda recibir mis dudas o comentarios por correo electrónico."
 
-#### 🎯 Contexto
+**🔸 Criterios de Aceptación**
+- Dado que un usuario desea contactar al equipo de soporte, la funcionalidad deberá permitir el ingreso de su nombre, correo electrónico y mensaje de manera clara y accesible.
+- Cuando el usuario envíe el formulario con datos válidos, el sistema deberá enviar un correo electrónico con la información ingresada al equipo de soporte.
+- Entonces, el usuario deberá recibir una confirmación en pantalla indicando que su mensaje ha sido enviado de manera exitosa.
 
-El objetivo de este ejercicio es desarrollar una aplicación web del tiempo que permita a los usuarios consultar información meteorológica de diferentes ubicaciones de España, utilizando la API de AEMET (Agencia Estatal de Meteorología).
+**🔸 Diseño**
+- **🎨 Mockups:**
+  - Formulario con campos para nombre, correo electrónico y mensaje.
+  - Botón de "Enviar" con validaciones de campos requeridos.
+  - Mensaje de éxito tras enviar el formulario.
+- **⚙ Integración con funcionalidades existentes:**
+  - Validaciones en frontend para evitar el envío de formularios vacíos.
+  - Envío de correo desde el backend utilizando una API o servicio SMTP.
 
-La interfaz estará inspirada en la web de [eltiempo.es](https://www.eltiempo.es/sevilla.html), proporcionando datos detallados como:
-- Estado actual del tiempo.
-- Pronóstico por horas y días.
-- Mapa meteorológico interactivo.
-- Índices de calidad del aire y avisos meteorológicos.
+**🔸 Implementación**
+- **📌 Modificaciones en código:**
+  - Creación de un formulario en la UI.
+  - Backend con una función que capture los datos del formulario y los envíe por correo electrónico.
+  - Validaciones en frontend y backend.
 
-#### ⚙️ Requerimientos Funcionales
+**🔸 Pruebas**
+- **🔍 Caso de prueba 1: Validación de campos obligatorios**
+  - Dado que el usuario intenta enviar el formulario vacío, entonces el sistema deberá mostrar un mensaje de error indicando que todos los campos son obligatorios.
+  - ![Prueba1 GIF](./Resources/gif2.1.gif)
+- **🔍 Caso de prueba 2: Envío exitoso del mensaje**
+  - Cuando el usuario complete todos los campos correctamente y haga clic en "Enviar", entonces el sistema deberá mostrar una confirmación de envío exitoso.
+  - ![Prueba2 GIF](./Resources/gif2.2.gif)
+- **🔍 Caso de prueba 3: Comprobar que el Correo Llegue**
+  - Comprobar que llegue el mensaje del usuario a la bandeja de entrada del equipo de soporte técnico.
+  - ![Prueba3 GIF](./Resources/gif2.3.gif)
 
-1️⃣ **Consulta del tiempo actual por provincia**
-- Introducción de la ubicación en un buscador (sólo por provincia).
-- Visualización del estado actual (temperatura, condición climática y velocidad del viento).
-- Iconos dinámicos según la condición climática (soleado, nublado, lluvia, etc.).
+#### 🔸 Historia de Usuario 2: Chat de Mecánico
 
-2️⃣ **Pronóstico detallado por horas y días**
-- Representación visual de la evolución del tiempo (gráficos de temperatura, precipitaciones, etc.).
-- Predicción por días con intervalos de mañana (8:00), tarde (15:00) y noche (21:00).
-- Predicción de mínimo 48 horas, es decir, dos días posterior al actual.
+**📝 Descripción:**
+"Como usuario del sitio web, quiero poder realizar consultas a un mecánico a través de un chat en tiempo real para recibir asesoramiento sobre problemas con mi vehículo."
 
-#### 🔗 Documentación de la API de AEMET
+**🔸 Criterios de Aceptación**
+- Dado que un usuario necesita asistencia mecánica, la funcionalidad deberá permitir abrir una ventana de chat en la página para iniciar una conversación con un mecánico.
+- Cuando el usuario envíe un mensaje en el chat, el sistema deberá entregarlo al mecánico en tiempo real y mostrar la respuesta cuando esté disponible.
+- Entonces, el chat deberá permitir una conversación fluida mostrando los mensajes enviados y recibidos de manera clara y ordenada.
 
-Para obtener los datos meteorológicos, se utilizará la API de AEMET, que proporciona información detallada sobre el clima en tiempo real y pronósticos.
+**🔸 Diseño**
+- **🎨 Mockups:**
+  - Botón flotante en la página para abrir el chat.
+  - Ventana de chat con campo de texto para escribir mensajes y un botón de "Enviar".
+  - Indicador de "Mecánico en línea" o "Mecánico no disponible".
+- **⚙ Integración con funcionalidades existentes:**
+  - Uso de WebSockets o Firebase para comunicación en tiempo real.
+  - Notificaciones cuando el mecánico responde.
+  - Opción de registrar el historial de chat para futuras referencias.
 
-- **Registro y obtención de API Key**:
-  - Acceder a AEMET API y obtener la clave de acceso.
-  - Usar POSTMAN para verificar manualmente la llamada al endpoint.
-- **Seguir la documentación de SWAGGER**:
-  - Acceder a AEMET API SWAGGER para obtener toda la información relevante a volcar en Postman para verificar el correcto funcionamiento de nuestra petición.
+**🔸 Implementación**
+- **📌 Modificaciones en código:**
+  - Creación del componente de chat en el frontend.
+  - Configuración de WebSockets o Firebase en el backend para manejo de mensajes.
+  - Almacenamiento de consultas en la base de datos.
 
-#### ✅ Pruebas a realizar
+**🔸 Pruebas**
+- **🔍 Caso de prueba 1: Apertura del chat**
+  - Dado que el usuario hace clic en el botón del chat, entonces el sistema deberá mostrar la ventana de chat correctamente.
+  - ![Prueba1 GIF](./Resources/gif2.4.gif)
+- **🔍 Caso de prueba 2: Envío y recepción de mensajes**
+  - Cuando el usuario envíe un mensaje en el chat, entonces el mecánico deberá recibirlo y responder en tiempo real.
+  - ![Prueba2 GIF](./Resources/gif2.5.gif)
+- **🔍 Caso de prueba 3: Guardar Conversaciones anteriores con un Agente**
+  - Dado que podemos abrir varios chats, deberíamos poder ver las anteriores conversaciones, es decir, se pide que se guarde anteriores conversaciones o abrir más de un chat.
+  - ![Prueba3 GIF](./Resources/gif2.6.gif)
 
-- **Prueba 1: Consulta de provincia y visualización de datos actuales**
-  - Ingresar Sevilla en el filtro de provincia.
-  - Verificar que se muestra la temperatura, el estado del clima (lluvioso, soleado, o nublado) y la velocidad del viento actual.
-  - Verificar que se muestra la temperatura, el estado del clima (lluvioso, soleado, o nublado) y la velocidad del viento pronosticada en al menos las siguientes 48 horas.
-  - Ingresar Madrid en el filtro de provincia.
-  - Verificar que se muestra la temperatura, el estado del clima (lluvioso, soleado, o nublado) y la velocidad del viento actual.
-  - Verificar que se muestra la temperatura, el estado del clima (lluvioso, soleado, o nublado) y la velocidad del viento pronosticada en al menos las siguientes 48 horas.
+#### 🔸 Historia de Usuario 3: Simulador de Compra
 
-  ![Prueba1 GIF](./Resources/gif1.1.gif)
+**📝 Descripción:**
+"Como usuario del sitio web, quiero poder simular la compra de un producto ingresando mis datos de contacto y eligiendo un método de pago (financiado o al contado) para conocer las condiciones antes de finalizar la compra."
 
-- **Prueba 2: Cambio entre unidades de temperatura**
-  - Cambiar de Celsius a Fahrenheit.
-  - Confirmar que los valores se actualizan correctamente.
+**🔸 Criterios de Aceptación**
+- Dado que el usuario quiere comprar un producto, la funcionalidad deberá permitir ingresar sus datos de contacto (nombre, correo, teléfono) antes de proceder con la simulación.
+- Cuando el usuario elija un método de pago (financiado o al contado), el sistema deberá calcular y mostrar el costo total, incluyendo cuotas e intereses en caso de financiamiento.
+- Entonces, al confirmar la simulación, el usuario deberá ver un resumen detallado de la compra y tener la opción de proceder al pago o solicitar más información.
 
-  ![Prueba2 GIF](./Resources/gif1.2.gif)
+**🔸 Diseño**
+- **🎨 Mockups:**
+  - Formulario con campos para ingresar datos de contacto.
+  - Selector de método de pago con opciones de "Financiado" o "Al contado".
+  - Cálculo dinámico del precio según la opción elegida.
+  - Botón de "Confirmar Simulación" que muestra un resumen antes de continuar con el pago.
+- **⚙ Integración con funcionalidades existentes:**
+  - Conexión con pasarelas de pago para simular el proceso de pago.
+  - Almacenamiento de datos de contacto en la base de datos para seguimiento.
 
-### 📌 Ejercicio 2: Funcionalidades Interactivas por Categoría
+**🔸 Implementación**
+- **📌 Modificaciones en código:**
+  - Creación de formulario interactivo en frontend.
+  - Backend que recibe los datos y calcula el costo según la opción de pago.
+  - Integración con API de pago si el usuario desea proceder con la compra.
 
-El objetivo de este ejercicio es que el alumnado desarrolle funcionalidades interactivas avanzadas basadas en su categoría de proyecto. Se espera que implementen componentes reutilizables que permitan mejorar la experiencia del usuario mediante dashboards, comparadores, rankings, planificadores o encuestas.
-
-Cada categoría del proyecto incluye tres funcionalidades clave, que deben ser desarrolladas siguiendo las buenas prácticas de modularidad y reutilización de código.
-
-#### 🛒 Categoría 3: Sitio de Ventas (Salesforce / Shopify)
-
-##### ⚙️ Descripción de las funcionalidades
-
-1️⃣ **Comparador de Productos**
-- Comparación de productos según precio, valoraciones y especificaciones técnicas.
-- Posibilidad de seleccionar múltiples productos y visualizar sus diferencias clave.
-
-2️⃣ **Sistemas de Encuestas o Votaciones**
-- Encuestas de satisfacción post-compra o interacción de “me gusta”.
-- Votaciones para determinar los productos mejor valorados en distintas categorías o visualización de los productos con más “me gusta”.
-
-3️⃣ **Simuladores de Decisiones/configuraciones**
-- Configuración personalizada de productos según necesidades del usuario (colores, tuning, motor, etc.).
-- Recomendaciones de productos con base en preferencias seleccionadas.
-
-##### 🧪 Pruebas a realizar
-
-- **Prueba 1: Comparación de productos**
-  - Seleccionar al menos dos productos para comparar.
-  - Verificar que las diferencias clave se resaltan correctamente.
-
-  ![Prueba1 GIF](./Resources/gi2.1.gif)
-
-- **Prueba 2: Encuestas y votaciones**
-  - Completar una encuesta de satisfacción.
-  - Validar que los votos se registran correctamente y afectan la clasificación.
-
-  ![Prueba2 GIF](./Resources/gif2.2.gif)
-
-- **Prueba 3: Simulación de decisión de compra**
-  - Configurar un producto utilizando distintos parámetros.
-  - Verificar que las recomendaciones son coherentes con la configuración elegida.
-
-  ![Prueba3 GIF](./Resources/gif2.3.gif)
+**🔸 Pruebas**
+- **🔍 Caso de prueba 1: Ingreso de datos de contacto**
+  - Dado que el usuario accede al simulador, entonces el sistema deberá validar que los campos de contacto sean obligatorios antes de continuar.
+  - ![Prueba1 GIF](./Resources/gif2.7.gif)
+- **🔍 Caso de prueba 2: Cálculo de precio según método de pago**
+  - Cuando el usuario seleccione "Financiado", entonces el sistema deberá calcular y mostrar las cuotas con sus respectivos intereses.
+  - ![Prueba2 GIF](./Resources/gif2.8.gif)
+- **🔍 Caso de prueba 3: Confirmación de la simulación**
+  - Dado que el usuario confirma la simulación, entonces el sistema deberá mostrar un mensaje o pantalla de confirmación.
+  - ![Prueba3 GIF](./Resources/gif2.9.gif)
 
 
