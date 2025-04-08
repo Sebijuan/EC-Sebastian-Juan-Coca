@@ -14,7 +14,7 @@ import Contacto from './Home/Contacto';
 import SobreNosotros from './Home/Sobrenosotros';
 
 import ResumenCompra from './Home/ResumenCompra';
-import WeatherPage from './Aemet/WeatherPage';
+
 import ChatTelegram from './Home/ChatTelegram';
 import Ventacoche from './Home/Ventacoche';
 import Comprado from './Home/Comprado';
@@ -51,7 +51,7 @@ const App = () => {
 
         <Route path="/sobrenosotros-page" element={<SobreNosotros />} />
 
-        <Route path="/aemet" element={<WeatherPage />} />
+        
 
         <Route path="/resumen-compra" element={<ResumenCompra />} />
         <Route path="/comprar" element={<Ventacoche/>} />
