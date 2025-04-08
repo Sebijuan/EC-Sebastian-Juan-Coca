@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { validateEmail, validatePassword } from '../Shared/ValidationSystem';
-import { showErrorNotification } from '../Shared/NotificationSystem';
-import { loginAccount } from '../services/auth_API';
+import { showErrorNotification, showSuccessNotification } from '../Shared/NotificationSystem';
+import { loginUser } from '../services/auth_API';
 import '../Layout/Navbar.jsx';
 import '../styles/login.css';
 
@@ -31,16 +31,25 @@ const LoginForm = () => {
             newErrors.password = 'La contraseña no puede estar vacía.';
         }
         setErrors(newErrors);
-
+    
         if (Object.keys(newErrors).length === 0) {
             try {
-                const response = await loginAccount(email, password);
+                const response = await loginUser(email, password);
+    
+                // Verificar si la respuesta del backend indica éxito
                 if (response.success) {
-                    // Redirigir a la página de inicio
+                    // Guardar el token o datos del usuario si es necesario
+                    localStorage.setItem('user', JSON.stringify(response.user));
+                    showSuccessNotification('Inicio de sesión exitoso');
+                    // Redirigir al usuario a la página principal
                     window.location.href = '/';
+                } else {
+                    // Mostrar mensaje de error si el inicio de sesión no fue exitoso
+                    showErrorNotification(response.message || 'Credenciales inválidas');
                 }
             } catch (err) {
-                showErrorNotification('Credenciales inválidas');
+                // Manejar errores de red o del backend
+                showErrorNotification(err.response?.data?.message || 'Error al iniciar sesión');
             }
         }
     };

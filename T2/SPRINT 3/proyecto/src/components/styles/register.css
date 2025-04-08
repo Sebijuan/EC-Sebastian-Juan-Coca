@@ -14,46 +14,64 @@
   margin-bottom: 20px;
   font-size: 24px;
   text-align: center;
+  color: #333; /* Aseguramos que el título sea visible */
 }
 
 .register-form label {
   display: block;
   margin-bottom: 10px;
   font-weight: bold;
+  color: #333; /* Aseguramos que las etiquetas sean visibles */
 }
 
 .register-form input {
   width: 100%;
   padding: 10px;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   border: 1px solid #ccc;
   border-radius: 4px;
   box-sizing: border-box;
-  max-width: 300px; /* Added to ensure all inputs have the same size */
+  font-size: 14px;
+}
+
+.register-form input:focus {
+  border-color: #007bff;
+  outline: none;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
 }
 
 .register-form button {
   width: 100%;
   padding: 10px;
-  background-color: #ff0000;
+  background-color: #007bff;
   color: #fff;
   border: none;
   border-radius: 4px;
   cursor: pointer;
   font-size: 16px;
-}
-
-.register-form button[type="button"] {
-  background-color: #6c757d;
   margin-top: 10px;
 }
 
 .register-form button:hover {
-  background-color: #000000;
+  background-color: #0056b3;
+}
+
+.register-form button[type="button"] {
+  background-color: #6c757d;
 }
 
 .register-form button[type="button"]:hover {
   background-color: #5a6268;
+}
+
+/* Estilo para los mensajes de error */
+.error {
+  color: #d9534f; /* Rojo visible */
+  font-size: 12px;
+  margin-top: -5px; /* Ajusta la posición para que no haya mucho espacio */
+  margin-bottom: 10px;
+  text-align: left; /* Alineación a la izquierda para mayor claridad */
+  width: 100%; /* Asegura que ocupe todo el ancho del formulario */
 }
 
 @media (max-width: 1023px) and (min-width: 768px) {
