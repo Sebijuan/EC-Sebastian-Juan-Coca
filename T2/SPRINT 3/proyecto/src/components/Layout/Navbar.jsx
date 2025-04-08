@@ -35,10 +35,7 @@ const Navbar = () => {
     window.location.href = '/register-page';
   };
 
-  const handleAemetClick = (event) => {
-    event.preventDefault();
-    window.location.href = '/aemet';
-  };
+  
 
   return (
     <nav className="navbar navbar-visible">
@@ -50,7 +47,6 @@ const Navbar = () => {
         <li><a href="/contacts-page" onClick={handleContactClick} className="navbar-link">Contacto</a></li>
         <li><a href="/login-page" onClick={handleLoginClick} className="navbar-link">Iniciar Sesión</a></li>
         <li><a href="/register-page" onClick={handleRegisterClick} className="navbar-link">Registrate</a></li>
-        <li><a href="/aemet" onClick={handleAemetClick} className="navbar-link">Ver Tiempo</a></li>
       </ul>
       <div className="navbar-icon">
         <img src="/assests/icons/icon.jpg" alt="Icono" />
