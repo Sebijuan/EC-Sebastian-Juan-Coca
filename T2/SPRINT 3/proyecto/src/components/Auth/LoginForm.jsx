@@ -35,20 +35,18 @@ const LoginForm = () => {
         if (Object.keys(newErrors).length === 0) {
             try {
                 const response = await loginUser(email, password);
+                console.log('Respuesta del backend:', response); // Depurar la respuesta
     
-                // Verificar si la respuesta del backend indica éxito
-                if (response.success) {
-                    // Guardar el token o datos del usuario si es necesario
-                    localStorage.setItem('user', JSON.stringify(response.user));
+                // Verificar si la respuesta contiene un token o un indicador de éxito
+                if (response.token || response.success) {
+                    localStorage.setItem('user', JSON.stringify(response.user || {}));
                     showSuccessNotification('Inicio de sesión exitoso');
-                    // Redirigir al usuario a la página principal
                     window.location.href = '/';
                 } else {
-                    // Mostrar mensaje de error si el inicio de sesión no fue exitoso
                     showErrorNotification(response.message || 'Credenciales inválidas');
                 }
             } catch (err) {
-                // Manejar errores de red o del backend
+                console.error('Error al iniciar sesión:', err); // Depurar el error
                 showErrorNotification(err.response?.data?.message || 'Error al iniciar sesión');
             }
         }
