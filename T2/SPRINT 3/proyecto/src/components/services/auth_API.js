@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_BASE_URL = 'https://backend-1ddh.onrender.com';
+const API_BASE_URL = 'https://backend-1ddh.onrender.com/api';
 
 async function registerUser(username, email, password) {
     try {
