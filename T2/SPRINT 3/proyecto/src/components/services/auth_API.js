@@ -29,4 +29,15 @@ async function loginUser(email, password) {
     }
 }
 
-export { registerUser, loginUser };
+async function recoverPassword(email) {
+    try {
+        const response = await axios.post(`${API_BASE_URL}/auth/forgot-password`, {
+            email,
+        });
+        return response.data;
+    } catch (error) {
+        throw error.response?.data || { message: 'Error al recuperar la contraseña' };
+    }
+}
+
+export { registerUser, loginUser, recoverPassword };
