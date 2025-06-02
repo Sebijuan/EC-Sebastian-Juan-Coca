@@ -40,7 +40,7 @@ const Productos = () => {
 
   return (
     <div className="productos-container">
-      <h1>Productos</h1>
+      <h1>Catálogo de Coches</h1>
       <p className="highlighted-text">Los más destacados en función a los usuarios</p>
       <div className="productos-list">
         {sortedProducts.map((product) => (
