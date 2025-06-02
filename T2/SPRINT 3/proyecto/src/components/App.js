@@ -2,7 +2,7 @@ import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import Navbar from './Layout/Navbar';
 import HeroSection from './Home/HeroSection';
-import ProductList from './Home/ProductList';
+import Servicios from './Home/Servicios';
 import Footer from './Layout/Footer';
 import CartPreview from './Home/CartPreview';
 import RegisterForm from './Auth/RegisterForm'; 
@@ -11,13 +11,14 @@ import LoginForm from './Auth/LoginForm';
 import ForgotPasswordForm from './Auth/ForgotPasswordForm';
 import Productos from './Home/Productos';
 import Contacto from './Home/Contacto';
-import SobreNosotros from './Home/Sobrenosotros';
+
 
 import ResumenCompra from './Home/ResumenCompra';
 
 import ChatTelegram from './Home/ChatTelegram';
 import Ventacoche from './Home/Ventacoche';
 import Comprado from './Home/Comprado';
+import Portada from './Home/portada';
 
 
 const App = () => {
@@ -31,7 +32,7 @@ const App = () => {
           element={
             <>
               <HeroSection />
-              <ProductList />
+              <Portada />
               <ChatTelegram />
             </>
           }
@@ -49,7 +50,8 @@ const App = () => {
 
         <Route path="/contacts-page" element={<Contacto />} />
 
-        <Route path="/sobrenosotros-page" element={<SobreNosotros />} />
+       
+        <Route path="/servicios" element={<Servicios />} />
 
         
 

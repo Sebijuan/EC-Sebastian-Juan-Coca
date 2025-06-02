@@ -62,7 +62,7 @@ const Ventacoche = () => {
     console.log('Selected Options:', selectedOptions);
     alert('Compra completada con éxito');
     // Redirect to a confirmation page or another step
-    navigate('/comprado', { state: { formData, product, selectedOptions, totalPrice: calculateTotalPrice() } });
+    navigate('/payments/options', { state: { formData, product, selectedOptions, totalPrice: calculateTotalPrice() } });
   };
 
   return (

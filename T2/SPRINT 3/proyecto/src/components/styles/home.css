@@ -1,21 +1,27 @@
 .hero-section {
   position: relative;
   text-align: center;
-  color: white;
-  /* margin-top: 20px; Remove margin-top to eliminate gap */
-  /* padding-top: 60px; Remove padding-top to eliminate gap */
-  z-index: 1; /* Ensure the hero section is above other elements */
+  color: #fff;
+  background: linear-gradient(to bottom, #000 0%, #ff0000 100%);
+  padding: 40px 0 30px 0;
+  overflow: hidden;
 }
 
 .hero-image {
-  width: 100%; 
-  height: auto;
-  filter: brightness(70%);
-  position: relative;
-  z-index: -1; /* Ensure the image is behind the content */
-  animation: glow 2s infinite alternate, pulse 10s infinite ease-in-out, brighten 5s infinite alternate;
+  width: 1320px;
+  height: 760px;
+  max-width: 100%;
+  object-fit: cover;
+  display: block;
+  margin: 0 auto 10px auto;
+  filter: drop-shadow(0 0 10px #ff0000aa);
+  animation: pulse 2s infinite alternate;
 }
-
+/* Añade esto a home.css */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(40px);}
+  to { opacity: 1; transform: translateY(0);}
+}
 @keyframes glow {
   0% {
     box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
@@ -67,11 +73,23 @@
   color: black; /* Change the text color to black */
   padding: 20px; /* Add padding to improve appearance */
 }
-
-.hero-content h1 {
-  margin-bottom: 20px; /* Add margin to separate the h1 element */
+.hero-intro {
+  font-size: 1.2rem;
+  margin: 0 auto 18px auto;
+  max-width: 600px;
+  color: #ffeaea;
+  text-shadow: 0 1px 4px #0008;
 }
-
+.hero-section h1 {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+  letter-spacing: 2px;
+  text-shadow: 0 2px 8px #000a;
+}
+.hero-dynamic {
+  margin: 18px 0 20px 0;
+  min-height: 36px;
+}
 .hero-button {
   background-color: #ff0000;
   color: white;
@@ -81,11 +99,51 @@
   font-size: 1.2em;
   transition: background-color 0.3s ease;
 }
-
+.dynamic-text {
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: #ff0000;
+  letter-spacing: 1px;
+  animation: fadeIn 1s;
+  text-shadow: 0 2px 8px #000a;
+  display: inline-block;
+}
 .hero-button:hover {
   background-color: #cc0000;
 }
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px);}
+  to { opacity: 1; transform: translateY(0);}
+}
+/* Botón de video */
+.hero-video-btn {
+  background: #ff0000;
+  color: #fff;
+  border: none;
+  padding: 12px 28px;
+  border-radius: 30px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  margin-bottom: 18px;
+  box-shadow: 0 2px 8px #0004;
+  transition: background 0.2s, transform 0.2s;
+}
+/* Video promocional */
+.hero-video-container {
+  margin: 20px auto 0 auto;
+  max-width: 520px;
+  background: #111;
+  border-radius: 12px;
+  box-shadow: 0 4px 24px #0008;
+  padding: 12px;
+}
 
+.hero-video-container video {
+  width: 100%;
+  border-radius: 8px;
+  background: #000;
+}
 .content-list {
   display: flex;
   flex-wrap: wrap;
@@ -242,4 +300,123 @@
   .content-list {
     margin-top: 40px;
   }
+}
+ .hero-section h1 {
+    font-size: 1.5rem;
+  }
+  .hero-intro {
+    font-size: 1rem;
+    padding: 0 10px;
+    color: #ff0000;
+  }
+  .dynamic-text {
+    font-size: 1.05rem;
+  }
+  .hero-video-btn {
+    font-size: 1rem;
+    padding: 10px 16px;
+  }
+  .hero-video-container {
+    padding: 4px;
+  }
+
+
+  .sobrenosotros-container {
+  background-color: #000000;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-width: 800px;
+  margin: 20px auto;
+  font-family: Arial, sans-serif;
+}
+
+.sobrenosotros-container h2 {
+  color: #ff0000;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.sobrenosotros-container p {
+  color: #ff0000;
+  line-height: 1.6;
+  margin-bottom: 15px;
+}
+
+.sobrenosotros-container p:last-child {
+  margin-bottom: 0;
+}
+
+.sobrenosotros-image {
+  display: block;
+  margin: 0 auto 20px auto;
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  transition: transform 0.3s ease, filter 0.3s ease; /* Add transition for movement and light */
+}
+
+.sobrenosotros-image:hover {
+  transform: scale(1.05); /* Slightly enlarge the image on hover */
+  filter: brightness(1.2); /* Increase brightness on hover */
+}
+
+@media (max-width: 1023px) and (min-width: 768px) {
+  .sobrenosotros-container {
+    padding: 15px;
+  }
+
+  .sobrenosotros-container h2 {
+    font-size: 1.8rem;
+  }
+
+  .sobrenosotros-container p {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 767px) {
+  .sobrenosotros-container {
+    padding: 10px;
+  }
+
+  .sobrenosotros-container h2 {
+    font-size: 1.5rem;
+  }
+
+  .sobrenosotros-container p {
+    font-size: 0.9rem;
+  }
+}
+
+/* home.css */
+.portada-gradient-bg {
+  min-height: 100vh;
+  width: 100vw;
+  background: linear-gradient(to bottom, #000 0%, #ff0000 100%);
+}
+.servicios-section {
+  background: linear-gradient(to bottom, #000 0%, #ff0000 100%);
+  color: #fff;
+  padding: 40px 20px;
+  border-radius: 12px;
+  max-width: 900px;
+  margin: 40px auto;
+  box-shadow: 0 4px 24px #0008;
+}
+
+.servicios-section h2 {
+  color: #ff0000;
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.servicios-list {
+  list-style: disc inside;
+  margin-bottom: 24px;
+}
+
+.servicios-list li {
+  margin-bottom: 14px;
+  font-size: 1.1rem;
 }

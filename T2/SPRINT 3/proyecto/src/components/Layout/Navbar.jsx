@@ -12,7 +12,7 @@ const Navbar = () => {
 
   const handleAboutClick = (event) => {
     event.preventDefault();
-    window.location.href = '/sobrenosotros-page';
+    window.location.href = '/servicios';
   };
 
   const handleProductsClick = (event) => {
@@ -42,8 +42,8 @@ const Navbar = () => {
       <h1 className="navbar-title">SJ CUSTOMS</h1>
       <ul>
         <li><a href="#home" onClick={handleHomeClick} className="navbar-link">Inicio</a></li>
-        <li><a href="/sobrenosotros-page" onClick={handleAboutClick} className="navbar-link">Sobre Nosotros</a></li>
-        <li><a href="/products-page" onClick={handleProductsClick} className="navbar-link">Productos</a></li>
+        <li><a href="/servicios" onClick={handleAboutClick} className="navbar-link">Servicios</a></li>
+        <li><a href="/products-page" onClick={handleProductsClick} className="navbar-link">Configurador</a></li>
         <li><a href="/contacts-page" onClick={handleContactClick} className="navbar-link">Contacto</a></li>
         <li><a href="/login-page" onClick={handleLoginClick} className="navbar-link">Iniciar Sesión</a></li>
         <li><a href="/register-page" onClick={handleRegisterClick} className="navbar-link">Registrate</a></li>

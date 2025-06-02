@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import '../styles/products.css';
 import { fetchProducts } from '../services/content_API';
 
@@ -8,6 +9,7 @@ const Productos = () => {
   const [selectedProducts, setSelectedProducts] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [configCounts, setConfigCounts] = useState({});
+  const navigate = useNavigate();
 
   const options = {
     Motor: {
@@ -55,7 +57,12 @@ const Productos = () => {
     );
   };
 
- 
+  const handleConfigureClick = (product) => {
+    navigate('/cart-preview', { state: { from: 'productCard', product } });
+    setTimeout(() => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }, 0);
+  };
 
   const sortedProducts = [...products].sort((a, b) => (likes[b.id] || 0) - (likes[a.id] || 0));
 
@@ -75,17 +82,19 @@ const Productos = () => {
       <p className="highlighted-text">Los más destacados en función a los usuarios</p>
       <div className="productos-list">
         {sortedProducts.map((product) => (
-          <div key={product.id} className="productos-item">
-            <img src={product.image} alt={product.name} />
-            <h2>{product.name}</h2>
+          <div key={product.id} className="product-card">
+            <img src={product.image} alt={product.name} className="product-image" />
+            <h3>{product.name}</h3>
             <p>Precio: ${product.precio}</p>
             <p>Rating: {product.rating} stars</p>
             <button onClick={() => handleLike(product.id)}>Favorito</button>
             <p>Me gusta: {likes[product.id] || 0}</p>
             <button onClick={() => handleSelectProduct(product.id)}>
-              {selectedProducts.includes(product.id) ? 'Quitar de Comparación' : 'Comparar'
-              }
+              {selectedProducts.includes(product.id) ? 'Quitar de Comparación' : 'Comparar'}
             </button>
+            <div className="card-buttons">
+              <button onClick={() => handleConfigureClick(product)}>Configurar</button>
+            </div>
             {bestSellerId === product.id && <p className="best-seller">El más vendido</p>}
           </div>
         ))}
