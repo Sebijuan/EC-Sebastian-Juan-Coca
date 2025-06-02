@@ -9,8 +9,6 @@ const Productos = () => {
   const [configCounts, setConfigCounts] = useState({});
   const navigate = useNavigate();
 
-  
-
   useEffect(() => {
     fetchProducts().then((data) => {
       setProducts(data);
@@ -28,15 +26,21 @@ const Productos = () => {
   };
 
   const handleConfigureClick = (product) => {
-    navigate('/cart-preview', { state: { from: 'productCard', product } });
+     const { imageUrl, name, price } = product;
+    navigate('/cart-preview', { state: { from: 'productCard', imageUrl, name, price } });
     setTimeout(() => {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }, 0);
   };
 
-  const sortedProducts = [...products].sort((a, b) => (likes[b.id] || 0) - (likes[a.id] || 0));
-
-  const bestSellerId = Object.keys(configCounts).reduce((a, b) => (configCounts[a] > configCounts[b] ? a : b), null);
+  // Usamos _id como identificador y likes de la API si existe, si no, usamos el local
+  const sortedProducts = [...products].sort(
+    (a, b) => ((likes[b._id] ?? b.likes ?? 0) - (likes[a._id] ?? a.likes ?? 0))
+  );
+  const bestSellerId = Object.keys(configCounts).reduce(
+    (a, b) => (configCounts[a] > configCounts[b] ? a : b),
+    null
+  );
 
   return (
     <div className="productos-container">
@@ -44,17 +48,17 @@ const Productos = () => {
       <p className="highlighted-text">Los más destacados en función a los usuarios</p>
       <div className="productos-list">
         {sortedProducts.map((product) => (
-          <div key={product.id} className="product-card">
-            <img src={product.image} alt={product.name} className="product-image" />
+          <div key={product._id} className="product-card">
+            <img src={product.imageUrl} alt={product.name} className="product-image" />
             <h3>{product.name}</h3>
-            <p>Precio: ${product.precio}</p>
+            <p>Precio: ${product.price}</p>
             <p>Rating: {product.rating} stars</p>
-            <button onClick={() => handleLike(product.id)}>Favorito</button>
-            <p>Me gusta: {likes[product.id] || 0}</p>
+            <button onClick={() => handleLike(product._id)}>Favorito</button>
+            <p>Me gusta: {likes[product._id] ?? product.likes ?? 0}</p>
             <div className="card-buttons">
               <button onClick={() => handleConfigureClick(product)}>Configurar</button>
             </div>
-            {bestSellerId === product.id && <p className="best-seller">El más vendido</p>}
+            {bestSellerId === product._id && <p className="best-seller">El más vendido</p>}
           </div>
         ))}
       </div>
