@@ -73,7 +73,7 @@ const Portada = () => {
           }}
         />
       </div>
-      <h1 style={{ fontWeight: 700, fontSize: '2.5rem', marginBottom: 10 }}>
+      <h1 style={{ fontWeight: 700, fontSize: '2.5rem', marginBottom: 10, color:'#ff0000' }}>
         Bienvenido a SJ CUSTOMS
       </h1>
       <p className="hero-intro" style={{ fontSize: '1.3rem', marginBottom: 18 }}>

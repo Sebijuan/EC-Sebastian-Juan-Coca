@@ -420,3 +420,7 @@
   margin-bottom: 14px;
   font-size: 1.1rem;
 }
+.servicios-list li::marker {
+  color: #ff0000; /* Color del marcador */
+  font-weight: bold; /* Negrita para mayor visibilidad */
+}
