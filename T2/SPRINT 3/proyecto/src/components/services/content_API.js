@@ -1,5 +1,6 @@
+import{API_BASE_URL} from './apiClient.js';
 export const fetchProducts = async () => {
-  const response = await fetch('/api/car');
+  const response = await fetch(`${API_BASE_URL}/api/car`);
   if (!response.ok) throw new Error('Error al obtener los productos');
   return await response.json();
 };
