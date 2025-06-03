@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import '../styles/home.css';
-
+import{API_BASE_URL} from './auth_API.js'; 
 const CartPreview = () => {
   const location = useLocation();
   const navigate = useNavigate();
@@ -20,7 +20,7 @@ const CartPreview = () => {
 
   // Obtener opciones de configuración desde la API
   useEffect(() => {
-    fetch('/api/config')
+   fetch(`${API_BASE_URL}/config`)
       .then(res => res.json())
       .then(data => {
         const allMotors = Object.values(data.Motor || {}).flat();
@@ -75,7 +75,7 @@ const CartPreview = () => {
     };
 
     try {
-      await fetch('/api/config', {
+       await fetch(`${API_BASE_URL}/config`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(configToSave)
