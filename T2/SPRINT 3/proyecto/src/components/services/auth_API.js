@@ -40,4 +40,4 @@ async function recoverPassword(email) {
     }
 }
 
-export { registerUser, loginUser, recoverPassword };
+export { API_BASE_URL, registerUser, loginUser, recoverPassword };
