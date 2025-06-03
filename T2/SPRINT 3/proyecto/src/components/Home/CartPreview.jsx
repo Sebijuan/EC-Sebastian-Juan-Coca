@@ -5,62 +5,42 @@ import '../styles/home.css';
 const CartPreview = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  
+  const { imageUrl, name, price } = location.state;
   const from = location.state?.from;
   const product = location.state?.product;
 
-  const [selectedOptions, setSelectedOptions] = useState(() => {
-    const savedOptions = product ? localStorage.getItem(`config-${product.id}`) : null;
-    return savedOptions ? JSON.parse(savedOptions) : {
-      Interior: [],
-      Exterior: [],
-      Motor: [],
-      Extras: [],
-      Color: []
-    };
+  const [selectedOptions, setSelectedOptions] = useState({
+    Interior: [],
+    Exterior: [],
+    Motor: [],
+    Extras: [],
+    Color: []
   });
+  const [options, setOptions] = useState(null);
 
-  const options = {
-    Interior: ['Asientos Tipo Bucket', 'Pack de luces LED de interior', 'Pack de Altavoces Supreme', 'Instalación de un cielo estrellado con fibra óptica tipo Rolls-Royce', 'Pantallas táctiles más grandes (tipo tablet)', 'Portavasos iluminados', 'Tweeters motorizados que emergen al encender el coche', 'Tapizado con materiales especiales (Alcantara, microfibra)'],
-    Exterior: ['Pintura Cromada', 'Faros LED', 'Llantas de aleación de 18"', 'Escape Akrapovic', 'Techo Solar', 'Parachoques', 'Faldones Laterales', 'Difusor Aerodinámico'],
-    Motor: {
-      1: ['Motor Gasolina 3.0L(340cv)', 'Motor Diesel 3.0L(265cv)','Motor Hibrido Enchufable(489cv)','Motor V8 4.4L(555cv)'],
-      2: ['Motor Diesel 2.0 TDI(136cv)', 'Motor Diesel 3.0 TDI(347cv)','Motor Gasolina 1.5 TFSI(150cv)','Motor Gasolina 2.0 TFSI(204cv)'],
-      3: ['Motor Gasolina 3.0 litros TwinPower Turbo(530cv)' ],
-      4: ['Motor Gasolina 2.0(476cv)'],
-      5: ['Motor Gasolina 2.0 TSI(265cv)', 'Motor Gasolina 2.0 TSI(300cv)'],
-      6: ['Motor Gasolina 1.5 TSI(150cv)','Motor Gasolina 1.5 TSI(115cv)', 'Motor Hibrido 1.5 eTSI(150cv)','Motor Hibrido 1.5 eTSI(115cv)','Motor Hibrido 1.5 eTSI(204cv)','Motor Diesel 2.0 TDI(150cv)',''],
-      7: ['Motor Gasolina 1.0 TSI(115cv)', 'Motor Gasolina 1.5 TSI(150cv)'],
-      8: ['Motor Gasolina 1.0 TFSI(110cv)', 'Motor Gasolina 1.5 TFSI(150cv)','Motor Gasolina 2.0 TFSI(207cv)'],
-      9: ['Motor Gasolina 2.0 T-GDI(250cv)', 'Motor Gasolina 2.0 T-GDI(280cv)'],
-      10: ['Motor Gasolina 1.6 T-GDI(204cv)'],
-      11: ['Motor Gasolina 2.0(255cv)', 'Motor Gasolina 3.0(382cv)'],
-      12: ['Motor Gasolina 2.3(400cv)', 'Motor Gasolina 2.3 EcoBoost(280cv)'],
-      13: ['Motor Gasolina 3.5(304cv)', ],
-      14: ['Motor Gasolina VTEC® 2.0L (315cv)'],
-      15: ['Motor Gasolina V8 4.OL(650cv)', 'Motor Hibrido(800cv)'],
-      16: ['Motor Gasolina V8 4.5L(570cv)', 'Motor Gasolina V8 GTB(670cv)'],
-      17: ['Motor Gasolina 1.2T(100cv)', 'Motor Hibrido 1.2T XHL(100cv)','Motor Hibrido 1.2T XHL(136cv)','Motor Electrico 115kw y 51kWh Bateria(156cv)'],
-    },
-    Extras: ['Sistema de Navegación Avanzado', 'Asistente de Conducción Autónoma', 'Enfriadores de bebidas', 'Detalles en oro, plata o cristales Swarovski'],
-    Color: ['Rojo', 'Azul', 'Negro', 'Blanco', 'Gris']
-  };
-
+  // Obtener opciones de configuración desde la API
   useEffect(() => {
-    if (!from || !product) {
-      navigate('/'); // Si no tenemos los datos, redirigimos a la página de inicio
-    }
-  }, [from, product, navigate]);
-
-  useEffect(() => {
-    window.scrollTo({ top: 0, behavior: 'smooth' }); // Scroll to top on mount
+    fetch('/api/config')
+      .then(res => res.json())
+      .then(data => {
+        const allMotors = Object.values(data.Motor || {}).flat();
+        setOptions({
+          ...data,
+          Motor: allMotors
+        });
+      })
+      .catch(() => setOptions(null));
   }, []);
 
   useEffect(() => {
-    if (product) {
-      localStorage.setItem(`config-${product.id}`, JSON.stringify(selectedOptions));
+    if (!from || !imageUrl || !name || !price) {
+      navigate('/');
     }
-  }, [selectedOptions, product]);
+  }, [from, imageUrl, name, price, navigate]);
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, []);
 
   const handleConfigChange = (event) => {
     const { name, value, checked, type } = event.target;
@@ -84,47 +64,66 @@ const CartPreview = () => {
     navigate('/');
   };
 
-  const handleAccept = () => {
-    localStorage.removeItem(`config-${product.id}`);
-    setSelectedOptions({
-      Interior: [],
-      Exterior: [],
-      Motor: [],
-      Extras: [],
-      Color: []
-    });
-    navigate('/resumen-compra', { state: { product, selectedOptions } });
+  const handleAccept = async () => {
+    // Construir el objeto para el endpoint
+    const configToSave = {
+      car: name,
+      color: selectedOptions.Color[0] || "",
+      interior: selectedOptions.Interior.join(', '),
+      extras: selectedOptions.Extras,
+      engine: selectedOptions.Motor[0] || ""
+    };
+
+    try {
+      await fetch('/api/config', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(configToSave)
+      });
+      // Navegar a la página de resumen con los datos seleccionados
+      navigate('/resumen-compra', {
+        state: {
+          product: {
+            name,
+            image: imageUrl,
+            precio: price
+          },
+          selectedOptions
+        }
+      });
+    } catch (error) {
+      alert('Error al guardar la configuración');
+    }
   };
 
   const calculateTotalPrice = () => {
-    const basePrice = product.precio;
+    const basePrice = price;
     const interiorExteriorColorCount = selectedOptions.Interior.length + selectedOptions.Exterior.length + selectedOptions.Color.length;
     const extrasCount = selectedOptions.Extras.length;
     const motorCount = selectedOptions.Motor.length;
     return basePrice + interiorExteriorColorCount * 250 + extrasCount * 750 + motorCount * 1000;
   };
 
-  if (!product) {
-    return <div>Cargando...</div>;
+  if (!options) {
+    return <div>Cargando opciones...</div>;
   }
 
   return (
     <div className="car-tuning-preview">
       <h2>Personalizar</h2>
       <ul>
-        <li key={product.id} className="product-item">
-          <img src={product.image} alt={product.name} />
+        <li className="product-item">
+          <img src={imageUrl} alt={name} />
           <div className="product-details">
-            <h3>{product.name}</h3>
-            <p>{product.price}</p>
-        
+            <h3>{name}</h3>
+            <p>${price}</p>
           </div>
         </li>
       </ul>
       <div className="car-tuning-menu">
         <div>
           <h4>Interior:</h4>
-          {options.Interior.map((option) => (
+          {options.Interior && options.Interior.map((option) => (
             <label key={option} className="custom-checkbox">
               <input
                 type="checkbox"
@@ -139,7 +138,7 @@ const CartPreview = () => {
         </div>
         <div>
           <h4>Exterior:</h4>
-          {options.Exterior.map((option) => (
+          {options.Exterior && options.Exterior.map((option) => (
             <label key={option} className="custom-checkbox">
               <input
                 type="checkbox"
@@ -156,7 +155,7 @@ const CartPreview = () => {
           <h4>Motor:</h4>
           <select name="Motor" onChange={handleConfigChange} value={selectedOptions.Motor[0] || ''}>
             <option value="">Selecciona una opción</option>
-            {options.Motor[product.id].map((option) => (
+            {options.Motor && options.Motor.map((option) => (
               <option key={option} value={option}>
                 {option}
               </option>
@@ -167,7 +166,7 @@ const CartPreview = () => {
           <h4>Color:</h4>
           <select name="Color" onChange={handleConfigChange} value={selectedOptions.Color[0] || ''}>
             <option value="">Selecciona un color</option>
-            {options.Color.map((option) => (
+            {options.Color && options.Color.map((option) => (
               <option key={option} value={option}>
                 {option}
               </option>
@@ -176,7 +175,7 @@ const CartPreview = () => {
         </div>
         <div>
           <h4>Extras Exclusivos:</h4>
-          {options.Extras.map((option) => (
+          {options.Extras && options.Extras.map((option) => (
             <label key={option} className="custom-checkbox">
               <input
                 type="checkbox"
