@@ -1,6 +1,23 @@
 import React from "react";
 import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
 
+const CARD_ELEMENT_OPTIONS = {
+  style: {
+    base: {
+      color: "#fff", // Texto blanco
+      fontSize: "16px",
+      '::placeholder': {
+        color: "#ccc", // Placeholder gris claro
+      },
+      iconColor: "#fff"
+    },
+    invalid: {
+      color: "#ff5252",
+      iconColor: "#ff5252"
+    }
+  }
+};
+
 const StripeCheckout = ({ amount, onSuccess }) => {
   const stripe = useStripe();
   const elements = useElements();
@@ -41,8 +58,24 @@ const StripeCheckout = ({ amount, onSuccess }) => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <CardElement />
-      <button type="submit" disabled={!stripe}>Pagar</button>
+      <CardElement options={CARD_ELEMENT_OPTIONS} />
+      <button
+        type="submit"
+        disabled={!stripe}
+        style={{
+          background: "red",
+          color: "#fff",
+          width: "100%",
+          marginTop: "20px",
+          border: "none",
+          borderRadius: "6px",
+          padding: "12px",
+          fontSize: "16px",
+          cursor: "pointer"
+        }}
+      >
+        Pagar
+      </button>
     </form>
   );
 };
