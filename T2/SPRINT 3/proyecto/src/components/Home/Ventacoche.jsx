@@ -4,6 +4,7 @@ import '../styles/Ventacoche.css';
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 import StripeCheckout from "./StripeCheckout";
+import { API_BASE_URL } from '../services/auth_API.js';
 
 const stripePromise = loadStripe("pk_test_51RWISkE6S9MYaMRgzsX6kLeKFML5uH7sWQEh8gDI5p4NoIczXMdPYNLBfU3XWYbGAHdUQmeGQVmpXviUq5Q9cFM200zkB6B0ib");
 
@@ -129,6 +130,7 @@ const Ventacoche = () => {
         <StripeCheckout
           amount={paymentOption === "contado" ? calculateUpfrontPrice() : Math.round(calculateFinancedPrice(years))}
           onSuccess={() => navigate("/payments/options")}
+          apiUrl={`${API_BASE_URL}/payments/pay`}
         />
       </Elements>
     </div>

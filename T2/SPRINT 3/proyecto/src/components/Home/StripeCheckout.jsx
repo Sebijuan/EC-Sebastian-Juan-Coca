@@ -18,7 +18,7 @@ const CARD_ELEMENT_OPTIONS = {
   }
 };
 
-const StripeCheckout = ({ amount, onSuccess }) => {
+const StripeCheckout = ({ amount, onSuccess, apiUrl }) => {
   const stripe = useStripe();
   const elements = useElements();
 
@@ -37,8 +37,8 @@ const StripeCheckout = ({ amount, onSuccess }) => {
       return;
     }
 
-    // Llama a tu backend para procesar el pago
-    const response = await fetch("/api/payments/pay", {
+    // Usa la apiUrl que recibes por props
+    const response = await fetch(apiUrl, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
