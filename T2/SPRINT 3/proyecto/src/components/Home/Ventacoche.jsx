@@ -145,7 +145,7 @@ const Ventacoche = () => {
           amount={paymentOption === "contado" ? calculateUpfrontPrice() : Math.round(calculateFinancedPrice(years))}
           onSuccess={async () => {
             await sendPurchaseEmail();
-            navigate("/payments/options");
+            navigate("/finalizado");
           }}
           apiUrl={`${API_BASE_URL}/payments/pay`}
         />

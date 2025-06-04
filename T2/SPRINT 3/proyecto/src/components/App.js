@@ -12,7 +12,7 @@ import ForgotPasswordForm from './Auth/ForgotPasswordForm';
 import Productos from './Home/Productos';
 import Contacto from './Home/Contacto';
 
-
+import FinalCompra from './Home/FinalCompra';
 import ResumenCompra from './Home/ResumenCompra';
 
 import ChatTelegram from './Home/ChatTelegram';
@@ -53,7 +53,7 @@ const App = () => {
        
         <Route path="/servicios" element={<Servicios />} />
 
-        
+        <Route path="/finalizado" element={<FinalCompra />} />
 
         <Route path="/resumen-compra" element={<ResumenCompra />} />
         <Route path="/comprar" element={<Ventacoche/>} />
