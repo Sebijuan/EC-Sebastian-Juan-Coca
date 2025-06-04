@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import '../styles/forgotpassword.css';
 import { validateEmail } from '../Shared/ValidationSystem';
 import { showSuccessNotification, showErrorNotification } from '../Shared/NotificationSystem';
-import { recoverPassword } from '../services/auth_API';
+import { recoverPassword } from '../services/auth_API.js';
 
 const ForgotPasswordForm = () => {
     const [email, setEmail] = useState('');
