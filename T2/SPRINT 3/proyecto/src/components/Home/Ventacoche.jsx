@@ -1,6 +1,11 @@
 import React, { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import '../styles/Ventacoche.css';
+import { Elements } from "@stripe/react-stripe-js";
+import { loadStripe } from "@stripe/stripe-js";
+import StripeCheckout from "./StripeCheckout";
+
+const stripePromise = loadStripe("pk_test_51RWISkE6S9MYaMRgzsX6kLeKFML5uH7sWQEh8gDI5p4NoIczXMdPYNLBfU3XWYbGAHdUQmeGQVmpXviUq5Q9cFM200zkB6B0ib"); // Reemplaza con tu clave pública de Stripe
 
 const Ventacoche = () => {
   const location = useLocation();
@@ -15,6 +20,7 @@ const Ventacoche = () => {
 
   const [paymentOption, setPaymentOption] = useState('contado');
   const [years, setYears] = useState(4);
+  const [showStripe, setShowStripe] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -30,8 +36,7 @@ const Ventacoche = () => {
   };
 
   const calculateFinancedPrice = (years) => {
-    // Assuming a simple interest calculation for demonstration
-    const interestRate = 0.02; // 2% interest rate per year
+    const interestRate = 0.02;
     const totalPrice = calculateTotalPrice();
     return totalPrice * (1 + interestRate * years);
   };
@@ -51,90 +56,93 @@ const Ventacoche = () => {
 
   const calculateUpfrontPrice = () => {
     const totalPrice = calculateTotalPrice();
-    return Math.round(totalPrice * 1.02); // Add 5% surcharge
+    return Math.round(totalPrice * 1.02);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Handle form submission logic here
-    console.log('Form Data:', formData);
-    console.log('Product:', product);
-    console.log('Selected Options:', selectedOptions);
-    alert('Compra completada con éxito');
-    // Redirect to a confirmation page or another step
-    navigate('/payments/options', { state: { formData, product, selectedOptions, totalPrice: calculateTotalPrice() } });
+    setShowStripe(true);
   };
 
   return (
     <div className="ventacoche">
       <h2>Datos de Compra</h2>
-      <form onSubmit={handleSubmit}>
-        <div className="form-group">
-          <label htmlFor="name">Nombre Completo:</label>
-          <input
-            type="text"
-            id="name"
-            name="name"
-            value={formData.name}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="address">Dirección:</label>
-          <input
-            type="text"
-            id="address"
-            name="address"
-            value={formData.address}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        
-        <h2>Opciones de Pago</h2>
-        <label className="payment-option-label">
-          <input
-            type="radio"
-            value="contado"
-            checked={paymentOption === 'contado'}
-            onChange={handlePaymentOptionChange}
-          />
-          Pago al contado
-        </label>
-        <label className="payment-option-label">
-          <input
-            type="radio"
-            value="financiado"
-            checked={paymentOption === 'financiado'}
-            onChange={handlePaymentOptionChange}
-          />
-          Pago financiado
-        </label>
-
-        {paymentOption === 'financiado' && (
-          <div>
-            <label>
-              Años de financiación:
-              <select value={years} onChange={handleYearsChange}>
-                {[4, 5, 6, 7, 8, 9, 10].map((year) => (
-                  <option key={year} value={year}>
-                    {year} años
-                  </option>
-                ))}
-              </select>
-            </label>
-            <p>Precio financiado: {Math.round(calculateFinancedPrice(years))} €</p>
-            <p>Pago mensual: {calculateMonthlyPayment(years)} €</p>
+      {!showStripe ? (
+        <form onSubmit={handleSubmit}>
+          <div className="form-group">
+            <label htmlFor="name">Nombre Completo:</label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              value={formData.name}
+              onChange={handleChange}
+              required
+            />
           </div>
-        )}
+          <div className="form-group">
+            <label htmlFor="address">Dirección:</label>
+            <input
+              type="text"
+              id="address"
+              name="address"
+              value={formData.address}
+              onChange={handleChange}
+              required
+            />
+          </div>
+          
+          <h2>Opciones de Pago</h2>
+          <label className="payment-option-label">
+            <input
+              type="radio"
+              value="contado"
+              checked={paymentOption === 'contado'}
+              onChange={handlePaymentOptionChange}
+            />
+            Pago al contado
+          </label>
+          <label className="payment-option-label">
+            <input
+              type="radio"
+              value="financiado"
+              checked={paymentOption === 'financiado'}
+              onChange={handlePaymentOptionChange}
+            />
+            Pago financiado
+          </label>
 
-        {paymentOption === 'contado' && (
-          <p>Precio al contado: {calculateUpfrontPrice()} €</p>
-        )}
+          {paymentOption === 'financiado' && (
+            <div>
+              <label>
+                Años de financiación:
+                <select value={years} onChange={handleYearsChange}>
+                  {[4, 5, 6, 7, 8, 9, 10].map((year) => (
+                    <option key={year} value={year}>
+                      {year} años
+                    </option>
+                  ))}
+                </select>
+              </label>
+              <p>Precio financiado: {Math.round(calculateFinancedPrice(years))} €</p>
+              <p>Pago mensual: {calculateMonthlyPayment(years)} €</p>
+            </div>
+          )}
 
-        <button type="submit">Confirmar Compra</button>
-      </form>
+          {paymentOption === 'contado' && (
+            <p>Precio al contado: {calculateUpfrontPrice()} €</p>
+          )}
+
+          <button type="submit">Confirmar Compra</button>
+        </form>
+      ) : (
+        <Elements stripe={stripePromise}>
+          <StripeCheckout
+            amount={paymentOption === "contado" ? calculateUpfrontPrice() : Math.round(calculateFinancedPrice(years))}
+            onSuccess={() => navigate("/payments/options")}
+          />
+        </Elements>
+      )}
     </div>
   );
 };

@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@slack/web-api": "^7.8.0",
+    "@stripe/stripe-js": "^7.3.1",
     "assert": "^2.1.0",
     "axios": "^1.7.9",
     "bcryptjs": "^2.4.3",
