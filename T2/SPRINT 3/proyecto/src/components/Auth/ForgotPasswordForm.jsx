@@ -21,14 +21,15 @@ const ForgotPasswordForm = () => {
 
         try {
             console.log(`Sending recovery link to: ${email}`);
-            const response = await recoverPassword(email);
-            if (response.success) {
-                showSuccessNotification('Enlace de recuperación enviado con éxito.');
-                setSuccess('Enlace de recuperación enviado con éxito.');
+            const response = await recoverPassword(email.trim().toLowerCase());
+            if (response.message) {
+                showSuccessNotification(response.message);
+                setSuccess(response.message);
             }
         } catch (err) {
-            showErrorNotification('El correo no está registrado.');
-            setError('El correo no está registrado.');
+            const msg = err?.message || 'El correo no está registrado.';
+            showErrorNotification(msg);
+            setError(msg);
         }
     };
 
