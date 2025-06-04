@@ -12,7 +12,6 @@ const Ventacoche = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
-  // Recupera datos del coche desde location.state o localStorage
   const [product, setProduct] = useState(null);
   const [selectedOptions, setSelectedOptions] = useState(null);
 
@@ -68,6 +67,21 @@ const Ventacoche = () => {
   const calculateUpfrontPrice = () => {
     const totalPrice = calculateTotalPrice();
     return Math.round(totalPrice * 1.02);
+  };
+
+  // --- FUNCIÓN PARA ENVIAR EL CORREO AL BACKEND ---
+  const sendPurchaseEmail = async () => {
+    await fetch(`${API_BASE_URL}/purchase/email`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        carName: product.name,
+        imageUrl: product.image,
+        config: selectedOptions,
+        price: paymentOption === "contado" ? calculateUpfrontPrice() : Math.round(calculateFinancedPrice(years)),
+        paymentType: paymentOption,
+      }),
+    });
   };
 
   return (
@@ -129,7 +143,10 @@ const Ventacoche = () => {
       <Elements stripe={stripePromise}>
         <StripeCheckout
           amount={paymentOption === "contado" ? calculateUpfrontPrice() : Math.round(calculateFinancedPrice(years))}
-          onSuccess={() => navigate("/payments/options")}
+          onSuccess={async () => {
+            await sendPurchaseEmail();
+            navigate("/payments/options");
+          }}
           apiUrl={`${API_BASE_URL}/payments/pay`}
         />
       </Elements>
