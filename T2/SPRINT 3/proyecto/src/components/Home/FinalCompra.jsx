@@ -1,5 +1,5 @@
 import React from 'react';
-
+import '../styles/finalcompra.css'; // Assuming you have a CSS file for styling
 const FinalCompra = () => {
   return (
     <div className="final-compra" style={{ textAlign: 'center', padding: '2rem' }}>
@@ -8,7 +8,7 @@ const FinalCompra = () => {
         Gracias por confiar en nosotros para la adquisición de tu nuevo vehículo.<br />
         Estamos seguros de que disfrutarás de cada kilómetro al volante de tu coche personalizado.
       </p>
-      <div style={{ margin: '2rem 0', display: 'flex', justifyContent: 'center', gap: '2rem' }}>
+      <div className="final-compra-imgs" style={{ margin: '2rem 0', display: 'flex', justifyContent: 'center', gap: '2rem' }}>
         <img
           src="/assests/images/cochereg.png"
           alt="Coche felicitación"
