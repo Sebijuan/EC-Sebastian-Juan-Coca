@@ -26,8 +26,8 @@ const Contacto = () => {
     <div className="contacto-container">
       <h1>Contacto</h1>
       <div className="contacto-info">
-        <p><strong>Dirección:</strong> Calle Falsa 123, Ciudad, País</p>
-        <p><strong>Teléfono:</strong> +123 456 7890</p>
+        <p><strong>Dirección:</strong>Avenida de las Ciencias N33, Sevilla, 41020</p>
+        <p><strong>Teléfono:</strong> +34 640 52 45 49</p>
         <p><strong>Email:</strong> info@sjcustoms.com</p>
       </div>
       <form className="contacto-form" onSubmit={sendEmail}>
